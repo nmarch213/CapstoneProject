@@ -29,26 +29,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.util.ArrayList;
 import java.util.List;
-
-// testing
-
-//more testing
-
-//testing commit
-
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class NewRegistration extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -72,17 +61,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -99,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.login_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,10 +90,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
@@ -130,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new OnClickListener() {
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
                         public void onClick(View v) {
@@ -292,50 +273,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+                new ArrayAdapter<>(NewRegistration.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Login Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.capstoneimsports.capstoneimsports/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Login Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.capstoneimsports.capstoneimsports/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 
 
