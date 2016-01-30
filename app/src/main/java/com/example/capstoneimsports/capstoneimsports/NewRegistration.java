@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
 
+import com.facebook.appevents.AppEventsLogger;
+
 public class NewRegistration extends AppCompatActivity implements View.OnClickListener
 {
     Button bRegister;
@@ -40,6 +42,22 @@ public class NewRegistration extends AppCompatActivity implements View.OnClickLi
                 break;
 
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
     }
 }
 

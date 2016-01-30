@@ -20,6 +20,11 @@
     <string name="prompt_Member_Login">Member Login</string>
     <string name="password_holder">**************</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="facebook_app_id">1681353728786793</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
