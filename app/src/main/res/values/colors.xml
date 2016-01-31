@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="UWFBlue">#0069AA</color>
+    <color name="UWFGreen">#008540</color>
+    <color name="NautiBlue">#09AEDA</color>
+    <color name="CannonGreen">#56B94B</color>
+    <color name="Midnight">#003865</color>
+    <color name="Pine">#215732</color>
+    <color name="Lime">#C1D835</color>
+    <color name="primary_material_light">#0069aa</color>
+    <color name="primary_dark_material_light">#0049b4</color>
+    <color name="accent_material_light">#56b94b</color>
+    <color name="background_material_light">#003865</color>
+    <color name="primary_text_material_light">#56b94b</color>
+    <color name="foreground_material_light">#c8dd0b</color>
+    <color name="primary_text_material_dark">#47bdae</color>
+    <color name="secondary_text_material_light">#215732</color>
+    <color name="secondary_text_material_dark">#d7e815</color>
 </resources>

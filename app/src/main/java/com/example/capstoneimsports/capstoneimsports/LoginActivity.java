@@ -19,8 +19,14 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import android.support.v4.app.Fragment;
@@ -58,6 +64,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Edit Text Password field
         etPassword = (EditText) findViewById(R.id.etPassword);
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+        final Intent intent = new Intent(LoginActivity.this, HomePage.class);
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
     }
 
     @Override
@@ -75,6 +102,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 //When Register button clicked, take to Register page
                 startActivity(new Intent(this,NewRegistration.class));
+
+                break;
+            case R.id.facebook_login_fragment:
+
+                startActivity(new Intent(LoginActivity.this,HomePage.class));
 
                 break;
         }

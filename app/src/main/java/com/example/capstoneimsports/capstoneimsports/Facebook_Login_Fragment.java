@@ -1,6 +1,7 @@
 package com.example.capstoneimsports.capstoneimsports;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;

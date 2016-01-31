@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true" />
 
-    <ScrollView
+    <RelativeLayout
         android:id="@+id/ScrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
-    </ScrollView>
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/view_1"
