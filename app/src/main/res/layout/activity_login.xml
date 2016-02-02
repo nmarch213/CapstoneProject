@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/register_main"
     android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true" >
+    android:focusableInTouchMode="true">
 
     <View
         android:id="@+id/view"
@@ -20,15 +19,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/view"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/registration_background"
-        android:padding="25dp" >
+        android:padding="25dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -38,13 +37,13 @@
                 android:id="@+id/member_login_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
                 android:text="@string/prompt_Member_Login"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:typeface="monospace"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp" />
+                android:typeface="monospace" />
 
             <EditText
                 android:id="@+id/etEmail"
@@ -95,15 +94,14 @@
                 android:background="@drawable/register_button"
                 android:text="@string/action_register"
                 android:textColor="#ffffff"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
 
             <fragment
+                android:id="@+id/facebook_login_fragment"
+                android:name="com.example.capstoneimsports.capstoneimsports.Facebook_Login_Fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:name="com.example.capstoneimsports.capstoneimsports.Facebook_Login_Fragment"
-                android:id="@+id/facebook_login_fragment"
                 android:layout_below="@id/register_button"
                 tools:layout="@layout/activity_login" />
 
@@ -112,13 +110,13 @@
                 android:id="@+id/forgot_passwd_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/facebook_login_fragment"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:text="@string/action_Forgot_Password"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:typeface="monospace"
-                android:layout_below="@+id/facebook_login_fragment"
-                android:layout_centerHorizontal="true"/>
+                android:typeface="monospace" />
 
         </RelativeLayout>
     </RelativeLayout>
@@ -127,10 +125,9 @@
         android:id="@+id/view_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/member_imview"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/member_imview" />
 
 
 </RelativeLayout>

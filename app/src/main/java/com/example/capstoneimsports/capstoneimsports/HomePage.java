@@ -22,13 +22,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
 
-public class HomePage extends AppCompatActivity
-{
+public class HomePage extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
     }

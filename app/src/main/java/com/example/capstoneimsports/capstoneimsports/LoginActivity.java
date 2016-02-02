@@ -40,8 +40,8 @@ import java.security.Signature;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    Button bLogIn,bRegister;
-    EditText etEmail,etPassword;
+    Button bLogIn, bRegister;
+    EditText etEmail, etPassword;
 
 
     @Override
@@ -50,13 +50,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         setContentView(R.layout.activity_login);
         //Sign in Button
-        bLogIn = (Button)findViewById(R.id.login_button);
+        bLogIn = (Button) findViewById(R.id.login_button);
 
 
         bLogIn.setOnClickListener(this);
 
         //Register Button
-        bRegister = (Button)findViewById(R.id.register_button);
+        bRegister = (Button) findViewById(R.id.register_button);
         bRegister.setOnClickListener(this);
 
         //Edit Text Email
@@ -88,10 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onClick(View v)
-    {
-        switch(v.getId())
-        {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.login_button:
 
                 //Responds to login button click
@@ -101,16 +99,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.register_button:
 
                 //When Register button clicked, take to Register page
-                startActivity(new Intent(this,NewRegistration.class));
+                startActivity(new Intent(this, NewRegistration.class));
 
                 break;
             case R.id.facebook_login_fragment:
 
-                startActivity(new Intent(LoginActivity.this,HomePage.class));
+                startActivity(new Intent(LoginActivity.this, HomePage.class));
 
                 break;
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();

@@ -37,6 +37,7 @@ public class Facebook_Login_Fragment extends Fragment {
     private ProfileTracker mProfileTracker;
     private AccessTokenTracker mTokenTracker;
     private CallbackManager mCallbackManager;
+
     private FacebookCallback<LoginResult> mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
@@ -58,10 +59,10 @@ public class Facebook_Login_Fragment extends Fragment {
     };
 
     @Override
-    public void onAttach(Activity activity)
-    {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,35 +86,30 @@ public class Facebook_Login_Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState)
-    {
-        return inflater.inflate(R.layout.fragment_login, container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
         mTokenTracker.stopTracking();
         mProfileTracker.stopTracking();
     }
 
 
-
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState)
-    {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         LoginButton loginButton = (LoginButton) getView().findViewById(R.id.login_button);
         loginButton.setFragment(this);
@@ -122,47 +118,40 @@ public class Facebook_Login_Fragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState)
-    {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    public void onDestroyView()
-    {
+    public void onDestroyView() {
         super.onDestroyView();
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
     }
 
     @Override
-    public void onDetach()
-    {
+    public void onDetach() {
         super.onDetach();
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Profile profile = Profile.getCurrentProfile();
         getWelcomeMessage(profile);
     }
 
-    public void getWelcomeMessage(Profile profile)
-    {
-        if(profile != null)
-        {
+    public void getWelcomeMessage(Profile profile) {
+        if (profile != null) {
             //mTextDetails.setText("Welcome " + profile.getName());
         }
     }

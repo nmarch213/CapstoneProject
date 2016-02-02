@@ -13,14 +13,12 @@ import android.widget.EditText;
 
 import com.facebook.appevents.AppEventsLogger;
 
-public class NewRegistration extends AppCompatActivity implements View.OnClickListener
-{
+public class NewRegistration extends AppCompatActivity implements View.OnClickListener {
     Button bRegister;
-    EditText  etEmail,etPassword,etPasswordConfirm;
+    EditText etEmail, etPassword, etPasswordConfirm;
 
     @Override
-    protected void onCreate(Bundle savedInstaceState)
-    {
+    protected void onCreate(Bundle savedInstaceState) {
         super.onCreate(savedInstaceState);
         setContentView(R.layout.activity_registration);
 
@@ -31,10 +29,8 @@ public class NewRegistration extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onClick(View v)
-    {
-        switch(v.getId())
-        {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.register_button:
 
                 //On register button click, do this.
