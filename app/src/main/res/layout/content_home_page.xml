@@ -10,17 +10,9 @@
 
     tools:context="com.example.capstoneimsports.capstoneimsports.HomePage">
 
-    <view
-        android:id="@+id/HomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        />
-
     <include
         android:id="@+id/app_bar"
         layout="@layout/app_bar"
-
 
         />
 

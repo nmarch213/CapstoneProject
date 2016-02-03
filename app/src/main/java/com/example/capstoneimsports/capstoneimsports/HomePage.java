@@ -23,11 +23,12 @@ import android.widget.TextView;
 import android.widget.EditText;
 
 public class HomePage extends AppCompatActivity {
-    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_home_page);
+
     }
 }

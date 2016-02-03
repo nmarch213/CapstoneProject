@@ -46,7 +46,7 @@
                 android:typeface="monospace" />
 
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etUsername"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/member_login_tv"
@@ -63,7 +63,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etEmail"
+                android:layout_below="@+id/etUsername"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/register_password"

@@ -31,6 +31,7 @@ import com.facebook.login.widget.LoginButton;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -39,92 +40,56 @@ import java.security.Signature;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-
-    Button bLogIn, bRegister;
-    EditText etEmail, etPassword;
-
+    Button bLogin,bRegister,bFacebookLogin;
+    EditText etUsername, etPassword;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
-        //Sign in Button
-        bLogIn = (Button) findViewById(R.id.login_button);
 
+        etUsername = (EditText)findViewById(R.id.etUsername);
+        etPassword = (EditText)findViewById(R.id.etPassword);
+        bLogin = (Button)findViewById(R.id.login_button);
+        bRegister = (Button)findViewById(R.id.register_button);
 
-        bLogIn.setOnClickListener(this);
-
-        //Register Button
-        bRegister = (Button) findViewById(R.id.register_button);
+        bLogin.setOnClickListener(this);
         bRegister.setOnClickListener(this);
 
-        //Edit Text Email
-        etEmail = (EditText) findViewById(R.id.etEmail);
 
-        //Edit Text Password field
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-
-        CallbackManager callbackManager = CallbackManager.Factory.create();
-        final Intent intent = new Intent(LoginActivity.this, HomePage.class);
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch(v.getId())
+        {
             case R.id.login_button:
-
-                //Responds to login button click
-
+                onLogin();
                 break;
-
             case R.id.register_button:
-
-                //When Register button clicked, take to Register page
-                startActivity(new Intent(this, NewRegistration.class));
-
+                startActivity(new Intent(this,NewRegistration.class));
                 break;
             case R.id.facebook_login_fragment:
-
-                startActivity(new Intent(LoginActivity.this, HomePage.class));
-
+                startActivity(new Intent(this,Facebook_Login_Fragment.class));
                 break;
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onLogin()
+    {
+        if(etUsername.toString().equals("user") && etPassword.toString().equals("pass"))
+        {
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+            Toast.makeText(LoginActivity.this, "Thanks for logging in!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(LoginActivity.this, "Wrong Information", Toast.LENGTH_SHORT).show();
+        }
 
-        // Logs 'install' and 'app activate' App Events.
-        AppEventsLogger.activateApp(this);
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this);
-    }
-
 }
 

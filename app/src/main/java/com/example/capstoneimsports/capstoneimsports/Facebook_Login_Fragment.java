@@ -44,6 +44,7 @@ public class Facebook_Login_Fragment extends Fragment {
             AccessToken accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
             getWelcomeMessage(profile);
+            startActivity(new Intent(getActivity(),HomePage.class));
 
         }
 
