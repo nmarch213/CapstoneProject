@@ -12,7 +12,7 @@
         />
     <item
         android:id="@+id/navigate"
-        android:title="@string/navigate_next"
+        android:title="Next"
         android:orderInCategory="200"
         app:showAsAction="always"
 

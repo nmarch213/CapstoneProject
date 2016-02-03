@@ -2,7 +2,8 @@
 
     <style
 
-        name="ArgoTheme.Base" parent="android:Theme.Material.Light.NoActionBar">
+        name="ArgoTheme.Base"
+        parent="android:Theme.Material.Light.NoActionBar">
 
         <item name="colorPrimary">@color/UWFBlue</item>
         <item name="colorAccent">@color/CannonGreen</item>

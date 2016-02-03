@@ -1,7 +1,6 @@
 package com.example.capstoneimsports.capstoneimsports;
 
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.app.Activity;
@@ -30,30 +29,5 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
-        toolbar = (Toolbar)findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        int id = item.getItemId();
-
-
-        if(id == R.id.action_settings)
-        {
-            return true;
-        }
-        if(id == android.R.id.home)
-        {
-            //change this
-            startActivity(new Intent(this,NewRegistration.class));
-        }
-
-        return true;
     }
 }
