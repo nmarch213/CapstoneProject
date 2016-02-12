@@ -3,7 +3,7 @@ var app = express();
 var net = require('net');
 var http = require('http');
 var PORT = 8081;
-var HOST = 'localhost';
+var HOST = '10.0.1.7';
 
 // Gets mongodb drivers
 var mongodb = require('mongodb');
@@ -54,7 +54,7 @@ net.createServer(function(sock) {
 					// NOTE: '\n' needs to be added at end of string since readLine() is being used in Java
 					sock.write("User inserted into database" + '\n');
 				}
-			})
+			});
 		}
 	});
 	
