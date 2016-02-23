@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">IM SportsCaster</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_registration">New Registration</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="action_Forgot_Password">Forgot Password?"</string>
+    <string name="prompt_Member_Login">Member Login</string>
+    <string name="password_holder">**************</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="facebook_app_id">1681353728786793</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="menu_settings">Settings</string>
+
+
+</resources>
