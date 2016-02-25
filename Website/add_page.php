@@ -27,6 +27,10 @@
 					</div>
 				</div>			
 				<hr/>
+				<!--
+				These include php bits are to keep the file short.
+				If needed (like if it's a hassle trying to post info from included php files) the code can be slapped back in here.
+				-->
 				<div name="entry_league">
 					<?php include 'add_league.php' ?>																	
 				</div>
