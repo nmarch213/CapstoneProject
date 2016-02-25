@@ -1,4 +1,4 @@
-<!-- Template Site Capstone -->
+﻿<!-- Template Site Capstone -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -31,8 +31,8 @@
 						<li><a href="">Features</a></li>
 						<!-- <li><a href="">About Us</a></li> -->
 						<li><a href="">FAQ</a></li>
-						<li><a href="">Become an Official Commentator</a></li>
-						<li><a href="">Sign In</a></li>
+						<li><a href="register.html">Become an Official Commentator</a></li>
+						<li><a href="login.html">Sign In</a></li>
 					  </ul>
 					  <input type="text" class="form-control search" id="searchbar" placeholder="Search...">
 					  <button class="btn btn-default search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
