@@ -18,6 +18,7 @@
 		</div>
 		<div class="col-sm-6">
 			<select class="form-control" id="team_league">
+			<!--Eventually we'll find a way to populate these with Leagues from the DB-->
 			<option>League</option>
 			<option value="football">Football</option>
 			</select>
@@ -39,6 +40,9 @@
 		<div class="col-sm-6">					
 			<textarea rows="4" cols="42">Add Players</textarea>
 		</div>
+	</div>
+	<div class="form-group">
+		<input type="submit" name="submit" value="Submit" />
 	</div>
 </div>
 </body>
