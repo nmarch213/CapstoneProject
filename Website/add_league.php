@@ -14,4 +14,7 @@
 		<div class="col-sm-3">
 		</div>
 	</div>
+	<div class="form-group">
+		<input type="submit" name="submit" value="Submit" />
+	</div>
 </body>
