@@ -17,9 +17,7 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // Use the body-parser package in our application
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.json());
 
 // Use express session support since OAuth2orize requires it
 app.use(session({
@@ -30,12 +28,6 @@ app.use(session({
 
 //MongoDB Connection
 mongoose.connect('mongodb://kyanna:capstone123@ds059115.mongolab.com:59115/sportscaster');
-
-
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-
 
 //Creating Router
 var router = express.Router();
@@ -52,12 +44,12 @@ router.route('/clients')
 
 // Create endpoint handlers for oauth2 authorize
 router.route('/oauth2/authorize')
-  .get(authController.isAuthenticated, oauth2Controller.authorization)
-  .post(authController.isAuthenticated, oauth2Controller.decision);
+	.get(authController.isAuthenticated, oauth2Controller.authorization)
+	.post(authController.isAuthenticated, oauth2Controller.decision);
 
 // Create endpoint handlers for oauth2 token
 router.route('/oauth2/token')
-  .post(authController.isClientAuthenticated, oauth2Controller.token);
+  	.post(authController.isClientAuthenticated, oauth2Controller.token);
 
 //Register all routes with /api
 app.use('/api', router);

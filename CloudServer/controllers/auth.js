@@ -1,6 +1,7 @@
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var BearerStrategy = require('passport-http-bearer').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 //importing Mongoose Models
 var User = require('../models/user');
@@ -64,6 +65,28 @@ passport.use(new BearerStrategy(
       });
     });
   }
+));
+
+passport.use(new LocalStrategy(
+	function(email, password, done){
+		User.findOne({email: email}, function(err, user){
+			if(err) return done(err);
+
+			//no User found
+			if(!user) return done(null, false);
+
+			//check password is correct
+			user.verifyPassword(password, function(err, isMatch){
+				if(err) return done(err);
+
+				//password doesnt match
+				if(!isMatch) return done(null, false);
+		
+				//Successful Login
+				return done(null, user);
+			});
+		});
+	}
 ));
 
 exports.isBearerAuthenticated = passport.authenticate('bearer', {session: false});
