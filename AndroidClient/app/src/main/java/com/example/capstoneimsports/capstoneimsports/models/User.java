@@ -1,5 +1,8 @@
 package com.example.capstoneimsports.capstoneimsports.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by Nick on 2/2/2016.
  */
@@ -15,10 +18,15 @@ public class User {
 
 
 
-    public User(String email, String password)
-    {
+    public JSONObject newUser(String email, String password) throws JSONException {
+
+
         User.email = email;
         User.password = password;
+
+        JSONObject json = new JSONObject("{'email': " + email + "'password': " + password + " }");
+
+        return json;
     }
 
     public static String getEmail() {
