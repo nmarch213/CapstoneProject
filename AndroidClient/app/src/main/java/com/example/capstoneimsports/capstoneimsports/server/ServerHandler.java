@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.capstoneimsports.capstoneimsports.models.User;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -17,14 +19,18 @@ import okhttp3.Response;
  */
 public class ServerHandler {
 
-    private final OkHttpClient client = new OkHttpClient();
+    public final OkHttpClient client = new OkHttpClient();
 
-    public static final MediaType JSON = MediaType.parse("applicatoin/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json;charset=UTF-8");
 
+    public ServerHandler()
+    {
+
+    }
 
     //Do a get request
 
-    String doGetRequest(String url) throws IOException {
+    public String doGetRequest(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -35,7 +41,7 @@ public class ServerHandler {
 
     //Do a post request
 
-    String doPostRequest(String url, String json) throws IOException{
+    public String doPostRequest(String url, String json) throws IOException{
         RequestBody body = RequestBody.create(JSON,json);
             Request request = new Request.Builder()
                     .url(url)

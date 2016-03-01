@@ -18,13 +18,16 @@ public class User {
 
 
 
-    public JSONObject newUser(String email, String password) throws JSONException {
-
+    public User(String email, String password){
 
         User.email = email;
         User.password = password;
 
-        JSONObject json = new JSONObject("{'email': " + email + "'password': " + password + " }");
+    }
+
+    public static JSONObject newUser(User user) throws JSONException {
+
+        JSONObject json = new JSONObject("{'email': " + user.email + "'password': " + user.password + " }");
 
         return json;
     }
