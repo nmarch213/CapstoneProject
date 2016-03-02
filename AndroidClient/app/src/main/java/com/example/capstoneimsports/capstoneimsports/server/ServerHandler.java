@@ -17,8 +17,7 @@ public class ServerHandler {
     public static final MediaType JSON = MediaType.parse("application/json;charset=UTF-8");
     public final OkHttpClient client = new OkHttpClient();
 
-    public ServerHandler()
-    {
+    public ServerHandler() {
 
     }
 
@@ -35,12 +34,12 @@ public class ServerHandler {
 
     //Do a post request
 
-    public String doPostRequest(String url, String json) throws IOException{
+    public String doPostRequest(String url, String json) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);
-            Request request = new Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
         Response response = client.newCall(request).execute();
         return response.body().string();
     }

@@ -1,19 +1,17 @@
-package com.example.capstoneimsports.capstoneimsports;
+package com.example.capstoneimsports.capstoneimsports.fragments;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.support.v4.app.FragmentActivity;
 
 
+import com.example.capstoneimsports.capstoneimsports.activities.Home_Activity;
+import com.example.capstoneimsports.capstoneimsports.R;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -21,16 +19,13 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.appevents.AppEventsLogger;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import javax.security.auth.callback.Callback;
 
-
-public class Facebook_Login_Fragment extends Fragment {
+public class Facebook_Fragment extends Fragment {
 
     private TextView mTextDetails;
 
@@ -44,7 +39,7 @@ public class Facebook_Login_Fragment extends Fragment {
             AccessToken accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
             getWelcomeMessage(profile);
-            startActivity(new Intent(getActivity(),HomePage.class));
+            startActivity(new Intent(getActivity(), Home_Activity.class));
 
         }
 
@@ -88,7 +83,7 @@ public class Facebook_Login_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.facebook_fragment, container, false);
     }
 
     @Override

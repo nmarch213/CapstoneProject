@@ -1,5 +1,6 @@
-package com.example.capstoneimsports.capstoneimsports;
+package com.example.capstoneimsports.capstoneimsports.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -7,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
 import org.json.JSONException;
@@ -17,24 +20,24 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
-    Button bLogin,bRegister,bFacebookLogin;
+    Button bLogin, bFacebookLogin;
+    TextView bRegister;
     EditText etEmail, etPassword;
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.91.105:8080/api/user";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity);
 
         etEmail = (EditText) findViewById(R.id.etEmail);
-        etPassword = (EditText)findViewById(R.id.etPassword);
-        bLogin = (Button)findViewById(R.id.login_button);
-        bRegister = (Button)findViewById(R.id.register_button);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        bLogin = (Button) findViewById(R.id.login_button);
+        bRegister = (TextView) findViewById(R.id.register_button);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -49,33 +52,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * @param v This handles whenever someone clicked on the screen, depeding on whats clicked
      */
     @Override
-    public void onClick(View v)
-    {
-        switch(v.getId())
-        {
+    public void onClick(View v) {
+        switch (v.getId()) {
             //When the login is pressed
             case R.id.login_button:
                 try {
                     onLogin();
+                    final ProgressDialog progressDialog = new ProgressDialog(Login_Activity.this,
+                            R.style.ArgoTheme);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
+                    progressDialog.dismiss();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
             //When the register is clicked
             case R.id.register_button:
-                startActivity(new Intent(this,NewRegistration.class));
+                startActivity(new Intent(this, Register_Activity.class));
                 break;
-            //When facebook button is clicked
-            case R.id.facebook_login_fragment:
-                startActivity(new Intent(this,Facebook_Login_Fragment.class));
-                break;
+
         }
     }
 
     /**
-     * @throws IOException
-     *
-     * When the login button is clicked, a user will begin the login process
+     * @throws IOException When the login button is clicked, a user will begin the login process
      */
     protected void onLogin() throws IOException {
 
@@ -85,7 +87,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Makes sure the fields are not empty
         if (email.equals(null) || password.equals(null)) {
-            Toast.makeText(LoginActivity.this, "You must enter Email AND Password", Toast.LENGTH_SHORT).show();
+
+            if (email.equals(null))
+                etEmail.setError("Please insert an valid Email address");
+            else
+                etEmail.setError("Please insert an valid Email address");
 
         }
         //Put email and pass into JSON
@@ -101,13 +107,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //If logged in
         if (response.equals("Authenticated")) {
-            Intent intent = new Intent(this, HomePage.class);
+
+            Intent intent = new Intent(this, Home_Activity.class);
             startActivity(intent);
-            Toast.makeText(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login_Activity.this, "Welcome!", Toast.LENGTH_SHORT).show();
         }
         //Will show unauthorized in failed login
         else {
-            Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login_Activity.this, response, Toast.LENGTH_SHORT).show();
         }
     }
 }

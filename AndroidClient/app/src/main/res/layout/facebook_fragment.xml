@@ -7,7 +7,7 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     android:paddingTop="15dp"
-    tools:context=".Facebook_Login_Fragment">
+    tools:context=".fragments.Facebook_Fragment">
 
     <TextView
         android:id="@+id/text_details"
