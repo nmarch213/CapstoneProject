@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var net = require('net');
 var http = require('http');
-var PORT = 8081;
-var HOST = '10.0.1.7';
+var PORT = 8080;
+var HOST = '104.197.91.105';
 
 // Gets mongodb drivers
 var mongodb = require('mongodb');
