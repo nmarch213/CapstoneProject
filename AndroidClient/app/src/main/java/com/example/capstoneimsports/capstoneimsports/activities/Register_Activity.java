@@ -24,9 +24,9 @@ import java.io.IOException;
  * Directly connected with register_activity.xml
  */
 public class Register_Activity extends AppCompatActivity implements View.OnClickListener {
-    Button bRegister2;
+    Button bRegister;
     EditText etEmail, etPassword, etPasswordConfirm, etUsername;
-    TextView bLogin;
+    //TextView bLogin;
     String message;
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
@@ -47,11 +47,9 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         etPasswordConfirm = (EditText) findViewById(R.id.etConfirmPass);
-        bRegister2 = (Button) findViewById(R.id.register_button2);
-        bLogin = (TextView) findViewById(R.id.link_login);
+        bRegister = (Button) findViewById(R.id.register_button);
 
-        bRegister2.setOnClickListener(this);
-        bLogin.setOnClickListener(this);
+        bRegister.setOnClickListener(this);
     }
 
 
@@ -63,15 +61,12 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.register_button2:
+            case R.id.register_button:
                 try {
                     onRegister();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-            case R.id.link_login:
-                startActivity(new Intent(this, Login_Activity.class));
                 break;
         }
     }

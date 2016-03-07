@@ -33,12 +33,11 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        //Fuck you
 
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
+        etEmail = (EditText) findViewById(R.id.etEmailLogin);
+        etPassword = (EditText) findViewById(R.id.etPasswordLogin);
         bLogin = (Button) findViewById(R.id.login_button);
-        bRegister = (TextView) findViewById(R.id.register_button);
+        bRegister = (TextView) findViewById(R.id.link_register);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -70,7 +69,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
             //When the register is clicked
-            case R.id.register_button:
+            case R.id.link_register:
                 startActivity(new Intent(this, Register_Activity.class));
                 break;
 

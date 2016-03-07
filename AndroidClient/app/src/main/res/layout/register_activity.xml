@@ -84,7 +84,7 @@
 
         <!-- Signup Button -->
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/register_button2"
+            android:id="@+id/register_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -92,16 +92,6 @@
             android:padding="12dp"
             android:text="Create Account"
             android:textColor="@color/Midnight" />
-
-        <TextView
-            android:id="@+id/link_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:gravity="center"
-            android:text="Already a member? Login"
-            android:textColor="#ffffff"
-            android:textSize="16dip" />
 
 
     </LinearLayout>
