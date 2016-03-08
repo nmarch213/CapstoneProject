@@ -8,7 +8,8 @@ exports.postUsers = function(req, res, done){
 	console.log('Trying to add user to database');
 	var user = new User({
 		email: req.body.email,
-		password: req.body.password
+		password: req.body.password,
+		username: req.body.username
 	});
 	//Save User
 	user.save(function(err){
@@ -26,12 +27,8 @@ exports.postUsers = function(req, res, done){
 //Create endpoint for /api/users for GET
 exports.getUsers = function(req, res){
 	//Find all Users
-	User.find(function(err, users){
-		if(err)
-			res.send(err);
+	res.send('Authenticated');
 
-		res.json(users);
-	});
 };
 
 
