@@ -103,6 +103,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         }
 
         //Begins login process through ServerHandler
+
         String response = server.doLoginAuth(url, email, password);
 
         //If logged in

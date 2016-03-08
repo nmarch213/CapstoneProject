@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/match_details"
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+
+        <fragment
+            android:name="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_match_details_">
+
+        </fragment>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/match_details">
+
+        <fragment
+            android:id="@+id/football_input_fragment"
+            android:name="com.example.capstoneimsports.capstoneimsports.fragments.Football_Score_Input_Fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_football_score_input_">
+
+
+        </fragment>
+
+    </FrameLayout>
+
+    <!--TODO: Add comment fragment -->
+
+
+</RelativeLayout>

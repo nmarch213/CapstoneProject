@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name=".activities.Register_Activity"
-            android:label="@string/title_activity_registration"></activity>
+            android:label="@string/title_activity_registration" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -37,7 +37,7 @@
         <activity
             android:name=".activities.Home_Activity"
             android:label="@string/title_activity_home_page"
-            android:theme="@style/ArgoTheme"></activity>
+            android:theme="@style/ArgoTheme" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -58,6 +58,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.capstoneimsports.capstoneimsports.activities.Home_Activity" />
         </activity>
+        <activity android:name=".activities.Match_Activity"></activity>
     </application>
 
 </manifest>
