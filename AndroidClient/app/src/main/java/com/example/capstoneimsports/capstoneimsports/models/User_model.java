@@ -6,28 +6,28 @@ import org.json.JSONObject;
 /**
  * Created by Nick on 2/2/2016.
  */
-public class User {
+public class User_model {
 
 
     public static boolean connected = false;
 
     private static String password;
     private static int age;
-    private static String name;
+    private static String username;
     private static String email;
 
 
+    public User_model(String email, String password, String username) {
 
-    public User(String email, String password){
-
-        User.email = email;
-        User.password = password;
+        User_model.email = email;
+        User_model.password = password;
+        User_model.username = username;
 
     }
 
-    public static JSONObject newUser(User user) throws JSONException {
+    public static JSONObject newUser(User_model user) throws JSONException {
 
-        JSONObject json = new JSONObject("{'email': " + user.email + "'password': " + user.password + " }");
+        JSONObject json = new JSONObject("{'email': " + email + "'password': " + password + " }");
 
         return json;
     }
@@ -37,15 +37,15 @@ public class User {
     }
 
     public static void setEmail(String email) {
-        User.email = email;
+        User_model.email = email;
     }
 
-    public static String getName() {
-        return name;
+    public static String getUsername() {
+        return username;
     }
 
-    public static void setName(String name) {
-        User.name = name;
+    public static void setName(String username) {
+        User_model.username = username;
     }
 
     public static int getAge() {
@@ -53,7 +53,7 @@ public class User {
     }
 
     public static void setAge(int age) {
-        User.age = age;
+        User_model.age = age;
     }
 
 
@@ -62,7 +62,7 @@ public class User {
     }
 
     public static void setPassword(String password) {
-        User.password = password;
+        User_model.password = password;
     }
 
     public static boolean isConnected() {
@@ -70,6 +70,6 @@ public class User {
     }
 
     public static void setConnected(boolean connected) {
-        User.connected = connected;
+        User_model.connected = connected;
     }
 }

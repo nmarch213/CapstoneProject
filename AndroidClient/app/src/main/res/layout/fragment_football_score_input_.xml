@@ -1,0 +1,152 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Football_Score_Input_Fragment">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top"
+        android:layout_margin="16dp"
+        android:columnCount="9"
+        android:rowCount="8">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="8"
+            android:layout_row="7">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center|left|top"
+                android:elevation="4dp">
+
+                <Button
+                    android:id="@+id/t1_score_1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="+1" />
+
+                <Button
+                    android:id="@+id/score_2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_toRightOf="@+id/t1_score_1"
+                    android:text="+2" />
+
+                <Button
+                    android:id="@+id/t1_score_3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/t1_score_1"
+                    android:text="+3" />
+
+                <Button
+                    android:id="@+id/t1_score_6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/score_2"
+                    android:layout_toRightOf="@+id/t1_score_3"
+                    android:text="+6" />
+
+                <Button
+                    android:id="@+id/t1_timeout"
+                    android:layout_width="100dp"
+
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/t1_score_3"
+                    android:text="Timeout" />
+
+            </RelativeLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="8"
+            android:layout_row="7">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:elevation="4dp">
+
+                <Button
+                    android:id="@+id/stop_clock_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:textAllCaps="true"
+                    android:text="Stop Clock" />
+
+                <Button
+                    android:id="@+id/edit_time_button"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stop_clock_button"
+                    android:text="Edit Time" />
+
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="8"
+            android:layout_row="7">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center|right|top"
+                android:elevation="4dp">
+
+                <Button
+                    android:id="@+id/t2_score_1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="+1" />
+
+                <Button
+                    android:id="@+id/t2_score_2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_toRightOf="@+id/t2_score_1"
+                    android:text="+2" />
+
+                <Button
+                    android:id="@+id/t2_score_3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/t2_score_1"
+                    android:text="+3" />
+
+                <Button
+                    android:id="@+id/t2_score_6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/t2_score_2"
+                    android:layout_toRightOf="@+id/t2_score_3"
+                    android:text="+6" />
+
+                <Button
+                    android:id="@+id/t2_timeout"
+                    android:layout_width="100dp"
+
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/t2_score_3"
+                    android:text="Timeout" />
+
+            </RelativeLayout>
+        </FrameLayout>
+
+    </GridLayout>
+
+</FrameLayout>
