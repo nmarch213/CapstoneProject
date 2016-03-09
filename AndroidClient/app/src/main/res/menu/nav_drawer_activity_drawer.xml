@@ -7,7 +7,7 @@
             android:title="Favorites" />
         <item
             android:id="@+id/nav_live"
-            android:title="Lives Games" />
+            android:title="Live Games" />
         <item
             android:id="@+id/nav_uni"
             android:title="Universities" />

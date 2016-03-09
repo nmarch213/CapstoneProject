@@ -12,21 +12,9 @@
         android:id="@+id/frag_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="16dp"
-            android:background="@color/UWFBlue"
-            android:elevation="4dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ROLL TIDE" />
-
-        </FrameLayout>
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -65,4 +53,14 @@
 
         </FrameLayout>
     </LinearLayout>
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/app_bar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/include" />
+
 </RelativeLayout>
