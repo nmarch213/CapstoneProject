@@ -1,8 +1,9 @@
 package com.example.capstoneimsports.capstoneimsports.models;
 
-import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Date;
 
 /**
  * Created by Ryan on 3/7/2016.
@@ -19,15 +20,15 @@ public class Match_model {
     private static Date match_date;
     private static String match_league;
 
-    public Match_model(String team_one_name, String team_two_name, int team_one_score, int team_two_score, int match_id, Date match_date, String match_league) {
+    public Match_model(String team_one_name, String team_two_name, int team_one_score, int team_two_score, int match_id, String match_league) {
 
-        this.team_one_name = team_one_name;
-        this.team_two_name = team_two_name;
-        this.team_one_score = team_one_score;
-        this.team_two_score = team_two_score;
-        this.match_id = match_id;
-        this.match_date = match_date;
-        this.match_league = match_league;
+        Match_model.team_one_name = team_one_name;
+        Match_model.team_two_name = team_two_name;
+        Match_model.team_one_score = team_one_score;
+        Match_model.team_two_score = team_two_score;
+        Match_model.match_id = match_id;
+        match_date = match_date;
+        Match_model.match_league = match_league;
     }
 
     public static JSONObject newMatch(Match_model match) throws JSONException {

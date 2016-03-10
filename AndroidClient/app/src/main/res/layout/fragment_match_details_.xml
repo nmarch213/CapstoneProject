@@ -40,14 +40,14 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
 
-                        android:text="Team One" />
+                        android:text="win" />
 
                     <TextView
                         android:id="@+id/team_one_score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:text="0"
+                        android:text="@string/team_one_score"
                         android:textSize="50sp"
                         android:textAlignment="center" />
                 </LinearLayout>

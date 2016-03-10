@@ -29,8 +29,10 @@ public class ServerHandler {
                 .build();
 
         Response response = client.newCall(request).execute();
+
         return response.body().string();
     }
+
 
     //Do a post request
 

@@ -2,6 +2,7 @@ package com.example.capstoneimsports.capstoneimsports.fragments;
 
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -25,6 +27,9 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
 
     private Socket mSocket;
     private Button stopClock;
+    ServerHandler server = new ServerHandler();
+    String url = "http://104.197.91.105:8080/api/match_details";
+
 
 
     {
@@ -39,6 +44,9 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
 
         mSocket.connect();
