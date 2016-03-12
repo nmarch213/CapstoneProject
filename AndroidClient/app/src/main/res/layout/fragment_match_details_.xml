@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment">
+    tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment"
+    style="@style/AppTheme">
 
 
     <GridLayout
@@ -11,7 +12,8 @@
         android:layout_margin="16dp"
         android:layout_gravity="left|top"
         android:columnCount="9"
-        android:rowCount="8">
+        android:rowCount="8"
+        style="@style/AppTheme">
 
 
         <FrameLayout
@@ -23,7 +25,6 @@
             <FrameLayout
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:background="@color/CannonGreen"
                 android:layout_gravity="center|left|top"
                 android:elevation="4dp">
 
@@ -46,7 +47,6 @@
                         android:id="@+id/team_one_score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:text="@string/team_one_score"
                         android:textSize="50sp"
                         android:textAlignment="center" />
@@ -58,7 +58,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
-                android:background="@color/CannonGreen"
                 android:elevation="4dp">
 
                 <LinearLayout
@@ -96,7 +95,6 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|top"
-                android:background="@color/CannonGreen"
                 android:elevation="4dp">
 
                 <LinearLayout

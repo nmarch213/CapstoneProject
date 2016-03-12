@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.Home_Activity">
 
+    <include
+        layout="@layout/app_bar"/>
 
-    <LinearLayout
-        android:id="@+id/frag_frame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true">
 
         <FrameLayout
+            style="@style/AppTheme"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_margin="16dp"
-            android:background="@color/UWFBlue"
             android:elevation="4dp">
 
             <fragment
                 android:id="@+id/match_details_fragment"
+                android:name="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment"
+                style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:name="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment"
                 tools:layout="@layout/fragment_match_details_">
 
             </fragment>
@@ -36,10 +34,10 @@
         </FrameLayout>
 
         <FrameLayout
+            style="@style/AppTheme"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="16dp"
-            android:background="@color/CannonGreen"
             android:elevation="4dp">
 
         </FrameLayout>
@@ -48,19 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="16dp"
-            android:background="@color/CannonGreen"
             android:elevation="4dp">
 
         </FrameLayout>
     </LinearLayout>
 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/app_bar"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/include" />
 
-</RelativeLayout>

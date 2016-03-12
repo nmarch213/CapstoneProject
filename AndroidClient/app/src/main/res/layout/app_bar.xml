@@ -2,22 +2,24 @@
 
 <android.support.v7.widget.Toolbar
 
-    android:id="@+id/my_appBar"
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/my_appBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/CannonGreen"
-    app:menu="@menu/menu_main">
+    android:background="@color/primary"
+    android:elevation="4dp">
 
-
-    <ImageView
-        android:id="@+id/nav_drawer_image"
+    <android.support.v7.view.menu.ActionMenuItemView
+        android:id="@+id/actionmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:src="@drawable/ic_action_storage" />
+        android:drawableLeft="@drawable/ic_reorder_black_24dp"/>
+
+
+
+
 
 </android.support.v7.widget.Toolbar>
 

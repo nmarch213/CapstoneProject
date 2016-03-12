@@ -59,7 +59,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 try {
                     onLogin();
                     final ProgressDialog progressDialog = new ProgressDialog(Login_Activity.this,
-                            R.style.ArgoTheme);
+                            R.style.AppTheme);
                     progressDialog.setIndeterminate(true);
                     progressDialog.setMessage("Authenticating...");
                     progressDialog.show();
