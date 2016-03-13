@@ -45,38 +45,6 @@ public class Match_model {
         return json;
     }
 
-    public static String getTeam_one_name() {
-        return team_one_name;
-    }
-
-    public static void setTeam_one_name(String team_one_name) {
-        Match_model.team_one_name = team_one_name;
-    }
-
-    public static int getTeam_one_score() {
-        return team_one_score;
-    }
-
-    public static void setTeam_one_score(int team_one_score) {
-        Match_model.team_one_score = team_one_score;
-    }
-
-    public static String getTeam_two_name() {
-        return team_two_name;
-    }
-
-    public static void setTeam_two_name(String team_two_name) {
-        Match_model.team_two_name = team_two_name;
-    }
-
-    public static int getTeam_two_score() {
-        return team_two_score;
-    }
-
-    public static void setTeam_two_score(int team_two_score) {
-        Match_model.team_two_score = team_two_score;
-    }
-
     public static int getMatch_id() {
         return match_id;
     }
@@ -99,5 +67,37 @@ public class Match_model {
 
     public static void setMatch_date(Date match_date) {
         Match_model.match_date = match_date;
+    }
+
+    public String getTeam_one_name() {
+        return team_one_name;
+    }
+
+    public static void setTeam_one_name(String team_one_name) {
+        Match_model.team_one_name = team_one_name;
+    }
+
+    public int getTeam_one_score() {
+        return team_one_score;
+    }
+
+    public static void setTeam_one_score(int team_one_score) {
+        Match_model.team_one_score = team_one_score;
+    }
+
+    public String getTeam_two_name() {
+        return team_two_name;
+    }
+
+    public static void setTeam_two_name(String team_two_name) {
+        Match_model.team_two_name = team_two_name;
+    }
+
+    public int getTeam_two_score() {
+        return team_two_score;
+    }
+
+    public static void setTeam_two_score(int team_two_score) {
+        Match_model.team_two_score = team_two_score;
     }
 }
