@@ -9,6 +9,9 @@
 			<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 			<link href="style.css" rel="stylesheet">
        </head>
+	   <?php
+			session_start();
+		?>
 	   <header>
 			<!-- Commenting this out because I'm thinking the "Become an Official Commentator" is Register and Sign In is duh
 			<div id="login" style="margin-left:10px;">
@@ -31,8 +34,9 @@
 						<li><a href="">Features</a></li>
 						<!-- <li><a href="">About Us</a></li> -->
 						<li><a href="">FAQ</a></li>
-						<li><a href="register.html">Become an Official Commentator</a></li>
-						<li><a href="login.html">Sign In</a></li>
+						<li id="log-in" style="display:none;"><a href="login.html">Sign In</a></li>
+						<li id="logout" style="display:none;"><a href="logout.php">Sign Out</a></li>
+						<li id="add" style="display:none;"><a href="add_page.php">Add Entry</a></li>
 					  </ul>
 					  <input type="text" class="form-control search" id="searchbar" placeholder="Search...">
 					  <button class="btn btn-default search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -55,10 +59,25 @@
 					<li>Duis consequat quam sit amet magna commodo, id iaculis eros eleifend.</li>
 				</ul>				
 			</div>
+			
+			<script>
+				var val = "<?php echo $_SESSION['logged_in'] ?>";
+				if (val == "1")	{
+					document.getElementById('log-in').style.display = "none";
+					document.getElementById('logout').style.display = "inline";
+					document.getElementById('add').style.display = "inline";
+				}
+				else	{
+					document.getElementById('log-in').style.display = "inline";
+					document.getElementById('logout').style.display = "none";
+					document.getElementById('add').style.display = "none";
+				}
+			</script>
+			
        </body>
 	   <br/>
 	   
 	   <footer>
 			<?php include 'footer.php'; ?>
-	   </footer>
+	   </footer>	   
 </html>
