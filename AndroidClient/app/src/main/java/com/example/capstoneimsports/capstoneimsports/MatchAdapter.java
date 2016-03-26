@@ -53,13 +53,21 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView team_one_name, team_one_score, team_two_name, team_two_score;
+        TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+
+            //Left Block
             team_one_name = (TextView) itemView.findViewById(R.id.team_one_name);
-            team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);
             team_one_score = (TextView) itemView.findViewById(R.id.team_one_score);
+
+            //Middle Block
+            league = (TextView) itemView.findViewById(R.id.league);
+            gameDate = (TextView) itemView.findViewById(R.id.gametime);
+
+            //Right Block
+            team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);
             team_two_score = (TextView) itemView.findViewById(R.id.team_two_score);
         }
     }
