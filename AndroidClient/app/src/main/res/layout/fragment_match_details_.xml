@@ -8,8 +8,9 @@
 
     <GridLayout
         style="@style/AppTheme"
+        android:id="@+id/match_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="left|top"
         android:layout_margin="16dp"
         android:columnCount="9"

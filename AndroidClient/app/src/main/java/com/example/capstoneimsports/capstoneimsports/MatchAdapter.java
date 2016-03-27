@@ -5,12 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.capstoneimsports.capstoneimsports.activities.Home_Activity;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 
 import java.util.Collections;
 import java.util.List;
+
+import static android.app.PendingIntent.getActivity;
 
 /**
  * Created by Nick on 3/12/2016.
@@ -53,9 +58,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         return matches.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
+        GridLayout layout;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -71,6 +77,17 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
             //Right Block
             team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);
             team_two_score = (TextView) itemView.findViewById(R.id.team_two_score);
+
+            layout = (GridLayout) itemView.findViewById(R.id.match_frame);
+            layout.setOnClickListener(this);
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+
         }
     }
 }
