@@ -15,7 +15,7 @@ public class Match_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match_activity);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar_nav);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setHomeButtonEnabled(true);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.capstoneimsports.capstoneimsports.NavDrawer">
+    tools:context="com.example.capstoneimsports.capstoneimsports.activities.Home_Activity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +20,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_nav_drawer" />
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

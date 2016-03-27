@@ -39,6 +39,7 @@
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme" />
 
+
         <activity
             android:name=".activities.Match_Activity"
             android:label="@string/title_activity_match"
@@ -61,15 +62,6 @@
             android:authorities="com.facebook.app.FacebookContentProvider1234"
             android:exported="true" />
 
-        <activity
-            android:name=".NavDrawer"
-            android:label="@string/title_activity_nav_drawer"
-            android:parentActivityName=".activities.Home_Activity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.capstoneimsports.capstoneimsports.activities.Home_Activity" />
-        </activity>
     </application>
 
 </manifest>

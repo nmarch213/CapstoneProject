@@ -74,4 +74,3 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         }
     }
 }
-

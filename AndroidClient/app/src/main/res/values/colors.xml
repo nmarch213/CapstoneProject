@@ -8,7 +8,7 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
-
+    <color name="colorAccent">#7C4DFF</color>
     <color name="primary_material_light">#0069aa</color>
     <color name="primary_dark_material_light">#0049b4</color>
     <color name="accent_material_light">#56b94b</color>
