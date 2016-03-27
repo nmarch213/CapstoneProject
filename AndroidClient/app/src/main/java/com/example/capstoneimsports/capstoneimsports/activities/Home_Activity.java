@@ -1,12 +1,10 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +15,13 @@ import com.example.capstoneimsports.capstoneimsports.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class Home_Activity extends AppCompatActivity implements View.OnClickList
     MatchAdapter adapter;
     List<Match_model> matchArray;
 
+    int rangeOfMatches = 4;
+
     String team_one_name, team_two_name, match_league;
     int team_one_score, team_two_score, match_id;
     /**
@@ -43,14 +46,31 @@ public class Home_Activity extends AppCompatActivity implements View.OnClickList
      */
     private GoogleApiClient client;
 
-    public static void getMatches() {
-        List<Match_model> matches = new ArrayList<>();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+
+        //Trying to populate Matches
+        try {
+            matchArray = getMatches();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //RecyclerView card view
+        recyclerView = (RecyclerView) findViewById(R.id.card_list);
+
+        adapter = new MatchAdapter(Home_Activity.this, matchArray);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+
+
+        Toast.makeText(Home_Activity.this.getApplicationContext(), matchArray.get(1).getTeam_two_name(), Toast.LENGTH_LONG).show();
 
         //Add Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -65,17 +85,26 @@ public class Home_Activity extends AppCompatActivity implements View.OnClickList
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    @Override
+    /*@Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
 
         //RecyclerView card view
         recyclerView = (RecyclerView) findViewById(R.id.card_list);
 
-        //adapter = new MatchAdapter();
+        try {
+            adapter = new MatchAdapter(Home_Activity.this, getMatches());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
 
         return super.onCreateView(parent, name, context, attrs);
 
-    }
+    }*/
 
     public void onClick(View v) {
         switch (v.getId()) {
@@ -110,43 +139,32 @@ public class Home_Activity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    public List<Match_model> getMatches() throws IOException, JSONException {
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Home_ Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.capstoneimsports.capstoneimsports.activities/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
+        matchArray = new ArrayList<>();
 
-    @Override
-    public void onStop() {
-        super.onStop();
+        for (int i = 1; i < rangeOfMatches; i++) {
+            JSONObject obj = new JSONObject();
+            obj.put("match_id", i);
+            String response = server.doPostRequest(url, obj.toString());
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Home_ Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.capstoneimsports.capstoneimsports.activities/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+            response = response.replace("[", "");
+            response = response.replace("]", "");
+
+            JSONObject resObj = new JSONObject(response);
+
+            Match_model matches = new Match_model(resObj.getString("team_one_name"), resObj.getString("team_two_name"),
+                    resObj.getInt("team_one_score"), resObj.getInt("team_two_score"), resObj.getInt("match_id"),
+                    resObj.getString("match_league"));
+
+
+            matchArray.add(i - 1, matches);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            Toast.makeText(this, "test" + matchArray.get(i).getTeam_two_name(), Toast.LENGTH_SHORT).show();
+        }
+        return matchArray;
+
     }
 }

@@ -26,6 +26,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left|top"
+                android:background="@color/primary"
                 android:elevation="4dp">
 
                 <LinearLayout
@@ -61,6 +62,7 @@
                     android:layout_width="80dp"
                     android:layout_height="75dp"
                     android:layout_gravity="center"
+                    android:background="@color/primary"
                     android:orientation="vertical">
 
                     <TextView
@@ -74,8 +76,7 @@
                         android:id="@+id/league"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="League" />
+                        android:layout_gravity="center" />
 
                     <TextView
                         android:id="@+id/location"
@@ -92,6 +93,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|top"
+                android:background="@color/primary"
                 android:elevation="4dp">
 
                 <LinearLayout
