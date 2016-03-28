@@ -141,8 +141,12 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
             JSONObject resObj = new JSONObject(response);
 
-            Match_model matches = new Match_model(resObj.getString("team_one_name"), resObj.getString("team_two_name"),
-                    resObj.getInt("team_one_score"), resObj.getInt("team_two_score"), resObj.getInt("match_id"),
+            Match_model matches = new Match_model(
+                    resObj.getString("team_one_name"),
+                    resObj.getString("team_two_name"),
+                    resObj.getInt("team_one_score"),
+                    resObj.getInt("team_two_score"),
+                    resObj.getInt("match_id"),
                     resObj.getString("match_league"));
 
 

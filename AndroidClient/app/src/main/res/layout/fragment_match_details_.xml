@@ -3,6 +3,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/primary"
     tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment">
 
 
@@ -27,7 +28,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left|top"
-                android:background="@color/primary"
+                android:background="#FFFFFF"
                 android:elevation="4dp">
 
                 <LinearLayout
@@ -57,13 +58,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
+                android:background="#FFFFFF"
                 android:elevation="4dp">
 
                 <LinearLayout
                     android:layout_width="80dp"
                     android:layout_height="75dp"
                     android:layout_gravity="center"
-                    android:background="@color/primary"
                     android:orientation="vertical">
 
                     <TextView
@@ -94,7 +95,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|top"
-                android:background="@color/primary"
+                android:background="#FFFFFF"
                 android:elevation="4dp">
 
                 <LinearLayout
