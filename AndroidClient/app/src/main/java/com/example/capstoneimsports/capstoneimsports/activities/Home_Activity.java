@@ -67,8 +67,6 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         recyclerView.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
 
 
-        Toast.makeText(Home_Activity.this.getApplicationContext(), matchArray.get(1).getTeam_two_name(), Toast.LENGTH_LONG).show();
-
         //Add Toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -151,9 +149,6 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
             matchArray.add(i - 1, matches);
         }
 
-        for (int i = 0; i < 3; i++) {
-            Toast.makeText(this, "test" + matchArray.get(i).getTeam_two_name(), Toast.LENGTH_SHORT).show();
-        }
         return matchArray;
     }
 

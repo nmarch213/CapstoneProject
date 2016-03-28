@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AppTheme"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment">
 
 
     <GridLayout
-        style="@style/AppTheme"
         android:id="@+id/match_frame"
+        style="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left|top"
