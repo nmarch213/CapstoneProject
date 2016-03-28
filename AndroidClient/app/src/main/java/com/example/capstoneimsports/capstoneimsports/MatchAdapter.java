@@ -48,7 +48,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         holder.team_two_name.setText(current.getTeam_two_name());
         holder.team_one_score.setText(String.valueOf(current.getTeam_one_score()));
         holder.team_two_score.setText(String.valueOf(current.getTeam_two_score()));
-        holder.league.setText(Match_model.getMatch_league());
+        holder.league.setText(current.getMatch_league());
 
 
     }
