@@ -35,14 +35,9 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     String url = "http://104.197.91.105:8080/api/match_details";
     NavigationView navigationView = null;
     Toolbar toolbar = null;
-
     MatchAdapter adapter;
     List<Match_model> matchArray;
-
     int rangeOfMatches = 4;
-
-    String team_one_name, team_two_name, match_league;
-    int team_one_score, team_two_score, match_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +53,12 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //RecyclerView card view
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.card_list);
+        //RecyclerView of the matches on the home_activity
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.matches_home);
 
+        //The adapter used to populate the recycler view
         adapter = new MatchAdapter(Home_Activity.this, matchArray);
         recyclerView.setAdapter(adapter);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
 
 
@@ -72,9 +67,13 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer,
+                toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+        );
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -88,29 +87,6 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    //@Override
-    /*@Override
-    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-
-        //RecyclerView card view
-        recyclerView = (RecyclerView) findViewById(R.id.card_list);
-
-        //adapter = new MatchAdapter();
-        try {
-            adapter = new MatchAdapter(Home_Activity.this, getMatches());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        recyclerView.setAdapter(adapter);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
-
-        return super.onCreateView(parent, name, context, attrs);
-
-    }
-    }*/
 
     @Override
     public void onBackPressed() {
@@ -129,26 +105,50 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
     }
 
+    /**
+     * This function grabs the matches from the database and stores it into a matchArray
+     *
+     * @return matchArray, which is to be passed into the MatchAdapter
+     * @throws IOException
+     * @throws JSONException
+     */
     public List<Match_model> getMatches() throws IOException, JSONException {
+
+        //Creates the ArrayList to store the information from the database
         matchArray = new ArrayList<>();
+
+        //Loops for however many matches are in the database
         for (int i = 1; i < rangeOfMatches; i++) {
+
+            //Create the object to be sent to the database
             JSONObject obj = new JSONObject();
+            //Calls for the match ID to be pulled from the database
             obj.put("match_id", i);
+            //Makes a call to the server and stores the response in a String
             String response = server.doPostRequest(url, obj.toString());
 
+            //Removes the Brackets from the String
             response = response.replace("[", "");
             response = response.replace("]", "");
 
+            //Creates a JSON object to store the string into a JSON
             JSONObject resObj = new JSONObject(response);
 
-            Match_model matches = new Match_model(resObj.getString("team_one_name"), resObj.getString("team_two_name"),
-                    resObj.getInt("team_one_score"), resObj.getInt("team_two_score"), resObj.getInt("match_id"),
-                    resObj.getString("match_league"));
+            //Stores the match from the database into a match_model
+            Match_model matches = new Match_model(
+                    resObj.getString("team_one_name"),
+                    resObj.getString("team_two_name"),
+                    resObj.getInt("team_one_score"),
+                    resObj.getInt("team_two_score"),
+                    resObj.getInt("match_id"),
+                    resObj.getString("match_league")
+            );
 
-
+            //Adds the match to the ArrayList, matchArray
             matchArray.add(i - 1, matches);
         }
 
+        //Returns the array when finished
         return matchArray;
     }
 
