@@ -7,15 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.capstoneimsports.capstoneimsports.activities.Home_Activity;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 
 import java.util.Collections;
 import java.util.List;
-
-import static android.app.PendingIntent.getActivity;
 
 /**
  * Created by Nick on 3/12/2016.
@@ -25,6 +21,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     List<Match_model> matches = Collections.emptyList();
     private LayoutInflater inflater;
 
+    //Constructor for the matchAdapter
     public MatchAdapter(Context context, List<Match_model> matches) {
         inflater = LayoutInflater.from(context);
         this.matches = matches;
@@ -32,8 +29,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.fragment_match_details_, parent, false);
 
+        View view = inflater.inflate(R.layout.fragment_match_details_, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
 
         return holder;
@@ -41,16 +38,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
+        //Gets the position of the View
         Match_model current = matches.get(position);
 
+        //Populates that view with the correct data
         holder.team_one_name.setText(current.getTeam_one_name());
         holder.team_two_name.setText(current.getTeam_two_name());
         holder.team_one_score.setText(String.valueOf(current.getTeam_one_score()));
         holder.team_two_score.setText(String.valueOf(current.getTeam_two_score()));
         holder.league.setText(current.getMatch_league());
-
-
     }
 
     @Override
@@ -58,7 +54,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         return matches.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
         GridLayout layout;
