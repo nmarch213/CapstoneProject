@@ -19,6 +19,8 @@ import java.util.List;
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder> {
 
     List<Match_model> matches = Collections.emptyList();
+    private ClickListener clickListener;
+    private Match_model match;
     private LayoutInflater inflater;
 
     //Constructor for the matchAdapter
@@ -54,6 +56,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         return matches.size();
     }
 
+    public void setClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    public interface ClickListener {
+
+        void matchClicked(View view, int position);
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
@@ -83,6 +94,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         @Override
         public void onClick(View v) {
 
+            if (clickListener != null) {
+                clickListener.matchClicked(v, getAdapterPosition());
+            }
 
         }
     }

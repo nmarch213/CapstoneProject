@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
-
 public class Match_Details_Fragment extends Fragment {
-
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.91.105:8080/api/match_details";
 
@@ -24,6 +22,7 @@ public class Match_Details_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match_details_, container, false);
 
+
         return view;
     }
 
@@ -31,5 +30,7 @@ public class Match_Details_Fragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
+
 }

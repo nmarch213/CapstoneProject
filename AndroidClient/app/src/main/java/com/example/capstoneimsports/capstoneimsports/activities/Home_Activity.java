@@ -28,21 +28,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MatchAdapter.ClickListener {
 
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.91.105:8080/api/match_details";
-    NavigationView navigationView = null;
-    Toolbar toolbar = null;
     MatchAdapter adapter;
     List<Match_model> matchArray;
     int rangeOfMatches = 4;
+
+    //Butter knife the views for this
+    @Bind(R.id.matches_home)
+    RecyclerView matchesHome;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.nav_view)
+    NavigationView navigationView;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+        ButterKnife.bind(this);
 
 
         //Trying to populate Matches
@@ -54,30 +66,27 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
             e.printStackTrace();
         }
         //RecyclerView of the matches on the home_activity
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.matches_home);
+        // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);
 
         //The adapter used to populate the recycler view
         adapter = new MatchAdapter(Home_Activity.this, matchArray);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        matchesHome.setAdapter(adapter);
+        matchesHome.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapter.setClickListener(this);
 
 
         //Add Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer,
+                this,
+                drawerLayout,
                 toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close
         );
 
-        drawer.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         //How to change elements in the header programatically
         View headerView = navigationView.getHeaderView(0);
@@ -99,9 +108,6 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-
-        }
 
     }
 
@@ -134,31 +140,26 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
             //Creates a JSON object to store the string into a JSON
             JSONObject resObj = new JSONObject(response);
 
-<<<<<<< HEAD
-=======
             //Stores the match from the database into a match_model
->>>>>>> origin/master
             Match_model matches = new Match_model(
                     resObj.getString("team_one_name"),
                     resObj.getString("team_two_name"),
                     resObj.getInt("team_one_score"),
                     resObj.getInt("team_two_score"),
                     resObj.getInt("match_id"),
-<<<<<<< HEAD
-                    resObj.getString("match_league"));
-
-
-=======
                     resObj.getString("match_league")
             );
 
             //Adds the match to the ArrayList, matchArray
->>>>>>> origin/master
             matchArray.add(i - 1, matches);
         }
 
         //Returns the array when finished
         return matchArray;
+    }
+
+    public int getMatchFromArray(int matchId) {
+        return matchId;
     }
 
     @Override
@@ -207,6 +208,16 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void matchClicked(View view, int position) {
+
+        Match_model match = matchArray.get(position);
+        int matchId = match.getMatch_id();
+        Intent intent = new Intent(this, Match_Activity.class);
+        intent.putExtra("matchId", matchId);
+        startActivity(intent);
     }
 
 }
