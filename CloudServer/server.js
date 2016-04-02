@@ -14,8 +14,18 @@ var matchController = require('./controllers/match_details');
 
 //Create Express App and adding socket.io
 var app = require('express')();
-var server = require('http').Server(app);
+var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+
+//socket io function
+var socketio = require('./modules/socketio');
+
+io.on('connection', function (socket) {
+  console.log("connected");
+  socket.on('foo', function (data) {
+    console.log(data);
+  });
+});
 
 //Set View Engine
 app.set('view engine', 'ejs');
@@ -55,10 +65,11 @@ router.route('/oauth2/authorize')
 router.route('/oauth2/token')
   	.post(authController.isClientAuthenticated, oauth2Controller.token);
 
-//create endpoint for handlers for iotest
-router.route('/ioconnect')
-	.get(matchController.getConnect);
-
+// Create endpoint for finding a match
+router.route('/match_details')
+//	.post(matchController.addMatch);	
+	.post(matchController.getMatch);
+	
 //Register all routes with /api
 app.use('/api', router);
 

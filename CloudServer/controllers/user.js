@@ -26,7 +26,12 @@ exports.postUsers = function(req, res, done){
 
 //Create endpoint for /api/users for GET
 exports.getUsers = function(req, res){
-	//Find all Users
+	var authUser = new User({
+		auth: 'Authenticated'
+
+	});
+	
+
 	res.send('Authenticated');
 
 };
