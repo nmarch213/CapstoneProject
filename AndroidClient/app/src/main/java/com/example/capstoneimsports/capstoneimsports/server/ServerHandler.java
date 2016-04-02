@@ -1,5 +1,7 @@
 package com.example.capstoneimsports.capstoneimsports.server;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Credentials;
@@ -29,8 +31,10 @@ public class ServerHandler {
                 .build();
 
         Response response = client.newCall(request).execute();
+
         return response.body().string();
     }
+
 
     //Do a post request
 

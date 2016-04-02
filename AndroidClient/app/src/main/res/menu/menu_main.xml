@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:andorid="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools">
     <!--All the items added without any grouping-->
 
@@ -9,13 +8,6 @@
         android:orderInCategory="100"
         android:title="@string/menu_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/navigate"
-        android:orderInCategory="200"
-        android:title="Next"
-        app:showAsAction="always"
-
-        />
 
 
 </menu>

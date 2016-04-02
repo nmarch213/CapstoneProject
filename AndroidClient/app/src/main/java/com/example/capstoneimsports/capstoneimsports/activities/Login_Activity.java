@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
-    Button bLogin, bFacebookLogin;
+    Button bLogin;
     TextView bRegister;
     EditText etEmail, etPassword;
     JSONObject obj = new JSONObject();
@@ -59,7 +59,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 try {
                     onLogin();
                     final ProgressDialog progressDialog = new ProgressDialog(Login_Activity.this,
-                            R.style.ArgoTheme);
+                            R.style.AppTheme);
                     progressDialog.setIndeterminate(true);
                     progressDialog.setMessage("Authenticating...");
                     progressDialog.show();
@@ -85,38 +85,46 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        //Makes sure the fields are not empty
-        if (email.equals(null) || password.equals(null)) {
+        // Begins login process if email and password fields are filled
+        if (!email.isEmpty() && !password.isEmpty())
+        {
+            //Put email and pass into JSON
+            try {
+                obj.put("email", email);
+                obj.put("password", password);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-            if (email.equals(null))
-                etEmail.setError("Please insert an valid Email address");
-            else
-                etEmail.setError("Please insert an valid Email address");
+            //Begins login process through ServerHandler
+            String response = server.doLoginAuth(url, email, password);
 
+            //Succesful login
+            if (response.equals("Authenticated")) {
+
+                Intent intent = new Intent(this, Home_Activity.class);
+                startActivity(intent);
+                Toast.makeText(Login_Activity.this, "Welcome!" , Toast.LENGTH_SHORT).show();
+            }
+
+            //Will display error if authentication failed
+            else if (response.equals("Unauthorized")) {
+                Toast.makeText(Login_Activity.this, "The email or password you entered doesn't match.", Toast.LENGTH_SHORT).show();
+            }
         }
-        //Put email and pass into JSON
-        try {
-            obj.put("email", email);
-            obj.put("password", password);
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        else
+        {
+            //Makes sure the fields are not empty
+            if (email.isEmpty()) {
+                etEmail.setError("Please enter your email.");
+            }
+            if (password.isEmpty()) {
+                etPassword.setError("Please enter your password.");
+            }
         }
 
-        //Begins login process through ServerHandler
 
-        String response = server.doLoginAuth(url, email, password);
-
-        //If logged in
-        if (response.equals("Authenticated")) {
-
-            Intent intent = new Intent(this, Home_Activity.class);
-            startActivity(intent);
-            Toast.makeText(Login_Activity.this, "Welcome!", Toast.LENGTH_SHORT).show();
-        }
-        //Will show unauthorized in failed login
-        else {
-            Toast.makeText(Login_Activity.this, response, Toast.LENGTH_SHORT).show();
-        }
     }
 }
 

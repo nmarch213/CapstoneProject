@@ -82,7 +82,7 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
         boolean valid = true;
 
         final ProgressDialog progressDialog = new ProgressDialog(Register_Activity.this,
-                R.style.ArgoTheme);
+                R.style.AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
