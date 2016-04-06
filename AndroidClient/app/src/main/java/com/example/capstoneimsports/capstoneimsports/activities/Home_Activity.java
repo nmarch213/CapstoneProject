@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     MatchAdapter adapter;
     List<Match_model> matchArray;
     int rangeOfMatches = 4;
+    Layout layout;
 
     //Butter knife the views for this
     @Bind(R.id.matches_home)
@@ -122,6 +124,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
         //Creates the ArrayList to store the information from the database
         matchArray = new ArrayList<>();
+
 
         //Loops for however many matches are in the database
         for (int i = 1; i < rangeOfMatches; i++) {
@@ -215,6 +218,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
         Match_model match = matchArray.get(position);
         int matchId = match.getMatch_id();
+        Match_Activity.match = match;
         Intent intent = new Intent(this, Match_Activity.class);
         intent.putExtra("matchId", matchId);
         startActivity(intent);

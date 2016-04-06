@@ -17,7 +17,7 @@ public class Match_model {
     private int team_one_score;
     private int team_two_score;
     private int match_id;
-    private Date match_date;
+    private String match_date;
     private String match_league;
 
     public Match_model(String team_one_name, String team_two_name, int team_one_score, int team_two_score, int match_id, String match_league) {
@@ -47,11 +47,11 @@ public class Match_model {
         this.match_league = match_league;
     }
 
-    public Date getMatch_date() {
+    public String getMatch_date() {
         return match_date;
     }
 
-    public void setMatch_date(Date match_date) {
+    public void setMatch_date(String match_date) {
         this.match_date = match_date;
     }
 

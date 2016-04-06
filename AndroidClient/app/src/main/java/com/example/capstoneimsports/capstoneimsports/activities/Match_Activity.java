@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
@@ -22,10 +24,13 @@ import butterknife.ButterKnife;
 
 public class Match_Activity extends AppCompatActivity {
 
+    public static Match_model match;
+    TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
     @Bind(R.id.match_details)
     FrameLayout matchDetails;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.91.105:8080/api/match_details";
+    Match_Details_Fragment match_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,8 @@ public class Match_Activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar_nav);
         setSupportActionBar(toolbar);
+
+        setDetails();
 
         int matchId = 0;
         matchId = getIntent().getExtras().getInt("matchId");
@@ -47,6 +54,26 @@ public class Match_Activity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setDetails() {
+        //Left Block
+        team_one_name = (TextView) findViewById(R.id.team_one_name);
+        team_one_name.setText(match.getTeam_one_name());
+        team_one_score = (TextView) findViewById(R.id.team_one_score);
+        team_one_score.setText(String.valueOf(match.getTeam_one_score()));
+
+        //Middle Block
+        league = (TextView) findViewById(R.id.league);
+        league.setText(match.getMatch_league());
+//        gameDate = (TextView) findViewById(R.id.gametime);
+//        gameDate.setText(match.getMatch_date());
+
+        //Right Block
+        team_two_name = (TextView) findViewById(R.id.team_two_name);
+        team_two_name.setText(match.getTeam_two_name());
+        team_two_score = (TextView) findViewById(R.id.team_two_score);
+        team_two_score.setText(String.valueOf(match.getTeam_two_score()));
     }
 
     public void getMatch(int matchId) throws JSONException, IOException {

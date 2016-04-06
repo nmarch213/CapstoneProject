@@ -3,6 +3,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:background="@color/primary"
     tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment">
 
