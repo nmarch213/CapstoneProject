@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.capstoneimsports.capstoneimsports.MatchAdapter;
+import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;

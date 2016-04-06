@@ -1,4 +1,4 @@
-package com.example.capstoneimsports.capstoneimsports;
+package com.example.capstoneimsports.capstoneimsports.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 
 import java.util.Collections;
