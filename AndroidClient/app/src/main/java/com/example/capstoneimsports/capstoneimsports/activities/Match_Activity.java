@@ -1,5 +1,6 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NavUtils;
@@ -7,9 +8,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -46,8 +51,21 @@ public class Match_Activity extends AppCompatActivity {
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         setDetails();
+
+        FrameLayout team1 = (FrameLayout) findViewById(R.id.team_one_container);
+        team1.setOnClickListener(new FrameLayout.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LayoutInflater scoreInput =
+                        (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popUpScore = scoreInput.inflate(R.layout.fragment_football_score_input_, null);
+                PopupWindow window = new PopupWindow(popUpScore);
+                window.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+            }
+        });
 
     }
 

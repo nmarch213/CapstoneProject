@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
@@ -69,7 +70,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
-        GridLayout layout;
+        FrameLayout layout;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -86,7 +87,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
             team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);
             team_two_score = (TextView) itemView.findViewById(R.id.team_two_score);
 
-            layout = (GridLayout) itemView.findViewById(R.id.match_frame);
+            layout = (FrameLayout) itemView.findViewById(R.id.match_fragment);
             layout.setOnClickListener(this);
 
 

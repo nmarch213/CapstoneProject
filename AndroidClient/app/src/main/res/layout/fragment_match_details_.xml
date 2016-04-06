@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_fragment"
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +10,6 @@
 
 
     <GridLayout
-        android:id="@+id/match_frame"
         style="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +20,7 @@
 
 
         <FrameLayout
+            android:id="@+id/team_one_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_column="8"

@@ -25,12 +25,22 @@ import java.net.URISyntaxException;
 
 public class Football_Score_Input_Fragment extends Fragment implements View.OnClickListener {
 
-    private Socket mSocket;
-    private Button stopClock;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.91.105:8080/api/match_details";
-
-
+    private Socket mSocket;
+    private Button stopClock;
+    private Emitter.Listener onConnectError = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Error connecting", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    };
 
     {
         try {
@@ -39,7 +49,6 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
             throw new RuntimeException(e);
         }
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +82,7 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_football_score_input_, container, false);
 
-        stopClock = (Button) view.findViewById(R.id.stop_clock_button);
+//        stopClock = (Button) view.findViewById(R.id.stop_clock_button);
 
         stopClock.setOnClickListener(this);
 
@@ -90,25 +99,12 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
     public void onClick(View v) {
 
         switch (v.getId()) {
-            //When the login is pressed
-            case R.id.stop_clock_button:
-                mSocket.emit("foo", "suh dude");
-                break;
+//            //When the login is pressed
+//            case R.id.stop_clock_button:
+//                mSocket.emit("foo", "suh dude");
+//                break;
 
 
         }
     }
-
-    private Emitter.Listener onConnectError = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Error connecting", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-    };
 }
