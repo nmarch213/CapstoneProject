@@ -39,6 +39,10 @@
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".activities.Profile_Activity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".activities.Match_Activity"

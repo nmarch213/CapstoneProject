@@ -58,7 +58,6 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
 
-
         //Trying to populate Matches
         try {
             matchArray = getMatches();
@@ -188,25 +187,22 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_fav) {
-            // Handle the camera action
-        } else if (id == R.id.nav_live) {
-
-        } else if (id == R.id.nav_teams) {
-
-        } else if (id == R.id.nav_sports) {
-
-        } else if (id == R.id.nav_uni) {
-
-        } else if (id == R.id.nav_profile) {
+        if (id == R.id.nav_profile) {
             Intent intent = new Intent(this, Profile_Activity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_home) {
+            Intent intent = new Intent(this, Home_Activity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_myTeams) {
+
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
