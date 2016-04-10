@@ -27,7 +27,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     EditText etEmail, etPassword;
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.91.105:8080/api/user";
+    String url = "http://104.197.124.0:8080/api/user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

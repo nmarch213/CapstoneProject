@@ -32,7 +32,7 @@ import java.util.TimerTask;
 public class Football_Score_Input_Fragment extends Fragment implements View.OnClickListener {
 
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.91.105:8080/api/match_details";
+    String url = "http://104.197.124.0:8080/api/match_details";
     private Socket mSocket;
     private Button stopClock;
     EditText editText;

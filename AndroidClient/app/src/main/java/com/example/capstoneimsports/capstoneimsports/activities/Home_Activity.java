@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MatchAdapter.ClickListener {
 
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.91.105:8080/api/match_details";
+    String url = "http://104.197.124.0:8080/api/match_details";
     MatchAdapter adapter;
     List<Match_model> matchArray;
     int rangeOfMatches = 4;
