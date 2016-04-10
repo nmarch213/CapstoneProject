@@ -5,9 +5,9 @@
     tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Football_Score_Input_Fragment">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|left|top"
+        android:layout_width="381dp"
+        android:layout_height="478dp"
+        android:layout_gravity="right|bottom"
         android:elevation="4dp"
         android:orientation="vertical">
 
@@ -47,5 +47,47 @@
             android:layout_below="@+id/t1_score_3"
             android:text="Edit Score" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="80sp"
+            android:text="00:00"
+            android:id="@+id/textView"
+            android:layout_above="@+id/editText"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Clock"
+            android:id="@+id/button"
+            android:enabled="false"
+            android:layout_above="@+id/button2"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Clock"
+            android:id="@+id/button2"
+            android:enabled="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:imeOptions="actionDone"
+            android:editable="false"
+            android:layout_gravity="right|bottom"
+            android:layout_above="@+id/button"
+            android:layout_alignEnd="@+id/textView" />
+
     </RelativeLayout>
+
 </FrameLayout>
