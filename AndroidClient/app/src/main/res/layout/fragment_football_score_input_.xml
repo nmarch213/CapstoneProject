@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Football_Score_Input_Fragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left|top"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/t1_score_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="+1" />
+
+        <Button
+            android:id="@+id/score_2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/t1_score_1"
+            android:text="+2" />
+
+        <Button
+            android:id="@+id/t1_score_3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/t1_score_1"
+            android:text="+3" />
+
+        <Button
+            android:id="@+id/t1_score_6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/score_2"
+            android:layout_toRightOf="@+id/t1_score_3"
+            android:text="+6" />
+
+        <Button
+            android:id="@+id/t1_timeout"
+            android:layout_width="100dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/t1_score_3"
+            android:text="Edit Score" />
+
+    </RelativeLayout>
+</FrameLayout>

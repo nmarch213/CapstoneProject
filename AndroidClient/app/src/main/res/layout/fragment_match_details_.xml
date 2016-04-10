@@ -1,0 +1,128 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_fragment"
+    style="@style/AppTheme"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/primary"
+    tools:context="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment">
+
+
+    <GridLayout
+        style="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_margin="16dp"
+        android:columnCount="9"
+        android:rowCount="8">
+
+
+        <FrameLayout
+            android:id="@+id/team_one_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="8"
+            android:layout_row="7">
+
+            <FrameLayout
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center|left|top"
+                android:background="#FFFFFF"
+                android:elevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/team_one_name"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/team_one_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="50sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:background="#FFFFFF"
+                android:elevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/gametime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="GameTime" />
+
+                    <TextView
+                        android:id="@+id/league"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Location" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|top"
+                android:background="#FFFFFF"
+                android:elevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/team_two_name"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/team_two_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="50sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </FrameLayout>
+    </GridLayout>
+</FrameLayout>

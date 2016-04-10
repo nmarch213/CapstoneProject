@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="app_bar_nav" type="id">app_bar_nav</item>
+    <item name="nav_drawer_activity" type="id">nav_drawer_activity</item>
+</resources>
