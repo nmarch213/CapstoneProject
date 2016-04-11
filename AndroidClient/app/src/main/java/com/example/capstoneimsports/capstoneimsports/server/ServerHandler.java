@@ -24,7 +24,6 @@ public class ServerHandler {
     }
 
     //Do a get request
-
     public String doGetRequest(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
@@ -49,7 +48,6 @@ public class ServerHandler {
     }
 
     //Logs in a user, and authenticates them
-
     public String doLoginAuth(String url, String email, String password) throws IOException {
         String credential = Credentials.basic(email, password);
         Request request = new Request.Builder()

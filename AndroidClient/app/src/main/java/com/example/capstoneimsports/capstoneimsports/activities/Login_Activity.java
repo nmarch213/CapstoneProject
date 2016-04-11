@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
 import org.json.JSONException;
@@ -28,6 +29,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8080/api/user";
+    User_model user = new User_model();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                     progressDialog.dismiss();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
                 break;
             //When the register is clicked
@@ -77,9 +81,40 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
+     * Grabs the user's profile information from the database and stores it into a user_model object
+     * This method is very similar to the getMatches method in Home_Activity
+     */
+    public boolean getUserDetails(String email, String password) throws IOException, JSONException {
+
+        //Makes a call to the server and stores the response in a String
+        String response = server.doLoginAuth(url, email, password);
+        boolean auth = false;
+
+        //Removes the Brackets from the String
+        response = response.replace("[", "");
+        response = response.replace("]", "");
+
+        if (response != null){
+            auth = true;
+        }
+
+        //Creates a JSON object to store the string into a JSON
+        JSONObject resObj = new JSONObject(response);
+
+         user = new User_model(
+                resObj.getString("email"),
+                resObj.getString("username"),
+                resObj.getString("firstName"),
+                resObj.getString("lastName")
+        );
+        return auth;
+    }
+
+
+    /**
      * @throws IOException When the login button is clicked, a user will begin the login process
      */
-    protected void onLogin() throws IOException {
+    protected void onLogin() throws IOException, JSONException {
 
         //Get email and pass from etFields
         String email = etEmail.getText().toString();
@@ -97,18 +132,23 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
             }
 
             //Begins login process through ServerHandler
-            String response = server.doLoginAuth(url, email, password);
+            boolean response = getUserDetails(email, password);
+            //String response = server.doLoginAuth(url, email, password);
 
             //Succesful login
-            if (response.equals("Authenticated")) {
-
+            if (response) {
                 Intent intent = new Intent(this, Home_Activity.class);
                 startActivity(intent);
-                Toast.makeText(Login_Activity.this, "Welcome!" , Toast.LENGTH_SHORT).show();
+                if (user.getFirstName().equals("")) {
+                    Toast.makeText(Login_Activity.this, "Welcome, " + user.getUsername() + "!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Login_Activity.this, "Welcome, " + user.getFirstName() + "!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             //Will display error if authentication failed
-            else if (response.equals("Unauthorized")) {
+            else if (!response) {
                 Toast.makeText(Login_Activity.this, "The email or password you entered doesn't match.", Toast.LENGTH_SHORT).show();
             }
         }

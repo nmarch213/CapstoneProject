@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
 import org.json.JSONException;
@@ -137,9 +138,13 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
                 valid = false;
             } else {
                 //Successful Registration, sent to homepage
+                User_model.setEmail(email);
+                User_model.setName(username);
+                User_model.setFirstName("");
+                User_model.setLastName("");
                 Intent intent = new Intent(this, Home_Activity.class);
                 startActivity(intent);
-                Toast.makeText(Register_Activity.this, response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register_Activity.this, response + username, Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         }

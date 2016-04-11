@@ -59,7 +59,7 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
 
     {
         try {
-            mSocket = IO.socket("http://104.197.91.105:8080");
+            mSocket = IO.socket("http://104.197.124.0:8080");
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

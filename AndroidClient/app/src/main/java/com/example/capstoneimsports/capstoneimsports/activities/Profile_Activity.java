@@ -15,12 +15,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.models.User_model;
+import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -41,11 +48,18 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    ServerHandler server = new ServerHandler();
+    String url = "http://104.197.124.0:8080/api/user";
+    EditText username, email, firstName, lastName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity);
         ButterKnife.bind(this);
+
+        //Gets user details
+        getUserDetails();
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,6 +74,21 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void getUserDetails() {
+        username = (EditText) findViewById(R.id.etUsername2);
+        username.setText(User_model.getUsername());
+
+        email = (EditText) findViewById(R.id.etEmail2);
+        email.setText(User_model.getEmail());
+
+        firstName = (EditText) findViewById(R.id.etFirstName);
+        firstName.setText(User_model.getFirstName());
+
+        lastName = (EditText) findViewById(R.id.etLastName);
+        lastName.setText(User_model.getLastName());
+
     }
 
     @Override
@@ -119,7 +148,8 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onClick(View v) {
-
+        //TODO Call setUserDetails method when update button is pressed
+        
     }
 
 

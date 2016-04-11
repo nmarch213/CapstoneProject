@@ -11,18 +11,26 @@ public class User_model {
 
     public static boolean connected = false;
 
-    private static String password;
-    private static int age;
     private static String username;
     private static String email;
+    private static String firstName;
+    private static String lastName;
+    private static String password;
 
 
-    public User_model(String email, String password, String username) {
+    public User_model(String email, String username, String firstName, String lastName) {
 
         User_model.email = email;
-        User_model.password = password;
         User_model.username = username;
+        User_model.firstName = firstName;
+        User_model.lastName = lastName;
+    }
 
+    public User_model(){
+        username = "";
+        email = "";
+        firstName = "";
+        lastName = "";
     }
 
     public static JSONObject newUser(User_model user) throws JSONException {
@@ -48,22 +56,14 @@ public class User_model {
         User_model.username = username;
     }
 
-    public static int getAge() {
-        return age;
-    }
+    public static String getFirstName() { return firstName; }
 
-    public static void setAge(int age) {
-        User_model.age = age;
-    }
+    public static void setFirstName(String firstName) { User_model.firstName = firstName; }
 
+    public static String getLastName() { return lastName; }
 
-    public static String getPassword() {
-        return password;
-    }
+    public static void setLastName(String lastName) { User_model.lastName = lastName; }
 
-    public static void setPassword(String password) {
-        User_model.password = password;
-    }
 
     public static boolean isConnected() {
         return connected;

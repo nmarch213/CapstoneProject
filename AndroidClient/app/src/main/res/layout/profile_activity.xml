@@ -61,7 +61,7 @@ android:fitsSystemWindows="true">
             android:layout_alignParentStart="true">
 
             <EditText
-                android:id="@+id/etEmailLogin"
+                android:id="@+id/etEmail2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -76,7 +76,7 @@ android:fitsSystemWindows="true">
             android:layout_alignParentStart="true">
 
             <EditText
-                android:id="@+id/etUsername"
+                android:id="@+id/etUsername2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
