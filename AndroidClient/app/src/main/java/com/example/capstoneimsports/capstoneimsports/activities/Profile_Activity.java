@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
@@ -48,15 +49,25 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.124.0:8080/api/user";
+    String url = "http://104.197.124.0:8080/api/userProfile";
     EditText username, email, firstName, lastName;
+    Button bUpdateProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity);
         ButterKnife.bind(this);
+
+        username = (EditText) findViewById(R.id.etUsername2);
+        email = (EditText) findViewById(R.id.etEmail2);
+        firstName = (EditText) findViewById(R.id.etFirstName);
+        lastName = (EditText) findViewById(R.id.etLastName);
+        bUpdateProfile = (Button) findViewById(R.id.updateProfileButton);
+
+        bUpdateProfile.setOnClickListener(this);
 
         //Gets user details
         getUserDetails();
@@ -77,18 +88,50 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
     }
 
     public void getUserDetails() {
-        username = (EditText) findViewById(R.id.etUsername2);
         username.setText(User_model.getUsername());
-
-        email = (EditText) findViewById(R.id.etEmail2);
         email.setText(User_model.getEmail());
-
-        firstName = (EditText) findViewById(R.id.etFirstName);
         firstName.setText(User_model.getFirstName());
-
-        lastName = (EditText) findViewById(R.id.etLastName);
         lastName.setText(User_model.getLastName());
+    }
 
+    public void setUserDetails() throws IOException {
+
+        //Take data from text fields to strings
+        String str_username = username.getText().toString();
+        String str_email = email.getText().toString();
+        String str_firstName = firstName.getText().toString();
+        String str_lastName = lastName.getText().toString();
+
+        if (str_username.isEmpty() || username.length() < 3) {
+            username.setError("at least 3 characters");
+        } else {
+            username.setError(null);
+        }
+
+        if (str_email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(str_email).matches()) {
+            email.setError("enter a valid email address");
+        } else {
+            email.setError(null);
+        }
+
+        // Puts email and password in JSON object
+        try {
+            obj.put("email", str_email);
+            obj.put("username", str_username);
+            obj.put("firstName", str_firstName);
+            obj.put("lastName", str_lastName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String response = server.doPostRequest(url, obj.toString());
+
+        //Successful Registration, sent to homepage
+        User_model.setEmail(str_email);
+        User_model.setName(str_username);
+        User_model.setFirstName(str_firstName);
+        User_model.setLastName(str_lastName);
+        Toast.makeText(Profile_Activity.this, response, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -149,7 +192,16 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
     @Override
     public void onClick(View v) {
         //TODO Call setUserDetails method when update button is pressed
-        
+        switch (v.getId()) {
+            //When the login is pressed
+            case R.id.updateProfileButton:
+                try {
+                    setUserDetails();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
 
