@@ -84,6 +84,13 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        //How to change elements in the header programatically
+        View headerView = navigationView.getHeaderView(0);
+        TextView emailText = (TextView) headerView.findViewById(R.id.textView);
+        TextView headerText = (TextView) headerView.findViewById(R.id.headerName);
+        headerText.setText(User_model.getFirstName() + " " + User_model.getLastName());
+        emailText.setText(User_model.getEmail());
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 

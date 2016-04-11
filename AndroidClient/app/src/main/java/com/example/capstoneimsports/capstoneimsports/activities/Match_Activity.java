@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
+import com.example.capstoneimsports.capstoneimsports.models.User_model;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -68,6 +70,13 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
                 window.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
             }
         });
+
+        //How to change elements in the header programatically
+        View headerView = navigationView.getHeaderView(0);
+        TextView emailText = (TextView) headerView.findViewById(R.id.textView);
+        TextView headerText = (TextView) headerView.findViewById(R.id.headerName);
+        headerText.setText(User_model.getFirstName() + " " + User_model.getLastName());
+        emailText.setText(User_model.getEmail());
 
         navigationView.setNavigationItemSelectedListener(this);
     }

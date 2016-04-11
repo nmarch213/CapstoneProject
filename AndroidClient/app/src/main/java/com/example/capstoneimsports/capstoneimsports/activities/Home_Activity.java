@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
+import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
 import org.json.JSONException;
@@ -92,7 +93,9 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         //How to change elements in the header programatically
         View headerView = navigationView.getHeaderView(0);
         TextView emailText = (TextView) headerView.findViewById(R.id.textView);
-        emailText.setText("newemail@email.com");
+        TextView headerText = (TextView) headerView.findViewById(R.id.headerName);
+        headerText.setText(User_model.getFirstName() + " " + User_model.getLastName());
+        emailText.setText(User_model.getEmail());
 
         navigationView.setNavigationItemSelectedListener(this);
     }
