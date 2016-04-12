@@ -77,15 +77,9 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
      *                     in the etFields and place them into a JSON object then send that data to the server to be
      *                     stored
      */
-    protected boolean onRegister() throws IOException {
+    protected void onRegister() throws IOException {
 
         boolean valid = true;
-
-        final ProgressDialog progressDialog = new ProgressDialog(Register_Activity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
 
         //Take data from text fields to strings
         String username = etUsername.getText().toString();
@@ -126,15 +120,15 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
         if (!(passConfirm.equals(password))) {
             Toast.makeText(Register_Activity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             valid = false;
-        } else {
+        }
+
+        if (valid == true){
             //Calls from ServerHandler to Post to server
             String response = server.doPostRequest(url, obj.toString());
 
             //If the email is taken
             if (response.equals("Email Taken")) {
                 Toast.makeText(Register_Activity.this, response, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-                valid = false;
             } else {
                 //Successful Registration, sent to homepage
                 User_model.setEmail(email);
@@ -144,11 +138,8 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent(this, Home_Activity.class);
                 startActivity(intent);
                 Toast.makeText(Register_Activity.this, response + username, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
             }
         }
-
-        return valid;
     }
 }
 

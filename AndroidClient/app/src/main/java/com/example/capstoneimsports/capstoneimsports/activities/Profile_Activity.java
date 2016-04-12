@@ -94,43 +94,49 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
     }
 
     public void setUserDetails() throws IOException {
+        boolean flag = false;
 
-        //Take data from text fields to strings
+        //Set data from text fields to strings
         String str_username = username.getText().toString();
         String str_email = email.getText().toString();
         String str_firstName = firstName.getText().toString();
         String str_lastName = lastName.getText().toString();
 
-        if (str_username.isEmpty() || username.length() < 3) {
+        if (str_username.isEmpty() || str_username.length() < 3) {
             username.setError("at least 3 characters");
+            flag = true;
         } else {
             username.setError(null);
         }
 
         if (str_email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(str_email).matches()) {
             email.setError("enter a valid email address");
+            flag = true;
         } else {
             email.setError(null);
         }
 
-        // Puts email and password in JSON object
-        try {
-            obj.put("email", str_email);
-            obj.put("username", str_username);
-            obj.put("firstName", str_firstName);
-            obj.put("lastName", str_lastName);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (flag == false) {
+
+            // Puts email and password in JSON object
+            try {
+                obj.put("email", str_email);
+                obj.put("username", str_username);
+                obj.put("firstName", str_firstName);
+                obj.put("lastName", str_lastName);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String response = server.doPostRequest(url, obj.toString());
+
+            //Successful Registration, sent to homepage
+            User_model.setEmail(str_email);
+            User_model.setName(str_username);
+            User_model.setFirstName(str_firstName);
+            User_model.setLastName(str_lastName);
+            Toast.makeText(Profile_Activity.this, response, Toast.LENGTH_SHORT).show();
         }
-
-        String response = server.doPostRequest(url, obj.toString());
-
-        //Successful Registration, sent to homepage
-        User_model.setEmail(str_email);
-        User_model.setName(str_username);
-        User_model.setFirstName(str_firstName);
-        User_model.setLastName(str_lastName);
-        Toast.makeText(Profile_Activity.this, response, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -190,7 +196,6 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onClick(View v) {
-        //TODO Call setUserDetails method when update button is pressed
         switch (v.getId()) {
             //When the login is pressed
             case R.id.updateProfileButton:
