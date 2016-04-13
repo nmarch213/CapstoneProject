@@ -25,10 +25,10 @@
             android:layout_margin="8dp" />
 
         <include
-            android:id="@+id/match_chat"
-            layout="@layout/fragment_match_chat"
+            android:id="@+id/chat"
+            layout="@layout/activity_socket"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/match_fragment"
             android:layout_margin="8dp">
 
