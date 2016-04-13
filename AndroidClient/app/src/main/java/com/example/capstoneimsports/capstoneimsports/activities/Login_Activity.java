@@ -28,7 +28,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     EditText etEmail, etPassword;
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.124.0:8080/api/user";
+    String url = "http://104.197.124.0:8081/api/user";
     User_model user = new User_model();
 
     @Override
@@ -139,11 +139,12 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
             if (response) {
                 Intent intent = new Intent(this, Home_Activity.class);
                 startActivity(intent);
-                if (user.getFirstName().equals("")) {
-                    Toast.makeText(Login_Activity.this, "Welcome, " + user.getUsername() + "!", Toast.LENGTH_SHORT).show();
+                finish();
+                if (User_model.getFirstName().equals("")) {
+                    Toast.makeText(Login_Activity.this, "Welcome, " + User_model.getUsername() + "!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(Login_Activity.this, "Welcome, " + user.getFirstName() + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login_Activity.this, "Welcome, " + User_model.getFirstName() + "!", Toast.LENGTH_SHORT).show();
                 }
             }
 

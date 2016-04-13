@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -31,7 +30,7 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
     String message;
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.124.0:8080/api/user";
+    String url = "http://104.197.124.0:8081/api/user";
 
     /**
      * @param savedInstaceState

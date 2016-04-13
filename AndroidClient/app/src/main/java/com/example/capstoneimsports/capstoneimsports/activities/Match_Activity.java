@@ -1,6 +1,7 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
-import android.app.ActionBar;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,15 +9,14 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -62,12 +62,8 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
 
             @Override
             public void onClick(View v) {
-                LayoutInflater scoreInput =
-                        (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popUpScore = scoreInput.inflate(R.layout.fragment_football_score_input_, null);
-                PopupWindow window = new PopupWindow(popUpScore);
-                window.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-                window.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+                Dialog score = onCreateDialog();
+                score.show();
             }
         });
 
@@ -111,6 +107,29 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
         }
     }
 
+    public Dialog onCreateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Get the layout inflater
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.fragment_football_score_input_, null))
+                // Add action buttons
+                .setPositiveButton("sign in", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // sign in the user ...
+                    }
+                })
+                .setNegativeButton("test 2", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Do stuff
+                    }
+                });
+        return builder.create();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,10 +160,13 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
         if (id == R.id.nav_profile) {
             Intent intent = new Intent(this, Profile_Activity.class);
             startActivity(intent);
+            finish();
         }
         else if (id == R.id.nav_home) {
+            Home_Activity.getInstance().finish();
             Intent intent = new Intent(this, Home_Activity.class);
             startActivity(intent);
+            finish();
         }
         else if (id == R.id.nav_myTeams) {
 

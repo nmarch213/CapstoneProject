@@ -1,5 +1,6 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -17,8 +18,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
@@ -36,11 +37,12 @@ import butterknife.ButterKnife;
 
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MatchAdapter.ClickListener {
 
+    private static Home_Activity homeActivity;
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.124.0:8080/api/match_details";
+    String url = "http://104.197.124.0:8081/api/match_details";
     MatchAdapter adapter;
     List<Match_model> matchArray;
-    int rangeOfMatches = 4;
+    int rangeOfMatches = 10;
     Layout layout;
 
     //Butter knife the views for this
@@ -53,20 +55,27 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    public static Home_Activity getInstance() {
+        return homeActivity;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("message");
+        dialog.show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
+        homeActivity = this;
 
         //Trying to populate Matches
         try {
             matchArray = getMatches();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
         //RecyclerView of the matches on the home_activity
         // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);
 
@@ -98,8 +107,11 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         emailText.setText(User_model.getEmail());
 
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
+
+        dialog.hide();
+        dialog.dismiss();
+    }
 
     @Override
     public void onBackPressed() {
@@ -123,6 +135,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
      * @throws JSONException
      */
     public List<Match_model> getMatches() throws IOException, JSONException {
+
 
         //Creates the ArrayList to store the information from the database
         matchArray = new ArrayList<>();
@@ -197,10 +210,12 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         if (id == R.id.nav_profile) {
             Intent intent = new Intent(this, Profile_Activity.class);
             startActivity(intent);
+            finish();
         }
         else if (id == R.id.nav_home) {
             Intent intent = new Intent(this, Home_Activity.class);
             startActivity(intent);
+            finish();
         }
         else if (id == R.id.nav_myTeams) {
 

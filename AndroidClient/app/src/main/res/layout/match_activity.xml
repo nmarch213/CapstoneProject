@@ -7,18 +7,42 @@
     android:fitsSystemWindows="true">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/app_bar_nav_drawer" />
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar_nav_drawer" />
 
         <include
             android:id="@id/match_fragment"
-            layout="@layout/fragment_match_details_" />
+            layout="@layout/fragment_match_details_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_bar"
+            android:layout_margin="8dp" />
 
-    </LinearLayout>
+        <include
+            android:id="@+id/match_chat"
+            layout="@layout/fragment_match_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/match_fragment"
+            android:layout_margin="8dp">
+
+        </include>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:elevation="4dp" />
+
+    </RelativeLayout>
 
 
     <android.support.design.widget.NavigationView
