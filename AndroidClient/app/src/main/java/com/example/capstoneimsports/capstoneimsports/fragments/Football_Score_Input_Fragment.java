@@ -1,10 +1,10 @@
 package com.example.capstoneimsports.capstoneimsports.fragments;
 
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +32,7 @@ import java.util.TimerTask;
 public class Football_Score_Input_Fragment extends Fragment implements View.OnClickListener {
 
     ServerHandler server = new ServerHandler();
-    String url = "http://104.197.124.0:8080/api/match_details";
+    String url = "http://104.197.124.0:8081/api/match_details";
     private Socket mSocket;
     private Button stopClock;
     EditText editText;
@@ -183,9 +183,9 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
 
 
 
-//        stopClock = (Button) view.findViewById(R.id.stop_clock_button);
+        //stopClock = (Button) view.findViewById(R.id.stop_clock_button);
 
-        stopClock.setOnClickListener(this);
+        //stopClock.setOnClickListener(this);
 
         return view;
     }

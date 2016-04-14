@@ -1,8 +1,11 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NavUtils;
@@ -12,14 +15,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.fragments.Football_Score_Input_Fragment;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 
@@ -57,13 +63,32 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
         toggle.syncState();
         setDetails();
 
-        FrameLayout team1 = (FrameLayout) findViewById(R.id.team_one_container);
+        final FrameLayout team1 = (FrameLayout) findViewById(R.id.match_fragment);
         team1.setOnClickListener(new FrameLayout.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Dialog score = onCreateDialog();
-                score.show();
+                //Dialog score = onCreateDialog();
+                //score.show();
+                View popupView  = getLayoutInflater().inflate(R.layout.fragment_football_score_input_, null);
+
+                PopupWindow popupWindow = new PopupWindow(popupView ,
+                        FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+
+                // If the PopupWindow should be focusable
+                popupWindow.setFocusable(true);
+
+                // If you need the PopupWindow to dismiss when when touched outside
+                popupWindow.setBackgroundDrawable(new ColorDrawable());
+
+                int location[] = new int[2];
+
+                // Get the View's(the one that was clicked in the Fragment) location
+                team1.getLocationOnScreen(location);
+
+                // Using location, the PopupWindow will be displayed right under anchorView
+                popupWindow.showAtLocation(team1, Gravity.NO_GRAVITY,
+                        location[0], location[1] + team1.getHeight());
             }
         });
 
