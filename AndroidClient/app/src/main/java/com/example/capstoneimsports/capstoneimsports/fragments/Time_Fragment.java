@@ -29,21 +29,20 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Football_Score_Input_Fragment extends Fragment implements View.OnClickListener {
+public class Time_Fragment extends Fragment implements View.OnClickListener {
 
+    public Button testButton = null;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/match_details";
-    private Socket mSocket;
-    private Button stopClock;
     EditText editText;
     Timer timer = new Timer();
     TextView txtView;
     int temp;
     int currentTime, time;
     Button ResetButton;
-    public Button testButton = null;
     String stime;
-
+    private Socket mSocket;
+    private Button stopClock;
     private Emitter.Listener onConnectError = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -99,7 +98,7 @@ public class Football_Score_Input_Fragment extends Fragment implements View.OnCl
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_football_score_input_, container, false);
+        View view = inflater.inflate(R.layout.fragment_time, container, false);
 
         txtView = (TextView) view.findViewById(R.id.textView);
         editText = (EditText) view.findViewById(R.id.editText);

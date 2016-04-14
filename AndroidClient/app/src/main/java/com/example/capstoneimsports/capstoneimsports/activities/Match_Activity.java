@@ -1,8 +1,6 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -25,7 +23,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
-import com.example.capstoneimsports.capstoneimsports.fragments.Football_Score_Input_Fragment;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 
@@ -70,7 +67,7 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
             public void onClick(View v) {
                 //Dialog score = onCreateDialog();
                 //score.show();
-                View popupView  = getLayoutInflater().inflate(R.layout.fragment_football_score_input_, null);
+                View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
 
                 PopupWindow popupWindow = new PopupWindow(popupView ,
                         FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
@@ -139,7 +136,7 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.fragment_football_score_input_, null))
+        builder.setView(inflater.inflate(R.layout.fragment_time, null))
                 // Add action buttons
                 .setPositiveButton("sign in", new DialogInterface.OnClickListener() {
                     @Override
