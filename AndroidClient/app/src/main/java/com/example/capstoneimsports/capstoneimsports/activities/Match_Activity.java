@@ -3,7 +3,6 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NavUtils;
@@ -13,16 +12,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.fragments.Time_Fragment;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 
@@ -42,10 +40,12 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
     NavigationView navigationView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match_activity);
         ButterKnife.bind(this);
+
+
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -65,27 +65,49 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
 
             @Override
             public void onClick(View v) {
+                if (findViewById(R.id.drawer_layout) != null) {
+
+                    // However, if we're being restored from a previous state,
+                    // then we don't need to do anything and should return or else
+                    // we could end up with overlapping fragments.
+                    if (savedInstanceState != null) {
+                        return;
+                    }
+
+                    // Create a new Fragment to be placed in the activity layout
+                    Time_Fragment firstFragment = new Time_Fragment();
+
+                    // In case this activity was started with special instructions from an
+                    // Intent, pass the Intent's extras to the fragment as arguments
+                    firstFragment.setArguments(getIntent().getExtras());
+
+                    // Add the fragment to the 'fragment_container' FrameLayout
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.drawer_layout, firstFragment).commit();
+                }
+
+
                 //Dialog score = onCreateDialog();
                 //score.show();
-                View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
+               // View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
 
-                PopupWindow popupWindow = new PopupWindow(popupView ,
-                        FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+              //  PopupWindow popupWindow = new PopupWindow(popupView ,
+                       // FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 
                 // If the PopupWindow should be focusable
-                popupWindow.setFocusable(true);
+               // popupWindow.setFocusable(true);
 
                 // If you need the PopupWindow to dismiss when when touched outside
-                popupWindow.setBackgroundDrawable(new ColorDrawable());
+                //popupWindow.setBackgroundDrawable(new ColorDrawable());
 
-                int location[] = new int[2];
+               // int location[] = new int[2];
 
                 // Get the View's(the one that was clicked in the Fragment) location
-                team1.getLocationOnScreen(location);
+                //team1.getLocationOnScreen(location);
 
                 // Using location, the PopupWindow will be displayed right under anchorView
-                popupWindow.showAtLocation(team1, Gravity.NO_GRAVITY,
-                        location[0], location[1] + team1.getHeight());
+                //popupWindow.showAtLocation(team1, Gravity.NO_GRAVITY,
+                       // location[0], location[1] + team1.getHeight());
             }
         });
 

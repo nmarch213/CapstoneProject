@@ -1,10 +1,10 @@
 package com.example.capstoneimsports.capstoneimsports.fragments;
 
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -234,6 +234,8 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
     }
 
     int toSeconds(String ftime){
+        if(!ftime.contains(":"))
+            return (Integer.parseInt(ftime)) * 60;
         int L = ftime.indexOf(":");
         int minutes = Integer.parseInt(ftime.substring(0, L).trim());
         int seconds = Integer.parseInt(ftime.substring(L + 1).trim());
@@ -256,16 +258,17 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
                         time-(60*(time/60)));
                 time--;
 
-                //runOnUiThread(new Runnable() {
-                    String nTime =cTime;
-                   // @Override
-                //    public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+                    String nTime = cTime;
+
+                    @Override
+                    public void run() {
 
 //stuff that updates ui
                         txtView.setText(nTime);
 
-               //     }
-           //     });
+                    }
+                });
 
                 if(time == 0)
                     timer.cancel();
