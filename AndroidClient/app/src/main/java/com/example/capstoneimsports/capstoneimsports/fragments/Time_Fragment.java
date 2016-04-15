@@ -143,6 +143,7 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
             public void onClick (View v){
                 final int status = (Integer) v.getTag();
                 if (status == 1) {
+                    ResetButton.setEnabled(false);
                     editText.setEnabled(false);
                     sendMessage();
                     testButton.setText("Pause Time");
@@ -210,6 +211,7 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
 
     void resetClock()
     {
+        testButton.setVisibility(View.VISIBLE);
         editText.setEnabled(true);
         txtView.setText("00:00");
         //editText.setText("00:00");
@@ -266,12 +268,21 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
 
 //stuff that updates ui
                         txtView.setText(nTime);
+                        if(nTime.equalsIgnoreCase("0:00"))
+                        {
+                            txtView.setText("00:00");
+                            timer.cancel();
+                            testButton.setVisibility(View.GONE);
+                            testButton.setText("Reset Game Clock");
+                            testButton.setEnabled(false);
+                            testButton.setTag(1);
+                            ResetButton.setEnabled(true);
+                        }
 
                     }
                 });
 
-                if(time == 0)
-                    timer.cancel();
+
 
             }
 
