@@ -81,7 +81,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
             //Middle Block
             league = (TextView) itemView.findViewById(R.id.league);
-            gameDate = (TextView) itemView.findViewById(R.id.gametime);
+            //gameDate = (TextView) itemView.findViewById(R.id.gametime);
 
             //Right Block
             team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);

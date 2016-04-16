@@ -38,23 +38,18 @@
             android:name=".activities.Home_Activity"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.Profile_Activity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.Match_Activity"
             android:label="@string/title_activity_match"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.Home_Activity">
-
-            </meta-data>
+                android:value=".activities.Home_Activity" />
         </activity>
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -65,7 +60,6 @@
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider1234"
             android:exported="true" />
-
     </application>
 
 </manifest>
