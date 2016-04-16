@@ -6,6 +6,20 @@
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
 </head>
+<header>
+	<?php		
+		if(!isset($_SESSION)) 
+		{ 
+			session_start(); 
+		}
+		$page = "none";
+		$show = 0;
+		if(isset($_SESSION['logged_in'])){
+			$show = $_SESSION['logged_in'];
+		}
+		include 'header.php';
+	?>
+</header>
 <?php
 	$league_name = $_POST['league_name'];
 	

@@ -6,7 +6,7 @@
 </head>
 <?php
 	session_start();
-	$_SESSION["logged_in"] = false;
+	$_SESSION['logged_in'] = false;
 ?>
 <html>
 	<body>
