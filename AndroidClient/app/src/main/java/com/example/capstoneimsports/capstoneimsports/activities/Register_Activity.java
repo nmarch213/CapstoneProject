@@ -1,6 +1,5 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -140,6 +139,14 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(Register_Activity.this, response + username, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    /**
+     * Created by Nick on 4/14/2016.
+     */
+    public static interface Communicator {
+
+        public void onClickOne();
     }
 }
 
