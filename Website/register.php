@@ -7,9 +7,11 @@
 <?php
 	
 	include 'database_info.php';
-	$collection = $dbname->selectCollection('test_users');
+	$collection = $dbname->selectCollection('users');
 	
 	$userPass = password_hash($_POST['reg_pass'], PASSWORD_DEFAULT);
+	//Super jury-rigged but it gets the job done and replaces the incompatible $2y with the app-compatible $2a.
+	$userPass = substr_replace($userPass, '$2a', 0, -(strlen($userPass)-3));
 	if($_POST['reg_email'] != $_POST['reg_confemail'])	{
 		$heading = "Failure Bro!";
 		$display = "Error, emails do not match";
@@ -24,8 +26,12 @@
 		}
 		else	{
 			$post = array (
+				'firstName' => $_POST['reg_fname'],
+				'lastName' => $_POST['reg_lname'],
 				'email' => $_POST['reg_email'],
-				'pass' => $userPass
+				'password' => $userPass,
+				'username' => $_POST['reg_usernm'],
+				'official_user' => $_POST['official_user']
 			);
 			$collection->insert($post);
 			$heading = "SUCCESS BRO!";

@@ -6,16 +6,28 @@
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
 </head>
+<header>
+	<?php		
+		if(!isset($_SESSION)) 
+		{ 
+			session_start(); 
+		}
+		$page = "none";
+		$show = 0;
+		if(isset($_SESSION['logged_in'])){
+			$show = $_SESSION['logged_in'];
+		}
+		include 'header.php';
+	?>
+</header>
 <?php		
 	$match_league = $_POST['match_league'];
 	$match_date = $_POST['match_date'];
-	$match_location = $_POST['match_location'];
 	$match_scoreA = $_POST['match_scoreA'];
 	$match_scoreB = $_POST['match_scoreB'];
 	$match_teamA = $_POST['match_teamA'];
 	$match_teamB = $_POST['match_teamB'];
-	$match_time = $_POST['match_time'];
-	$values = array($match_league, $match_date, $match_location, $match_scoreA, $match_scoreB, $match_teamA, $match_teamB, $match_time);
+	$values = array($match_league, $match_date, $match_scoreA, $match_scoreB, $match_teamA, $match_teamB);
 	
 	include 'database_info.php';
 	$collection = $dbname->selectCollection('test_matches');
@@ -25,25 +37,28 @@
 		$display = "Whoops! You left one of the fields empty!";
 	}
 	else	{
-		$doesExist = $collection->findOne(array('league' => $match_league, 'date' => $match_date, 'location' => $match_location));
+		$doesExist = $collection->findOne(array('league' => $match_league, 'date' => $match_date));
 		if($doesExist!=null)	{
 			$heading = "Failure Bro!";
 			$display = "Whoops! That match already exists!";
+		}
+		else if($match_teamA == $match_teamB) {
+			$heading = "Failure Bro!";
+			$display = "Whoops! A team can't play itself!";
 		}
 		else {
 			$post = array(
 				'league'		=> $match_league,
 				'date'			=> $match_date,
-				'location'		=> $match_location,
-				'scoreA'		=> $match_scoreA,
-				'scoreB'		=> $match_scoreB,
-				'teamA'			=> $match_teamA,
-				'teamB'			=> $match_teamB,
-				'match_time'	=> $match_time
+				'team_one_score'		=> $match_scoreA,
+				'team_two_score'		=> $match_scoreB,
+				'team_one_name'			=> $match_teamA,
+				'team_two_name'			=> $match_teamB
 			);
 			$collection->insert($post);
 			$heading = "SUCCESS BRO!";
-			$display = $match_league . " match at " . $match_location . ", " . $match_date . " added!";
+			
+			$display = "Match on " . $match_date . " added!";
 		}
 	}
 	

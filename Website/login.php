@@ -7,17 +7,17 @@
 <?php
 	$email = $_POST['login_email'];
 	$password = $_POST['login_pass'];
-
 	include 'database_info.php';
-	$collection = $dbname->selectCollection('test_users');
+	$collection = $dbname->selectCollection('users');
 	$result = $collection->findOne(array('email' => $email));
-	$passCheck = ($result['pass']);
+	$passCheck = ($result['password']);
 	$isPassCorrect = password_verify($password, $passCheck);
 	session_start();
 	if($result!=null && $isPassCorrect)	{
 		$_SESSION["logged_in"] = true;
+		$_SESSION["official"] = $result['official_user'];
 		$heading = "SUCCESS BRO!";
-		$display = "You are now logged in!";
+		$display = "Thank you for logging in " . $result['firstName'] . " " . $result['lastName'] . "!";
 		$href = "index.php";
 	}
 	else	{

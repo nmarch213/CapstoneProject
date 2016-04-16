@@ -3,6 +3,13 @@
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
 </head>
+<?php
+include 'database_info.php';
+$lcollection = $dbname->selectCollection('test_leagues');
+$tcollection = $dbname->selectCollection('test_teams');
+$leagues = $lcollection->find(array());
+$teams = $tcollection->find(array());
+?>
 <body>
 <h2>Add Match</h2>
 <div class="form-group">
@@ -10,57 +17,60 @@
 		<div class="col-sm-3">
 		</div>
 		<div class="col-sm-6">
-			<select class="form-control" name="match_league">
-			<option>League</option>
-			<!--Eventually we'll find a way to populate these with Leagues from the DB-->
-			<option value="football">Football</option>
+			<select class="form-control" id="match_league" name="match_league">
+				<!--
+				Basically this goes through all the values in the array of leagues we created earlier and for each one adds a value for our drop down.
+				-->
+				<?php foreach ($leagues as $league) { ?>
+				<option value="<?php echo $league['name'];?>"><?php echo $league['name'];?></option>
+				<?php } ?>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-3">
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-6">
 		<input type="text" class="form-control" name="match_date" placeholder="Date (mm/dd/yyyy)">
 		</div>
-		<div class="col-sm-3">
-		<input type="text" class="form-control" name="match_location" placeholder="Location">
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-3">
-		</div>
-		<div class="col-sm-2">
-			<input type="text" class="form-control" name="match_scoreA" placeholder="X" style="text-align: center;">
-		</div>
-		<div class="col-sm-2">
-		</div>
-		<div class="col-sm-2">
-			<input type="text" class="form-control" name="match_scoreB" placeholder="X" style="text-align: center;">
-		</div>					
-	</div>
+	</div>	
 	<div class="form-group">
 		<div class="col-sm-3">
 		</div>
 		<div class="col-sm-3">
 			<select class="form-control" name="match_teamA">
-			<!--Eventually we'll find a way to populate these with Team names from the DB-->
-			<option>Team</option>
+				<?php				
+				foreach ($teams as $team) {					
+				?>
+				<option value="<?php echo $team['name'];?>"><?php echo $team['name'];?></option>
+				<?php
+				}
+				?>
 			</select>
 		</div>
 		<div class="col-sm-3">
 			<select class="form-control" name="match_teamB">
-			<!--Eventually we'll find a way to populate these with Team names from the DB-->
-			<option>Team</option>
+				<?php
+				foreach ($teams as $team) {
+				?>
+				<option value="<?php echo $team['name'];?>"><?php echo $team['name'];?></option>
+				<?php
+				}
+				?>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 		</div>
-		<div class="col-sm-4">
-			<input type="text" class="form-control" name="match_time" placeholder="Time" style="text-align: center;">
+		<div class="col-sm-2">
+			<input type="number" class="form-control" name="match_scoreA" placeholder="Score" style="text-align: center;">
 		</div>
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-2">
+			<input type="number" class="form-control" name="match_scoreB" placeholder="Score" style="text-align: center;">
+		</div>					
 	</div>
 	<div class="form-group">
 		<input type="submit" name="submit" value="Submit" />

@@ -32,8 +32,6 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
     public static Match_model match;
     TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
 
-    //rolltide
-
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.drawer_layout)

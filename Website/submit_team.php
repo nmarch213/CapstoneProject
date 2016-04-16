@@ -5,14 +5,27 @@
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
 </head>
+<header>
+	<?php		
+		if(!isset($_SESSION)) 
+		{ 
+			session_start(); 
+		}
+		$page = "none";
+		$show = 0;
+		if(isset($_SESSION['logged_in'])){
+			$show = $_SESSION['logged_in'];
+		}
+		include 'header.php';
+	?>
+</header>
 <?php
 	$team_name = $_POST['team_name'];
 	$team_league = $_POST['team_league'];
 	$team_wins = $_POST['team_wins'];
 	$team_losses = $_POST['team_losses'];
-	$team_players = $_POST['team_players'];	
-	$values = array($team_name, $team_league, $team_wins, $team_losses, $team_players);
-	
+	//$team_players = $_POST['team_players'];	
+	$values = array($team_name, $team_league, $team_wins, $team_losses);//, $team_players);	
 	include 'database_info.php';
 	$collection = $dbname->selectCollection('test_teams');
 	
@@ -31,8 +44,8 @@
 				'league'	=> $team_league,
 				'name'   	=> $team_name,
 				'wins'  	=> $team_wins,
-				'losses' 	=> $team_losses,
-				'players' 	=> $team_players
+				'losses' 	=> $team_losses//,
+				//'players' 	=> $team_players
 			);
 			$collection->insert($post);
 			$heading = "SUCCESS BRO!";
