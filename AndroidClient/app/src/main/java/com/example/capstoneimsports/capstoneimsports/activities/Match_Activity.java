@@ -2,13 +2,8 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,17 +22,15 @@ import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class Match_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Match_Activity extends AppCompatActivity {
 
+    public static User_model user;
     public static Match_model match;
     TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
 
-    @Bind(R.id.toolbar)
+    @Bind(R.id.app_bar)
     Toolbar toolbar;
-    @Bind(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
-    @Bind(R.id.nav_view)
-    NavigationView navigationView;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -46,18 +39,10 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
         ButterKnife.bind(this);
 
 
-
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close
-        );
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
         setDetails();
 
         final FrameLayout team1 = (FrameLayout) findViewById(R.id.match_fragment);
@@ -89,36 +74,27 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
 
                 //Dialog score = onCreateDialog();
                 //score.show();
-               // View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
+                // View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
 
-              //  PopupWindow popupWindow = new PopupWindow(popupView ,
-                       // FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                //  PopupWindow popupWindow = new PopupWindow(popupView ,
+                // FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 
                 // If the PopupWindow should be focusable
-               // popupWindow.setFocusable(true);
+                // popupWindow.setFocusable(true);
 
                 // If you need the PopupWindow to dismiss when when touched outside
                 //popupWindow.setBackgroundDrawable(new ColorDrawable());
 
-               // int location[] = new int[2];
+                // int location[] = new int[2];
 
                 // Get the View's(the one that was clicked in the Fragment) location
                 //team1.getLocationOnScreen(location);
 
                 // Using location, the PopupWindow will be displayed right under anchorView
                 //popupWindow.showAtLocation(team1, Gravity.NO_GRAVITY,
-                       // location[0], location[1] + team1.getHeight());
+                // location[0], location[1] + team1.getHeight());
             }
         });
-
-        //How to change elements in the header programatically
-        View headerView = navigationView.getHeaderView(0);
-        TextView emailText = (TextView) headerView.findViewById(R.id.textView);
-        TextView headerText = (TextView) headerView.findViewById(R.id.headerName);
-        headerText.setText(User_model.getFirstName() + " " + User_model.getLastName());
-        emailText.setText(User_model.getEmail());
-
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     public void setDetails() {
@@ -141,15 +117,6 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
         team_two_score.setText(String.valueOf(match.getTeam_two_score()));
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
     public Dialog onCreateDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -196,29 +163,4 @@ public class Match_Activity extends AppCompatActivity implements NavigationView.
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_profile) {
-            Intent intent = new Intent(this, Profile_Activity.class);
-            startActivity(intent);
-            finish();
-        }
-        else if (id == R.id.nav_home) {
-            Home_Activity.getInstance().finish();
-            Intent intent = new Intent(this, Home_Activity.class);
-            startActivity(intent);
-            finish();
-        }
-        else if (id == R.id.nav_myTeams) {
-
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

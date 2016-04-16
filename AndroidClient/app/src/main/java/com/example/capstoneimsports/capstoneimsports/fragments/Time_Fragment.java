@@ -58,7 +58,7 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
 
     {
         try {
-            mSocket = IO.socket("http://104.197.124.0:8080");
+            mSocket = IO.socket("http://104.197.124.0:8081");
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
