@@ -13,6 +13,7 @@
 
     <fragment
         android:id="@+id/match_fragment"
+        android:name="com.example.capstoneimsports.capstoneimsports.fragments.Match_Details_Fragment"
         layout="@layout/fragment_match_details_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
         android:visibility="gone">
 
         <fragment
+            android:name="com.example.capstoneimsports.capstoneimsports.fragments.Flag_Football_Score_Input_Fragment"
             layout="@layout/fragment_flag_football_score_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,6 +41,7 @@
 
     <fragment
         android:id="@+id/chat"
+        android:name="com.example.capstoneimsports.capstoneimsports.MatchMessage.Fragment_Chat"
         layout="@layout/activity_socket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -2,36 +2,35 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.fragments.Time_Fragment;
+import com.example.capstoneimsports.capstoneimsports.interfaces.Communicator;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class Match_Activity extends AppCompatActivity {
+public class Match_Activity extends AppCompatActivity implements Communicator {
 
     public static Match_model match;
     TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
 
     @Bind(R.id.app_bar)
     Toolbar toolbar;
+
 
 
     @Override
@@ -132,33 +131,11 @@ public class Match_Activity extends AppCompatActivity {
         return true;
     }
 
-    public void showTimeFragment() {
-
-        Button stopClock = (Button) findViewById(R.id.clock_input);
-        Dialog score = onCreateDialog();
-        score.show();
-        View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
-
-        PopupWindow popupWindow = new PopupWindow(
-                popupView,
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
-        );
-
-        //If the PopupWindow should be focusable
-        popupWindow.setFocusable(true);
-
-        // If you need the PopupWindow to dismiss when when touched outside
-        popupWindow.setBackgroundDrawable(new ColorDrawable());
-
-        int location[] = new int[2];
-
-        // Get the View's(the one that was clicked in the Fragment) location
-        stopClock.getLocationOnScreen(location);
-
-        // Using location, the PopupWindow will be displayed right under anchorView
-        popupWindow.showAtLocation(stopClock, Gravity.NO_GRAVITY,
-                location[0], location[1] + stopClock.getHeight());
+    @Override
+    public void respond() {
+        android.app.FragmentManager manager = getFragmentManager();
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        Toast.makeText(this, "Nick's penis this big                     ", Toast.LENGTH_SHORT).show();
 
     }
 }
