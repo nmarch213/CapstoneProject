@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.interfaces.Communicator;
 
+import org.json.JSONException;
+
 /**
  * Created by Nick on 4/16/2016.
  */
@@ -65,7 +67,11 @@ public class Flag_Football_Score_Input_Fragment extends Fragment implements View
                 comm.respond();
                 break;
             case R.id.t1_score_1:
-                comm.addTeam1Score(1);
+                try {
+                    comm.addTeam1Score(1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t1_score_2:
                 comm.addTeam1Score(2);
