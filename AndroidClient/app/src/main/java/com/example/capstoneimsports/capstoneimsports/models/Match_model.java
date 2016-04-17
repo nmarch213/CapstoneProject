@@ -27,6 +27,16 @@ public class Match_model {
         this.match_league = match_league;
     }
 
+    public Match_model() {
+        this.team_one_name = "";
+        this.team_two_name = "";
+        this.team_one_score = 0;
+        this.team_two_score = 0;
+        this.match_id = 0;
+        this.match_date = "";
+        this.match_league = "";
+    }
+
     public int getMatch_id() {
         return match_id;
     }

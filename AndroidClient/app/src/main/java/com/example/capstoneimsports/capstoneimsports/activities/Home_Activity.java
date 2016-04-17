@@ -195,7 +195,11 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "You Hit the settings!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bye, " + User_model.getFirstName(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, Login_Activity.class);
+            startActivity(intent);
+            new User_model();
+            new Match_model();
             return true;
         }
 
