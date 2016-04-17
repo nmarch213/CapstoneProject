@@ -28,5 +28,13 @@
 		
 		$collection->save($match);
 	}
+	else{
+		$collection = $dbname->selectCollection('test_leagues');
+		$league = $collection->findOne(array('_id' => $_SESSION['league2change']));
+		
+		$league['name'] = $_POST['league_name'];
+		
+		$collection->save($league);
+	}
 	header("Location: searchall.php");
 ?>

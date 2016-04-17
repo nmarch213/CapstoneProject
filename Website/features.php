@@ -7,7 +7,9 @@
        </head>
 		<header>
 			<?php
-				session_start();
+				if(!isset($_SESSION)){
+					session_start();
+				}
 				$page = "features";
 				$show = 0;
 				if(isset($_SESSION['logged_in'])){
