@@ -113,6 +113,7 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
         String str_email = email.getText().toString();
         String str_firstName = firstName.getText().toString();
         String str_lastName = lastName.getText().toString();
+        Uri img = imageUri;
 
 
         if (str_username.isEmpty() || str_username.length() < 3) {
@@ -147,7 +148,7 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
             User_model.setName(str_username);
             User_model.setFirstName(str_firstName);
             User_model.setLastName(str_lastName);
-            User_model.set_imageURI(imageUri);
+            User_model.setImageURI(img);
             Toast.makeText(Profile_Activity.this, response, Toast.LENGTH_SHORT).show();
         }
     }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.fragments.Time_Fragment;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
+import com.example.capstoneimsports.capstoneimsports.models.User_model;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,7 +55,7 @@ public class Match_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (scoreFrag.getVisibility() == (View.GONE)) {
+                if ((scoreFrag.getVisibility() == (View.GONE)) && (User_model.getIsOfficial() == true)) {
                     scoreFrag.setVisibility(View.VISIBLE);
                 }
                 else {

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.AsyncTask;
 
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
@@ -100,7 +101,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         //Creates a JSON object to store the string into a JSON
         JSONObject resObj = new JSONObject(response);
 
-        //TODO Fix image declaration
+        //TODO Fix image and isOfficial
         Uri img = null;
         user = new User_model(
                 "",
@@ -111,7 +112,8 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 "",
                 "",
                 "",
-                img
+                img,
+                true
         );
         return auth;
     }

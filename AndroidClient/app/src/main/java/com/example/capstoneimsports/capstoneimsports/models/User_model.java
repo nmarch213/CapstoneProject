@@ -25,8 +25,9 @@ public class User_model {
     private static String classLevel;
     private static String favSport;
     private static Uri _imageURI;
+    private static boolean isOfficial;
 
-    public User_model(String userId, String email, String username, String firstName, String lastName, String dateOfBirth, String classLevel, String favSport, Uri _imageURI) {
+    public User_model(String userId, String email, String username, String firstName, String lastName, String dateOfBirth, String classLevel, String favSport, Uri _imageURI, boolean isOfficial) {
 
         User_model.userId = userId;
         User_model.email = email;
@@ -37,6 +38,7 @@ public class User_model {
         User_model.classLevel = classLevel;
         User_model.favSport = favSport;
         User_model._imageURI = _imageURI;
+        User_model.isOfficial = isOfficial;
     }
 
     //Default Constructor
@@ -49,6 +51,7 @@ public class User_model {
         User_model.classLevel = "";
         User_model.favSport = "";
         User_model._imageURI = null;
+        User_model.isOfficial = false;
     }
 
     public static String getEmail() {
@@ -77,7 +80,11 @@ public class User_model {
 
     public static Uri getImageURI() { return _imageURI; }
 
-    public static void set_imageURI(Uri _imageURI) { User_model._imageURI = _imageURI; }
+    public static void setImageURI(Uri _imageURI) { User_model._imageURI = _imageURI; }
+
+    public static boolean getIsOfficial() { return isOfficial; }
+
+    public static void setIsOfficial(boolean isOfficial) { User_model.isOfficial = isOfficial;}
 
     public static String getFavSport() { return favSport; }
 
