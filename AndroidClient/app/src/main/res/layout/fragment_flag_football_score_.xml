@@ -1,13 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#000000">
+    android:layout_margin="8dp"
+    android:background="@color/primary">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="15dp">
 
 
         <Button
@@ -17,7 +18,7 @@
             android:text="+1" />
 
         <Button
-            android:id="@+id/score_2"
+            android:id="@+id/t1_score_2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@+id/t1_score_1"
@@ -34,7 +35,7 @@
             android:id="@+id/t1_score_6"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/score_2"
+            android:layout_below="@+id/t1_score_1"
             android:layout_toRightOf="@+id/t1_score_3"
             android:text="+6" />
 
@@ -53,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp">
+        android:layout_margin="15dp">
 
 
         <Button
@@ -63,7 +64,7 @@
             android:text="+1" />
 
         <Button
-            android:id="@+id/t1_score_2"
+            android:id="@+id/t2_score_2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@+id/t2_score_1"
@@ -80,7 +81,7 @@
             android:id="@+id/t2_score_6"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/t1_score_2"
+            android:layout_below="@+id/t2_score_2"
             android:layout_toRightOf="@+id/t2_score_3"
             android:text="+6" />
 
@@ -100,9 +101,9 @@
         android:id="@+id/clock_input"
         android:layout_width="120dp"
         android:layout_height="80dp"
+        android:text="Stop Clock"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/relativeLayout"
-        android:text="Stop Clock" />
+        android:layout_toEndOf="@+id/relativeLayout" />
 
 
 </RelativeLayout>

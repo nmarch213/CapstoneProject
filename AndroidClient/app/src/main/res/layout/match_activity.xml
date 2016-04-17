@@ -33,6 +33,7 @@
             android:name="com.example.capstoneimsports.capstoneimsports.fragments.Flag_Football_Score_Input_Fragment"
             layout="@layout/fragment_flag_football_score_"
             android:layout_width="match_parent"
+            android:layout_margin="8dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/match_fragment"
             tools:layout="@layout/fragment_flag_football_score_"

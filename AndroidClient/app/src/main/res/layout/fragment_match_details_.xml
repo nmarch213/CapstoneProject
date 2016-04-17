@@ -23,7 +23,7 @@
             android:id="@+id/team_one_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_column="8"
+            android:layout_column="7"
             android:layout_row="7">
 
             <FrameLayout

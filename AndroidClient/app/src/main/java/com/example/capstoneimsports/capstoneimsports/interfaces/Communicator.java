@@ -7,4 +7,5 @@ public interface Communicator {
     void respond();
 
     void addTeam1Score(int pointValue);
+    void addTeam2Score(int pointValue);
 }
