@@ -2,7 +2,6 @@ package com.example.capstoneimsports.capstoneimsports.fragments;
 
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -13,18 +12,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URISyntaxException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,57 +35,6 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
     String stime;
     private Socket mSocket;
     private Button stopClock;
-    private Emitter.Listener onConnectError = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Error connecting", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-    };
-
-    {
-        try {
-            mSocket = IO.socket("http://104.197.124.0:8081");
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-
-        mSocket.connect();
-        mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
-        mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("hello", "server");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            obj.put("binary", "Sucks");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        mSocket.emit("foo", obj);
-
-        //txtView = (TextView) findViewById(R.id.textView);
-        //editText = (EditText) findViewById(R.id.editText);
-
-
-
-    }
 
     @Nullable
     @Override
@@ -128,10 +69,6 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-//Start Of button Changing
-        //testButton = (Button) findViewById(R.id.button);
-        // ResetButton = (Button) findViewById(R.id.button2);
 
         testButton.setTag(1);
         testButton.setText("Start Time");
@@ -246,14 +183,8 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
         return seconds;
     }
 
-    void countdown()
-    {
-
-
+    void countdown() {
         timer.scheduleAtFixedRate(new TimerTask() {
-
-
-
             public void run() {
                 final String cTime = String.format("%d:%02d",
                         (time/60),
@@ -266,7 +197,7 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void run() {
 
-//stuff that updates ui
+                        //stuff that updates ui
                         txtView.setText(nTime);
                         if(nTime.equalsIgnoreCase("0:00"))
                         {
@@ -281,14 +212,7 @@ public class Time_Fragment extends Fragment implements View.OnClickListener {
 
                     }
                 });
-
-
-
             }
-
-
         }, 0, 1000);
     }
-
-
 }

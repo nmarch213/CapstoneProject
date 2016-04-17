@@ -1,12 +1,8 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -33,7 +29,7 @@ import butterknife.ButterKnife;
 public class Match_Activity extends AppCompatActivity implements Communicator {
 
     public static Match_model match;
-    TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
+    TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameTime;
     Socket socket;
     @Bind(R.id.app_bar)
     Toolbar toolbar;
@@ -54,7 +50,17 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         final LinearLayout scoreFrag = (LinearLayout) findViewById(R.id.scoreLayout);
 
         final FrameLayout team1 = (FrameLayout) findViewById(R.id.match_fragment);
+
         assert team1 != null;
+        team1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(Match_Activity.this, "Long Clicked ",
+                        Toast.LENGTH_SHORT).show();
+                onCreateClock();
+                return true;
+            }
+        });
         team1.setOnClickListener(new FrameLayout.OnClickListener() {
 
             @Override
@@ -96,6 +102,8 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         //Middle Block
         league = (TextView) findViewById(R.id.league);
         league.setText(match.getMatch_league());
+        gameTime = (TextView) findViewById(R.id.gametime);
+        gameTime.setText(match.getGameTime());
 //        gameDate = (TextView) findViewById(R.id.gametime);
 //        gameDate.setText(match.getMatch_date());
 
@@ -106,29 +114,19 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         team_two_score.setText(String.valueOf(match.getTeam_two_score()));
     }
 
-    public Dialog onCreateDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        // Get the layout inflater
-        LayoutInflater inflater = this.getLayoutInflater();
-
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.fragment_time, null))
-                // Add action buttons
-                .setPositiveButton("sign in", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
-                    }
-                })
-                .setNegativeButton("test 2", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //Do stuff
-                    }
-                });
-        return builder.create();
+    public void onCreateClock() {
+//        Time_Fragment timeFragment = new Time_Fragment();
+//        timeFragment.setArguments(getIntent().getExtras());
+//        getSupportFragmentManager().beginTransaction().;
+////        addToBackStack(null);
+////        transaction.commit();
     }
 
+    @Override
+    public void setGameTime(String time) {
+        match.setGameTime(time);
+        setDetails();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -140,14 +138,14 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
     @Override
     public void respond() {
         android.app.FragmentManager manager = getFragmentManager();
-        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.time_input);
         Toast.makeText(this, "Nick's penis this big                     ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void addTeam1Score(int pointValue) throws JSONException {
         android.app.FragmentManager manager = getFragmentManager();
-        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.time_input);
         match.setTeam_one_score(match.getTeam_one_score() + pointValue);
         setDetails();
         matchDetails();
@@ -177,6 +175,7 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         obj.put("match_id", match.getMatch_id());
         obj.put("team_one_score", match.getTeam_one_score());
         obj.put("team_two_score", match.getTeam_two_score());
+        obj.put("gameTime", match.getGameTime());
 
         try {
             socket = IO.socket(url); //TODO: change to ours
@@ -193,7 +192,7 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
     @Override
     public void addTeam2Score(int pointValue) throws JSONException {
         android.app.FragmentManager manager = getFragmentManager();
-        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.time_input);
         match.setTeam_two_score(match.getTeam_two_score() + pointValue);
         setDetails();
         matchDetails();

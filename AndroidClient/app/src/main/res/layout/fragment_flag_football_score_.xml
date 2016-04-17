@@ -8,9 +8,12 @@
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_alignTop="@+id/team2_score"
         android:layout_alignParentStart="true">
 
+        android:layout_alignParentStart="true"
+        android:layout_margin="15dp">
 
         <Button
             android:id="@+id/t1_score_1"
@@ -63,6 +66,52 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/team2_score"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Clocktime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="20:00"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/enter_time"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="10dp"
+            android:hint="Enter time"
+            android:imeOptions="actionDone"
+            android:inputType="time" />
+
+        <Button
+            android:id="@+id/start_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_time"
+            android:layout_centerHorizontal="true"
+            android:text="Start Clock" />
+
+        <Button
+            android:id="@+id/reset_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button"
+            android:layout_below="@+id/start_clock"
+            android:layout_centerHorizontal="true"
+            android:text="Reset Clock" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/team2_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,7 +160,6 @@
         <Button
             android:id="@+id/t2_timeout"
             android:layout_width="100dp"
-
             android:layout_height="50dp"
             android:layout_below="@+id/team2_edit"
             android:text="Enter"

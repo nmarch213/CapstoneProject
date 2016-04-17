@@ -16,4 +16,8 @@ public interface Communicator {
 
     void editTeam2Score(int pointValue) throws JSONException;
 
+    void onCreateClock();
+
+    void setGameTime(String time);
+
 }

@@ -1,63 +1,42 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_score_input"
+    android:id="@+id/time_input"
     style="@style/AppTheme"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:context=".fragments.Time_Fragment">
 
-    <RelativeLayout
-        android:layout_width="384dp"
-        android:layout_height="618dp"
-        android:layout_gravity="center_horizontal|top"
-        android:background="#ffffff"
-        android:elevation="4dp"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00"
-            android:textSize="80sp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp" />
+    <EditText
 
-        <Button
-            android:id="@+id/button"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Start Clock"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+        android:id="@+id/editText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/enter_time"
+        android:imeOptions="actionDone"
+        android:inputType="time" />
 
-        <Button
-            android:id="@+id/button2"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Reset Clock"
-            android:layout_below="@+id/button"
-            android:layout_alignStart="@+id/button" />
+    <Button
+        android:id="@+id/button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:enabled="false"
+        android:text="@string/start_clock" />
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:editable="false"
-            android:gravity="center_horizontal"
-            android:hint="Enter time: 00:00"
-            android:ems="10"
-            android:imeOptions="actionDone"
-            android:inputType="time"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/button2"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/button"
+        android:enabled="false"
+        android:text="@string/reset_clock" />
 
-    </RelativeLayout>
-
-</FrameLayout>
+</RelativeLayout>
