@@ -7,8 +7,8 @@ import org.json.JSONException;
  */
 public interface Communicator {
     void respond();
-    
-    void addTeam2Score(int pointValue);
+
+    void addTeam2Score(int pointValue) throws JSONException;
 
     void addTeam1Score(int pointValue) throws JSONException;
 

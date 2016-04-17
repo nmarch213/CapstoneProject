@@ -74,25 +74,53 @@ public class Flag_Football_Score_Input_Fragment extends Fragment implements View
                 }
                 break;
             case R.id.t1_score_2:
-                comm.addTeam1Score(2);
+                try {
+                    comm.addTeam1Score(2);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t1_score_3:
-                comm.addTeam1Score(3);
+                try {
+                    comm.addTeam1Score(3);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t1_score_6:
-                comm.addTeam1Score(6);
+                try {
+                    comm.addTeam1Score(6);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t2_score_1:
-                comm.addTeam2Score(1);
+                try {
+                    comm.addTeam2Score(1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t2_score_2:
-                comm.addTeam2Score(2);
+                try {
+                    comm.addTeam2Score(2);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t2_score_3:
-                comm.addTeam2Score(3);
+                try {
+                    comm.addTeam2Score(3);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.t2_score_6:
-                comm.addTeam2Score(6);
+                try {
+                    comm.addTeam2Score(6);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }
