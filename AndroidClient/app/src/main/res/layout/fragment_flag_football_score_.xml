@@ -8,7 +8,8 @@
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_alignTop="@+id/team2_score"
+        android:layout_alignParentStart="true">
 
 
         <Button
@@ -39,13 +40,25 @@
             android:layout_toRightOf="@+id/t1_score_3"
             android:text="+6" />
 
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/team1_edit"
+            android:enabled="true"
+            android:hint="Edit Score"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/t1_score_3" />
+
         <Button
             android:id="@+id/t1_timeout"
             android:layout_width="100dp"
-
             android:layout_height="50dp"
-            android:layout_below="@+id/t1_score_3"
-            android:text="Edit Score" />
+            android:layout_below="@+id/team1_edit"
+            android:text="Enter"
+            android:textSize="13dp" />
+
 
     </RelativeLayout>
 
@@ -53,8 +66,7 @@
         android:id="@+id/team2_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="15dp">
+        android:layout_alignParentEnd="true">
 
 
         <Button
@@ -85,15 +97,25 @@
             android:layout_toRightOf="@+id/t2_score_3"
             android:text="+6" />
 
-
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/team2_edit"
+            android:enabled="true"
+            android:hint="Edit Score"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/t2_score_3" />
 
         <Button
             android:id="@+id/t2_timeout"
             android:layout_width="100dp"
 
             android:layout_height="50dp"
-            android:layout_below="@+id/t2_score_3"
-            android:text="Edit Score" />
+            android:layout_below="@+id/team2_edit"
+            android:text="Enter"
+            android:textSize="13dp" />
 
     </RelativeLayout>
 
@@ -103,7 +125,6 @@
         android:layout_height="80dp"
         android:text="Stop Clock"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/relativeLayout" />
-
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

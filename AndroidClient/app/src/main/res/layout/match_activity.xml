@@ -4,6 +4,8 @@
     android:id="@+id/rel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <include
@@ -30,11 +32,13 @@
         android:visibility="gone">
 
         <fragment
+            android:id="@+id/editScore"
             android:name="com.example.capstoneimsports.capstoneimsports.fragments.Flag_Football_Score_Input_Fragment"
             layout="@layout/fragment_flag_football_score_"
             android:layout_width="match_parent"
             android:layout_margin="8dp"
             android:layout_height="wrap_content"
+            android:nextFocusUp="@id/editScore"
             android:layout_below="@id/match_fragment"
             tools:layout="@layout/fragment_flag_football_score_"
             />
@@ -46,10 +50,10 @@
         layout="@layout/activity_socket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:nextFocusUp="@id/chat"
         android:layout_below="@+id/scoreLayout"
         android:layout_margin="8dp"
         tools:layout="@layout/fragment_match_chat" />
-
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"

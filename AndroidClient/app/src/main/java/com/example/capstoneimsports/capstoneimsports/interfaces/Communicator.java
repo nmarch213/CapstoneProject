@@ -12,4 +12,8 @@ public interface Communicator {
 
     void addTeam1Score(int pointValue) throws JSONException;
 
+    void editTeam1Score(int pointValue) throws JSONException;
+
+    void editTeam2Score(int pointValue) throws JSONException;
+
 }
