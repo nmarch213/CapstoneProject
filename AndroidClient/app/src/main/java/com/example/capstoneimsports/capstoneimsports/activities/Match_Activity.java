@@ -154,7 +154,7 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
     @Override
     public void editTeam1Score(int pointValue) throws  JSONException {
         android.app.FragmentManager manager = getFragmentManager();
-        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.score_input);
         match.setTeam_one_score(pointValue);
         setDetails();
         matchDetails();
@@ -163,7 +163,7 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
     @Override
     public void editTeam2Score(int pointValue) throws  JSONException {
         android.app.FragmentManager manager = getFragmentManager();
-        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.score_input);
         match.setTeam_two_score(pointValue);
         setDetails();
         matchDetails();

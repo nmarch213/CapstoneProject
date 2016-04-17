@@ -32,19 +32,14 @@
         android:visibility="gone">
 
         <fragment
-
-            android:id="@+id/editScore"
             android:id="@+id/score_input"
             android:name="com.example.capstoneimsports.capstoneimsports.fragments.Flag_Football_Score_Input_Fragment"
             layout="@layout/fragment_flag_football_score_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nextFocusUp="@id/editScore"
             android:layout_below="@id/match_fragment"
             tools:layout="@layout/fragment_flag_football_score_"
             />
-            android:layout_margin="8dp"
-            tools:layout="@layout/fragment_flag_football_score_" />
     </LinearLayout>
 
     <fragment
@@ -53,9 +48,9 @@
         layout="@layout/activity_socket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:nextFocusUp="@id/chat"
         android:layout_below="@+id/scoreLayout"
         android:layout_margin="8dp"
+        android:nextFocusUp="@id/chat"
         tools:layout="@layout/fragment_match_chat" />
 
     <android.support.design.widget.FloatingActionButton

@@ -1,6 +1,5 @@
 package com.example.capstoneimsports.capstoneimsports.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,17 +7,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-=======
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
->>>>>>> origin/master
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -34,10 +26,10 @@ import java.util.TimerTask;
  */
 public class Flag_Football_Score_Input_Fragment extends Fragment implements View.OnClickListener {
 
-    public Button stopClock;
+
     Communicator comm;
 
-    Button stopClock, addOneT1, addTwoT1, addThreeT1, addSixT1, addOneT2, addTwoT2, addThreeT2, addSixT2, editScoreT1, editScoreT2;
+    Button editScoreT1, editScoreT2;
     EditText editScoreField1, editScoreField2;
 
     Button addOneT1, addTwoT1, addThreeT1, addSixT1, addOneT2, addTwoT2, addThreeT2, addSixT2, startClockButton, stopClockButton, resetClockButton;
@@ -200,8 +192,6 @@ public class Flag_Football_Score_Input_Fragment extends Fragment implements View
                     e.printStackTrace();
                 }
                 break;
-        }
-    }
             case R.id.start_clock:
                 if (startClockButton.getText().equals("Start Clock")) {
                     if (isTimerEntered) {

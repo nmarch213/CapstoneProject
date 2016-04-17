@@ -8,12 +8,9 @@
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_alignTop="@+id/team2_score"
-        android:layout_alignParentStart="true">
-
         android:layout_alignParentStart="true"
-        android:layout_margin="15dp">
+        android:layout_alignTop="@+id/team2_score">
+
 
         <Button
             android:id="@+id/t1_score_1"
@@ -44,15 +41,15 @@
             android:text="+6" />
 
         <EditText
+            android:id="@+id/team1_edit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/t1_score_3"
             android:ems="10"
-            android:id="@+id/team1_edit"
             android:enabled="true"
             android:hint="Edit Score"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/t1_score_3" />
+            android:inputType="number" />
 
         <Button
             android:id="@+id/t1_timeout"
@@ -147,15 +144,15 @@
             android:text="+6" />
 
         <EditText
+            android:id="@+id/team2_edit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/t2_score_3"
             android:ems="10"
-            android:id="@+id/team2_edit"
             android:enabled="true"
             android:hint="Edit Score"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/t2_score_3" />
+            android:inputType="number" />
 
         <Button
             android:id="@+id/t2_timeout"
@@ -167,12 +164,5 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/clock_input"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:text="Stop Clock"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
