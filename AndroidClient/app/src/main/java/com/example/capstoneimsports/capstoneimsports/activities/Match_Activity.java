@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -33,13 +34,13 @@ public class Match_Activity extends AppCompatActivity {
         setContentView(R.layout.match_activity);
         ButterKnife.bind(this);
 
-
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         setDetails();
+
+        final LinearLayout scoreFrag = (LinearLayout) findViewById(R.id.scoreLayout);
 
         final FrameLayout team1 = (FrameLayout) findViewById(R.id.match_fragment);
         assert team1 != null;
@@ -47,6 +48,14 @@ public class Match_Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                if (scoreFrag.getVisibility() == (View.GONE)) {
+                    scoreFrag.setVisibility(View.VISIBLE);
+                }
+                else {
+                    scoreFrag.setVisibility(View.GONE);
+                }
+
                 if (findViewById(R.id.drawer_layout) != null) {
 
                     // However, if we're being restored from a previous state,
@@ -67,6 +76,7 @@ public class Match_Activity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.drawer_layout, firstFragment).commit();
                 }
+
 
 
                 //Dialog score = onCreateDialog();

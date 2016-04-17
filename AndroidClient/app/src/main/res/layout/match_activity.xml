@@ -9,7 +9,6 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
-
     <include
         android:id="@+id/match_fragment"
         layout="@layout/fragment_match_details_"
@@ -23,9 +22,10 @@
         android:id="@+id/scoreLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/match_fragment">
+        android:layout_below="@id/match_fragment"
+        android:visibility="gone">
 
-        <fragment
+        <include
             layout="@layout/fragment_flag_football_score_"
             android:layout_below="@id/match_fragment"
             android:layout_height="wrap_content"
