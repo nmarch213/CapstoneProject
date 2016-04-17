@@ -19,6 +19,13 @@ import com.example.capstoneimsports.capstoneimsports.fragments.Time_Fragment;
 import com.example.capstoneimsports.capstoneimsports.interfaces.Communicator;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,11 +34,10 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
 
     public static Match_model match;
     TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
-
+    Socket socket;
     @Bind(R.id.app_bar)
     Toolbar toolbar;
-
-
+    private String url = "http://104.197.124.0:8081";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -140,11 +146,31 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
     }
 
     @Override
-    public void addTeam1Score(int pointValue) {
+    public void addTeam1Score(int pointValue) throws JSONException {
         android.app.FragmentManager manager = getFragmentManager();
         android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
         match.setTeam_one_score(match.getTeam_one_score() + pointValue);
         setDetails();
+        matchDetails();
+    }
+
+    public JSONObject matchDetails() throws JSONException {
+        JSONObject obj = new JSONObject();
+
+        obj.put("match_id", match.getMatch_id());
+        obj.put("team_one_score", match.getTeam_one_score());
+        obj.put("team_two_score", match.getTeam_two_score());
+
+        try {
+            socket = IO.socket(url); //TODO: change to ours
+            socket.connect();
+            socket.emit("matchUpdate", obj);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return obj;
     }
 }
 
