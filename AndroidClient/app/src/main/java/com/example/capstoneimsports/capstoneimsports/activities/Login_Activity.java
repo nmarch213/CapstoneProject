@@ -2,6 +2,7 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,7 +46,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
         bLogin.setOnClickListener(this);
         bRegister.setOnClickListener(this);
-
 
     }
 
@@ -94,18 +93,25 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         response = response.replace("[", "");
         response = response.replace("]", "");
 
-        if (response != null){
+        if (response != null) {
             auth = true;
         }
 
         //Creates a JSON object to store the string into a JSON
         JSONObject resObj = new JSONObject(response);
 
-         user = new User_model(
+        //TODO Fix image declaration
+        Uri img = null;
+        user = new User_model(
+                "",
                 resObj.getString("email"),
                 resObj.getString("username"),
                 resObj.getString("firstName"),
-                resObj.getString("lastName")
+                resObj.getString("lastName"),
+                "",
+                "",
+                "",
+                img
         );
         return auth;
     }
@@ -121,8 +127,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         String password = etPassword.getText().toString();
 
         // Begins login process if email and password fields are filled
-        if (!email.isEmpty() && !password.isEmpty())
-        {
+        if (!email.isEmpty() && !password.isEmpty()) {
             //Put email and pass into JSON
             try {
                 obj.put("email", email);
@@ -141,8 +146,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 if (User_model.getFirstName().equals("")) {
                     Toast.makeText(Login_Activity.this, "Welcome, " + User_model.getUsername() + "!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(Login_Activity.this, "Welcome, " + User_model.getFirstName() + "!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -151,10 +155,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
             else if (!response) {
                 Toast.makeText(Login_Activity.this, "The email or password you entered doesn't match.", Toast.LENGTH_SHORT).show();
             }
-        }
-
-        else
-        {
+        } else {
             //Makes sure the fields are not empty
             if (email.isEmpty()) {
                 etEmail.setError("Please enter your email.");

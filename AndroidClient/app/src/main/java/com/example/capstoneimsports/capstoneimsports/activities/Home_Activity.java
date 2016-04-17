@@ -210,7 +210,6 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         if (id == R.id.nav_profile) {
             Intent intent = new Intent(this, Profile_Activity.class);
             startActivity(intent);
-            finish();
         }
         else if (id == R.id.nav_home) {
             Intent intent = new Intent(this, Home_Activity.class);

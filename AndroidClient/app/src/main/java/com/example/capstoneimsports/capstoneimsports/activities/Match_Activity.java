@@ -42,6 +42,7 @@ public class Match_Activity extends AppCompatActivity {
         setDetails();
 
         final FrameLayout team1 = (FrameLayout) findViewById(R.id.match_fragment);
+        assert team1 != null;
         team1.setOnClickListener(new FrameLayout.OnClickListener() {
 
             @Override

@@ -1,7 +1,12 @@
 package com.example.capstoneimsports.capstoneimsports.models;
 
+import android.net.Uri;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URI;
+import java.util.Date;
 
 /**
  * Created by Nick on 2/2/2016.
@@ -11,33 +16,39 @@ public class User_model {
 
     public static boolean connected = false;
 
+    private static String userId;
     private static String username;
     private static String email;
     private static String firstName;
     private static String lastName;
-    private static String password;
+    private static String dateOfBirth;
+    private static String classLevel;
+    private static String favSport;
+    private static Uri _imageURI;
 
+    public User_model(String userId, String email, String username, String firstName, String lastName, String dateOfBirth, String classLevel, String favSport, Uri _imageURI) {
 
-    public User_model(String email, String username, String firstName, String lastName) {
-
+        User_model.userId = userId;
         User_model.email = email;
         User_model.username = username;
         User_model.firstName = firstName;
         User_model.lastName = lastName;
+        User_model.dateOfBirth = dateOfBirth;
+        User_model.classLevel = classLevel;
+        User_model.favSport = favSport;
+        User_model._imageURI = _imageURI;
     }
 
+    //Default Constructor
     public User_model(){
-        username = "";
-        email = "";
-        firstName = "";
-        lastName = "";
-    }
-
-    public static JSONObject newUser(User_model user) throws JSONException {
-
-        JSONObject json = new JSONObject("{'email': " + email + "'password': " + password + " }");
-
-        return json;
+        User_model.username = "";
+        User_model.email = "";
+        User_model.firstName = "";
+        User_model.lastName = "";
+        User_model.dateOfBirth = "";
+        User_model.classLevel = "";
+        User_model.favSport = "";
+        User_model._imageURI = null;
     }
 
     public static String getEmail() {
@@ -64,6 +75,25 @@ public class User_model {
 
     public static void setLastName(String lastName) { User_model.lastName = lastName; }
 
+    public static Uri getImageURI() { return _imageURI; }
+
+    public static void set_imageURI(Uri _imageURI) { User_model._imageURI = _imageURI; }
+
+    public static String getFavSport() { return favSport; }
+
+    public static void setFavSport(String favSport) { User_model.favSport = favSport; }
+
+    public static String getClassLevel() { return classLevel; }
+
+    public static void setClassLevel(String classLevel) { User_model.classLevel = classLevel; }
+
+    public static String getDateOfBirth() { return dateOfBirth; }
+
+    public static void setDateOfBirth(String dateOfBirth) {User_model.dateOfBirth = dateOfBirth; }
+
+    public static String getUserId() { return userId; }
+
+    public static void setUserId(String userId) { User_model.userId = userId; }
 
     public static boolean isConnected() {
         return connected;

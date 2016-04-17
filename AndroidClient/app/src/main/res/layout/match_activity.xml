@@ -18,13 +18,27 @@
         android:layout_below="@+id/app_bar"
         android:layout_margin="8dp" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/scoreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/match_fragment">
+
+        <fragment
+            layout="@layout/fragment_flag_football_score_"
+            android:layout_below="@id/match_fragment"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+    </LinearLayout>
 
     <include
         android:id="@+id/chat"
         layout="@layout/activity_socket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/match_fragment"
+        android:layout_below="@+id/scoreLayout"
         android:layout_margin="8dp" />
 
 

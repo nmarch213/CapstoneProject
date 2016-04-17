@@ -1,6 +1,8 @@
 package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URI;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,21 +35,19 @@ import butterknife.ButterKnife;
 /**
  * Created by Ryan on 3/26/2016.
  */
-public class Profile_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class Profile_Activity extends AppCompatActivity implements View.OnClickListener{
 
     //Butter knife the views for this
-    @Bind(R.id.toolbar)
+    @Bind(R.id.profAppBar)
     Toolbar toolbar;
-    @Bind(R.id.nav_view)
-    NavigationView navigationView;
-    @Bind(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
 
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/userProfile";
     EditText username, email, firstName, lastName;
+    ImageView profilePic;
     Button bUpdateProfile;
+    Uri imageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,37 +55,46 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.profile_activity);
         ButterKnife.bind(this);
 
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        profilePic = (ImageView) findViewById(R.id.userPic);
         username = (EditText) findViewById(R.id.etUsername2);
         email = (EditText) findViewById(R.id.etEmail2);
         firstName = (EditText) findViewById(R.id.etFirstName);
         lastName = (EditText) findViewById(R.id.etLastName);
         bUpdateProfile = (Button) findViewById(R.id.updateProfileButton);
 
-        bUpdateProfile.setOnClickListener(this);
+        if (bUpdateProfile != null) {
+            bUpdateProfile.setOnClickListener(this);
+        }
+
+        //user clicks profile picture to add picture from gallery
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Profile Picture"), 1);
+            }
+        });
 
         //Gets user details
         getUserDetails();
 
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close
-        );
+    }
 
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        //How to change elements in the header programatically
-        View headerView = navigationView.getHeaderView(0);
-        TextView emailText = (TextView) headerView.findViewById(R.id.textView);
-        TextView headerText = (TextView) headerView.findViewById(R.id.headerName);
-        headerText.setText(User_model.getFirstName() + " " + User_model.getLastName());
-        emailText.setText(User_model.getEmail());
-
-        navigationView.setNavigationItemSelectedListener(this);
+    public void onActivityResult(int reqQcode, int resCode, Intent data) {
+        if (resCode == RESULT_OK) {
+            if (reqQcode == 1){
+                imageUri = (data.getData());
+                profilePic.setImageURI(data.getData());
+            }
+        }
     }
 
     public void getUserDetails() {
@@ -91,6 +102,7 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
         email.setText(User_model.getEmail());
         firstName.setText(User_model.getFirstName());
         lastName.setText(User_model.getLastName());
+        profilePic.setImageURI(User_model.getImageURI());
     }
 
     public void setUserDetails() throws IOException {
@@ -101,6 +113,7 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
         String str_email = email.getText().toString();
         String str_firstName = firstName.getText().toString();
         String str_lastName = lastName.getText().toString();
+
 
         if (str_username.isEmpty() || str_username.length() < 3) {
             username.setError("at least 3 characters");
@@ -130,30 +143,13 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
 
             String response = server.doPostRequest(url, obj.toString());
 
-            //Successful Registration, sent to homepage
             User_model.setEmail(str_email);
             User_model.setName(str_username);
             User_model.setFirstName(str_firstName);
             User_model.setLastName(str_lastName);
+            User_model.set_imageURI(imageUri);
             Toast.makeText(Profile_Activity.this, response, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflates the menu which adds items to the action bar if it is present
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
@@ -169,29 +165,6 @@ public class Profile_Activity extends AppCompatActivity implements NavigationVie
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_profile) {
-            Intent intent = new Intent(this, Profile_Activity.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.nav_home) {
-            Intent intent = new Intent(this, Home_Activity.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.nav_myTeams) {
-
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override

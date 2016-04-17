@@ -1,118 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/drawer_layout"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:fitsSystemWindows="true">
-
-
-
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <include layout="@layout/app_bar_nav_drawer" />
+    <include layout="@layout/app_bar"
+        android:id="@+id/profAppBar"/>
 
-    <RelativeLayout
-        android:layout_weight="1.5"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="match_parent">
 
-        <!-- First Name Label -->
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view3"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/etFirstName"
+            <ImageView
+                android:id="@+id/userPic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/no_user_logo"
+                android:layout_marginBottom="25dp" />
+
+            <!-- Email Name Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First Name"
-                android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
 
-        <!-- Last Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view2"
-            android:layout_below="@+id/view3"
-            android:layout_alignParentStart="true">
+                <EditText
+                    android:id="@+id/etEmail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/etLastName"
+            <!-- Username Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/usernameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Last Name"
-                android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/emailView">
 
-        <!-- Email Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view"
-            android:layout_below="@+id/view2"
-            android:layout_alignParentStart="true">
+                <EditText
+                    android:id="@+id/etUsername2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/etEmail2"
+            <!-- First Name Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/firstNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/usernameView">
 
-        <!-- Username Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view"
-            android:layout_alignParentStart="true">
+                <EditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/etUsername2"
+            <!-- Last Name Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/lastNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-        <!-- Last Name Label -->
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/firstNameView">
 
+                <EditText
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
 
-    </RelativeLayout>
+            <!-- DOB Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/dobView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/firstNameView">
 
+                <EditText
+                    android:id="@+id/etDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Date Of Birth"
+                    android:inputType="date" />
+            </android.support.design.widget.TextInputLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+            <!-- Class Level Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/classLevelView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/dobView">
 
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/etClassLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Class Level"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        android:id="@+id/updateProfileButton"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.08" />
+            <!-- Favorite Sport Level Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/favSportView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/classLevelView">
+
+                <EditText
+                    android:id="@+id/etFavSport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:hint="Favorite Sport"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/updateProfileButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Update" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
-
-<android.support.design.widget.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:fitsSystemWindows="true"
-    app:headerLayout="@layout/nav_header_nav_drawer"
-    app:menu="@menu/nav_drawer_activity_drawer" />
-
-</android.support.v4.widget.DrawerLayout>
