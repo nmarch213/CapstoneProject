@@ -138,5 +138,13 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         Toast.makeText(this, "Nick's penis this big                     ", Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    public void addTeam1Score(int pointValue) {
+        android.app.FragmentManager manager = getFragmentManager();
+        android.app.Fragment scoreInput = manager.findFragmentById(R.id.fragment_score_input);
+        match.setTeam_one_score(match.getTeam_one_score() + pointValue);
+        setDetails();
+    }
 }
 

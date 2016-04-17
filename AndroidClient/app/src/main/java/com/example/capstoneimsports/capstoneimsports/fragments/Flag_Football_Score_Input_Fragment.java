@@ -18,7 +18,7 @@ import com.example.capstoneimsports.capstoneimsports.interfaces.Communicator;
 public class Flag_Football_Score_Input_Fragment extends Fragment implements View.OnClickListener {
 
     Communicator comm;
-    Button stopClock;
+    Button stopClock, addOneT1;
 
     @Nullable
     @Override
@@ -32,6 +32,8 @@ public class Flag_Football_Score_Input_Fragment extends Fragment implements View
         comm = (Communicator) getActivity();
         stopClock = (Button) getActivity().findViewById(R.id.clock_input);
         stopClock.setOnClickListener(this);
+        addOneT1 = (Button) getActivity().findViewById(R.id.t1_score_1);
+        addOneT1.setOnClickListener(this);
     }
 
     @Override
@@ -42,9 +44,12 @@ public class Flag_Football_Score_Input_Fragment extends Fragment implements View
                 Toast.makeText(getActivity(), "Ryans penis this big", Toast.LENGTH_SHORT).show();
                 comm.respond();
                 break;
+            case R.id.t1_score_1:
+                comm.addTeam1Score(1);
+                break;
+
         }
     }
-
 
 
 }

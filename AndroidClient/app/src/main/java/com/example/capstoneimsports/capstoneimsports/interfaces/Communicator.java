@@ -5,4 +5,6 @@ package com.example.capstoneimsports.capstoneimsports.interfaces;
  */
 public interface Communicator {
     void respond();
+
+    void addTeam1Score(int pointValue);
 }
