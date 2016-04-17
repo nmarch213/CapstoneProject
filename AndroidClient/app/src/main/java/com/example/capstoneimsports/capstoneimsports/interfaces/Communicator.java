@@ -12,4 +12,8 @@ public interface Communicator {
 
     void addTeam1Score(int pointValue) throws JSONException;
 
+    void onCreateClock();
+
+    void setGameTime(String time);
+
 }

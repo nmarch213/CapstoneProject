@@ -1,10 +1,5 @@
 package com.example.capstoneimsports.capstoneimsports.models;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Date;
-
 /**
  * Created by Ryan on 3/7/2016.
  */
@@ -19,6 +14,7 @@ public class Match_model {
     private int match_id;
     private String match_date;
     private String match_league;
+    private String gameTime;
 
     public Match_model(String team_one_name, String team_two_name, int team_one_score, int team_two_score, int match_id, String match_league) {
 
@@ -85,5 +81,13 @@ public class Match_model {
 
     public void setTeam_two_score(int team_two_score) {
         this.team_two_score = team_two_score;
+    }
+
+    public String getGameTime() {
+        return gameTime;
+    }
+
+    public void setGameTime(String gameTime) {
+        this.gameTime = gameTime;
     }
 }
