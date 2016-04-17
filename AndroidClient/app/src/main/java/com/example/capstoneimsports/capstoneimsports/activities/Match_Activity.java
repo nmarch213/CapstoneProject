@@ -2,15 +2,19 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -27,6 +31,7 @@ public class Match_Activity extends AppCompatActivity {
 
     @Bind(R.id.app_bar)
     Toolbar toolbar;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -55,12 +60,7 @@ public class Match_Activity extends AppCompatActivity {
                 else {
                     scoreFrag.setVisibility(View.GONE);
                 }
-
                 if (findViewById(R.id.drawer_layout) != null) {
-
-                    // However, if we're being restored from a previous state,
-                    // then we don't need to do anything and should return or else
-                    // we could end up with overlapping fragments.
                     if (savedInstanceState != null) {
                         return;
                     }
@@ -76,30 +76,6 @@ public class Match_Activity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.drawer_layout, firstFragment).commit();
                 }
-
-
-
-                //Dialog score = onCreateDialog();
-                //score.show();
-               // View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
-
-              //  PopupWindow popupWindow = new PopupWindow(popupView ,
-                       // FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-
-                // If the PopupWindow should be focusable
-               // popupWindow.setFocusable(true);
-
-                // If you need the PopupWindow to dismiss when when touched outside
-                //popupWindow.setBackgroundDrawable(new ColorDrawable());
-
-               // int location[] = new int[2];
-
-                // Get the View's(the one that was clicked in the Fragment) location
-                //team1.getLocationOnScreen(location);
-
-                // Using location, the PopupWindow will be displayed right under anchorView
-                //popupWindow.showAtLocation(team1, Gravity.NO_GRAVITY,
-                       // location[0], location[1] + team1.getHeight());
             }
         });
     }
@@ -155,6 +131,34 @@ public class Match_Activity extends AppCompatActivity {
         return true;
     }
 
+    public void showTimeFragment() {
 
+        Button stopClock = (Button) findViewById(R.id.clock_input);
+        Dialog score = onCreateDialog();
+        score.show();
+        View popupView = getLayoutInflater().inflate(R.layout.fragment_time, null);
 
+        PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        //If the PopupWindow should be focusable
+        popupWindow.setFocusable(true);
+
+        // If you need the PopupWindow to dismiss when when touched outside
+        popupWindow.setBackgroundDrawable(new ColorDrawable());
+
+        int location[] = new int[2];
+
+        // Get the View's(the one that was clicked in the Fragment) location
+        stopClock.getLocationOnScreen(location);
+
+        // Using location, the PopupWindow will be displayed right under anchorView
+        popupWindow.showAtLocation(stopClock, Gravity.NO_GRAVITY,
+                location[0], location[1] + stopClock.getHeight());
+
+    }
 }
+

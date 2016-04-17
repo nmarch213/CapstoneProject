@@ -1,14 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#000000">
 
     <RelativeLayout
-        android:layout_margin="16dp"
+        android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout">
+        android:layout_margin="16dp">
 
 
         <Button
@@ -22,7 +21,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@+id/t1_score_1"
-            android:onClick="showClick"
             android:text="+2" />
 
         <Button
@@ -51,11 +49,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_margin="16dp"
-        android:layout_alignParentEnd="true"
         android:id="@+id/team2_score"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp">
 
 
         <Button
@@ -98,6 +96,13 @@
 
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/clock_input"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/relativeLayout"
+        android:text="Stop Clock" />
 
 
 </RelativeLayout>
