@@ -5,7 +5,7 @@
 </head>
 <?php
 include 'database_info.php';
-$collection = $dbname->selectCollection('test_leagues');
+$collection = $dbname->selectCollection('leagues');
 $leagues = $collection->find(array());
 ?>
 <body>
@@ -21,34 +21,27 @@ $leagues = $collection->find(array());
 	<div class="form-group">
 		<div class="col-sm-3">
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-3">
 			<select class="form-control" id="team_league" name="team_league">
-			<?php foreach ($leagues as $league) { ?>
-			<option value="<?php echo $league['name'];?>"><?php echo $league['name'];?></option>
-			<?php } ?>
+				<option value="Men's">Men's</option>
+				<option value="Women's">Women's</option>
+				<option value="CoRec">CoRec</option>
 			</select>	
 		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" name="team_sport" placeholder="Team Sport">
+		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-3">
 		</div>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" name="team_wins" placeholder="Win Count">
+			<input type="number" class="form-control" name="team_wins" placeholder="Win Count">
 		</div>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" name="team_losses" placeholder="Loss Count">
+			<input type="number" class="form-control" name="team_losses" placeholder="Loss Count">
 		</div>
 	</div>
-	<!--
-	Not necessary right now, or maybe ever
-	<div class="form-group">
-		<div class="col-sm-3">
-		</div>
-		<div class="col-sm-6">					
-			<textarea rows="4" cols="42" name="team_players">Add Players</textarea>
-		</div>
-	</div>
-	-->
 	<div class="form-group">
 		<input type="submit" name="submit" value="Submit" />
 	</div>

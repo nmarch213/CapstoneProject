@@ -20,24 +20,25 @@
 		include 'header.php';
 	?>
 </header>
-<?php		
-	$match_league = $_POST['match_league'];
+<?php
 	$match_date = $_POST['match_date'];
 	$match_scoreA = $_POST['match_scoreA'];
 	$match_scoreB = $_POST['match_scoreB'];
 	$match_teamA = $_POST['match_teamA'];
 	$match_teamB = $_POST['match_teamB'];
-	$values = array($match_league, $match_date, $match_scoreA, $match_scoreB, $match_teamA, $match_teamB);
+	$values = array($match_date, $match_scoreA, $match_scoreB, $match_teamA, $match_teamB);
+	$matching = true;
 	
-	include 'database_info.php';
-	$collection = $dbname->selectCollection('test_matches');
+	include 'database_info.php';	
+	$collection = $dbname->selectCollection('matchdetails');
+	$matches = $collection->find();	
 	
 	if(in_array("", $values))	{
 		$heading = "Failure Bro!";
 		$display = "Whoops! You left one of the fields empty!";
 	}
 	else	{
-		$doesExist = $collection->findOne(array('league' => $match_league, 'date' => $match_date));
+		$doesExist = $collection->findOne(array('date' => $match_date, 'team_one_name' => $match_teamA, 'team_two_name' => $match_teamB));
 		if($doesExist!=null)	{
 			$heading = "Failure Bro!";
 			$display = "Whoops! That match already exists!";
@@ -47,18 +48,53 @@
 			$display = "Whoops! A team can't play itself!";
 		}
 		else {
-			$post = array(
-				'league'		=> $match_league,
-				'date'			=> $match_date,
-				'team_one_score'		=> $match_scoreA,
-				'team_two_score'		=> $match_scoreB,
-				'team_one_name'			=> $match_teamA,
-				'team_two_name'			=> $match_teamB
-			);
-			$collection->insert($post);
-			$heading = "SUCCESS BRO!";
-			
-			$display = "Match on " . $match_date . " added!";
+			$collection2 = $dbname->selectCollection('teams');
+			$teams = $collection2->find();
+			foreach ($teams as $team){
+				if($team['name'] == $match_teamA){
+					$trueleague = $team['league'];
+					$truesport = $team['sport'];
+				}
+			}
+			foreach($teams as $team){
+				if($team['name'] == $match_teamB){
+					if($team['league'] != $trueleague){
+						$heading = "Failure Bro!";
+						$display = "Whoops, those teams aren't in the same league!";
+						$matching = false;
+					}
+					elseif($team['sport'] != $truesport){
+						$heading = "Failure Bro!";
+						$display = "Whoops, those teams aren't in the same sport!";
+						$matching = false;
+					}
+				}
+			}
+			if($matching != false){
+				$match_id = 0;
+				foreach ($matches as $match){
+					if($match['match_id'] > $match_id){
+						$match_id = $match['match_id'];
+					}
+				}
+				$match_id++;
+				$post = array(
+					'league'				=> $trueleague,
+					'sport'					=> $truesport,
+					'date'					=> $match_date,
+					'gameTime' 				=> "20:00",
+					'team_two_score'		=> $match_scoreB,
+					'team_one_score'		=> $match_scoreA,
+					'team_two_name'			=> $match_teamB,
+					'team_one_name'			=> $match_teamA,
+					'match_id'				=> $match_id
+					
+				);
+				$collection->insert($post);
+				$heading = "SUCCESS BRO!";
+				
+				$display = $trueleague . " " . $truesport . " match on " . $match_date . " added!";
+			}
 		}
 	}
 	

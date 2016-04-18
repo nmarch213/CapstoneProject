@@ -26,12 +26,12 @@
 		<div class="container">
 			<?php
 				include 'database_info.php';
-				$collection = $dbname->selectCollection('test_matches');
-				$match = $collection->findOne(array('date' => $_GET['date']));
+				$collection = $dbname->selectCollection('matchdetails');
+				$match = $collection->findOne(array('date' => $_GET['date'], 'league' => $_GET['league']));
 			?>
 			<center>
 			<h2><?php echo $match['date'];?></h2>
-			<h3><i><?php echo $match['league'];?></i></h3>
+			<h3><i><?php echo $match['league'] . " " . $match['sport'];?></i></h3>
 			<h3><?php echo '<b>' . $match['team_one_name'] . '</b> vs <b>' . $match['team_two_name'] . '</b>';?></h3>
 			<div class="row">
 				<div class="col-sm-2" style="padding-left:45%;">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="row">				
 				<div class="col-sm-4">					
-					<?php if($_SESSION['official']==1){?><a href="editmatch.php?date=<?php echo $match['date'];?>"><h3>Edit Match</h3></a><?php }?>
+					<?php if($_SESSION['official']==1){?><a href="editmatch.php?date=<?php echo $match['date'];?>&leagues=<?php echo $match['league'];?>&sport=<?php echo $match['sport'];?>"><h3>Edit Match</h3></a><?php }?>
 				</div>
 				<div class="col-sm-4">
 					<h3><a href="searchall.php">Return</a></h3>

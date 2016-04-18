@@ -22,11 +22,9 @@
 			include 'header.php';
 			
 			include 'database_info.php';
-			$collection = $dbname->selectCollection('test_teams');
+			$collection = $dbname->selectCollection('teams');
 			$team = $collection->findOne(array('name' => $_GET['name']));
 			$_SESSION['team2change'] = $team['_id'];
-			$collection = $dbname->selectCollection('test_leagues');
-			$leagues = $collection->find(array());
 		?>
    </header>
    <body>
@@ -43,13 +41,17 @@
 					<div class="row">
 						<div class="col-sm-3">
 						</div>
-						<div class="col-sm-6" style="text-align: center;">
+						<div class="col-sm-3" style="text-align: center;">
 							<label>League</label>
 							<select class="form-control" id="team_league" name="team_league">
-							<?php foreach ($leagues as $league) { ?>
-							<option value="<?php echo $league['name'];?>" <?php if($league['name'] == $team['league']){?>selected<?php }?>><?php echo $league['name'];?></option>
-							<?php } ?>
-							</select required>	
+								<option value="Men's" <?php if($team['league'] == "Men's"){?> selected<?php }?>>Men's</option>
+								<option value="Women's" <?php if($team['league'] == "Women's"){?> selected<?php }?>>Women's</option>
+								<option value="CoRec" <?php if($team['league'] == "CoRec"){?> selected<?php }?>>CoRec</option>
+							</select required>		
+						</div>
+						<div class="col-sm-3" style="text-align: center;">
+							<label>Sport</label>
+							<input type="text" class="form-control" name="team_sport" value="<?php echo $team['sport'];?>" required>
 						</div>
 					</div>
 					<div class="row">

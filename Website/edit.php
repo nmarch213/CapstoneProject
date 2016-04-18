@@ -5,36 +5,28 @@
 	
 	include 'database_info.php';
 	if($_GET['type'] === "team"){
-		$collection = $dbname->selectCollection('test_teams');
+		$collection = $dbname->selectCollection('teams');
 		$team = $collection->findOne(array('_id' => $_SESSION['team2change']));
 	
 		$team['name'] = $_POST['team_name'];
 		$team['league'] = $_POST['team_league'];
+		$team['sport'] = $_POST['team_sport'];
 		$team['wins'] = $_POST['team_wins'];
 		$team['losses'] = $_POST['team_losses'];
 	
 		$collection->save($team);
 	}
 	elseif($_GET['type'] === "match"){
-		$collection = $dbname->selectCollection('test_matches');
+		$collection = $dbname->selectCollection('matchdetails');
 		$match = $collection->findOne(array('_id' => $_SESSION['match2change']));
 		
 		$match['date'] = $_POST['match_date'];
-		$match['league'] = $_POST['match_league'];
 		$match['team_one_name'] = $_POST['team_one_name'];
 		$match['team_two_name'] = $_POST['team_two_name'];
 		$match['team_one_score'] = $_POST['team_one_score'];
 		$match['team_two_score'] = $_POST['team_two_score'];
 		
 		$collection->save($match);
-	}
-	else{
-		$collection = $dbname->selectCollection('test_leagues');
-		$league = $collection->findOne(array('_id' => $_SESSION['league2change']));
-		
-		$league['name'] = $_POST['league_name'];
-		
-		$collection->save($league);
 	}
 	header("Location: searchall.php");
 ?>
