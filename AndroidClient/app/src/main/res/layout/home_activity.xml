@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,9 +15,9 @@
         <include layout="@layout/app_bar_nav_drawer" />
 
         <TabHost
+            android:id="@+id/tabHost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tabHost"
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
@@ -51,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <include layout="@layout/recycler_view" />
+                        <!--<include layout="@layout/recycler_view" />-->
 
                     </LinearLayout>
 
@@ -61,7 +60,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <include layout="@layout/recycler_view" />
+                        <!--<include layout="@layout/recycler_view" />-->
 
                     </LinearLayout>
 
@@ -71,7 +70,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <include layout="@layout/recycler_view" />
+                        <!--<include layout="@layout/recycler_view" />-->
 
                     </LinearLayout>
 
@@ -81,7 +80,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <include layout="@layout/recycler_view" />
+                        <!--<include layout="@layout/recycler_view" />-->
 
                     </LinearLayout>
                 </FrameLayout>

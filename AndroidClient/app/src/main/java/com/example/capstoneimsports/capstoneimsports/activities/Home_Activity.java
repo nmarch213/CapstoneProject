@@ -2,7 +2,6 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,11 +12,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +38,8 @@ import butterknife.ButterKnife;
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MatchAdapter.ClickListener {
 
     private static Home_Activity homeActivity;
+    TabHost tabHost;
+    TabHost.TabSpec tabSpec;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/match_details";
     MatchAdapter adapter;
@@ -79,13 +78,24 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
             e.printStackTrace();
         }
 
+        //The adapter used to populate the recycler view
+        adapter = new MatchAdapter(Home_Activity.this, matchArray);
+        matchesHome.setAdapter(adapter);
+        matchesHome.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapter.setClickListener(this);
+
+
+
+        //RecyclerView of the matches on the home_activity
+        // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);
+
         //Handles functionality
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("homepage");
         tabSpec.setContent(R.id.homeTab);
-        tabSpec.setIndicator("", this.getDrawable(R.drawable.home_icon) );
+        tabSpec.setIndicator("", this.getDrawable(R.drawable.home_icon));
         tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec("football");
@@ -108,14 +118,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         tabSpec.setIndicator("", this.getDrawable(R.drawable.soccer_ball));
         tabHost.addTab(tabSpec);
 
-        //RecyclerView of the matches on the home_activity
-        // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);
 
-        //The adapter used to populate the recycler view
-        adapter = new MatchAdapter(Home_Activity.this, matchArray);
-        matchesHome.setAdapter(adapter);
-        matchesHome.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
-        adapter.setClickListener(this);
 
 
         //Add Toolbar
@@ -144,6 +147,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         dialog.hide();
         dialog.dismiss();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -197,7 +201,8 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
                     resObj.getInt("team_one_score"),
                     resObj.getInt("team_two_score"),
                     resObj.getInt("match_id"),
-                    resObj.getString("match_league")
+                    resObj.getString("match_league"),
+                    resObj.getString("gameTime")
             );
 
             //Adds the match to the ArrayList, matchArray

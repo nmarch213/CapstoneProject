@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -51,6 +50,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         holder.team_one_score.setText(String.valueOf(current.getTeam_one_score()));
         holder.team_two_score.setText(String.valueOf(current.getTeam_two_score()));
         holder.league.setText(current.getMatch_league());
+        holder.gameTime.setText(current.getGameTime());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameDate;
+        TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameTime;
         FrameLayout layout;
 
         public MyViewHolder(View itemView) {
@@ -81,7 +81,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
             //Middle Block
             league = (TextView) itemView.findViewById(R.id.league);
-            //gameDate = (TextView) itemView.findViewById(R.id.gametime);
+            gameTime = (TextView) itemView.findViewById(R.id.gametime);
 
             //Right Block
             team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);

@@ -16,7 +16,7 @@ public class Match_model {
     private String match_league;
     private String gameTime;
 
-    public Match_model(String team_one_name, String team_two_name, int team_one_score, int team_two_score, int match_id, String match_league) {
+    public Match_model(String team_one_name, String team_two_name, int team_one_score, int team_two_score, int match_id, String match_league, String gameTime) {
 
         this.team_one_name = team_one_name;
         this.team_two_name = team_two_name;
@@ -25,6 +25,7 @@ public class Match_model {
         this.match_id = match_id;
         this.match_date = match_date;
         this.match_league = match_league;
+        this.gameTime = gameTime;
     }
 
     public Match_model() {

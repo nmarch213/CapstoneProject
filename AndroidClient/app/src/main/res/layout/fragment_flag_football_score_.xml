@@ -64,27 +64,25 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/team2_score"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/Clocktime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
             android:text="20:00"
-            android:textSize="20dp" />
+            android:textSize="35dp" />
 
         <EditText
             android:id="@+id/enter_time"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/Clocktime"
             android:hint="Enter time"
             android:imeOptions="actionDone"
             android:inputType="time" />
