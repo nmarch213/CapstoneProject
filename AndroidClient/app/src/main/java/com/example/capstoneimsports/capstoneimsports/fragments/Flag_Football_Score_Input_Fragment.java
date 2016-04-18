@@ -94,7 +94,7 @@ public class Flag_Football_Score_Input_Fragment extends Fragment implements View
                             (time / 60),
                             time - (60 * (time / 60))));
                     enterTime.getText().toString();
-                    handled = true;
+                    handled = false;
                     isTimerEntered = true;
 
 

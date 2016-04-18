@@ -15,6 +15,7 @@ import com.example.capstoneimsports.capstoneimsports.fragments.Time_Fragment;
 import com.example.capstoneimsports.capstoneimsports.interfaces.Communicator;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -29,17 +30,62 @@ import butterknife.ButterKnife;
 public class Match_Activity extends AppCompatActivity implements Communicator {
 
     public static Match_model match;
+
     TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameTime;
     Socket socket;
     @Bind(R.id.app_bar)
     Toolbar toolbar;
     private String url = "http://104.197.124.0:8081";
 
+    private Emitter.Listener matchUpdate = new Emitter.Listener() {
+
+        @Override
+        public void call(Object... args) {
+            JSONObject update = (JSONObject) args[0];
+            int score1 = match.getTeam_one_score();
+            int score2 = match.getTeam_two_score();
+            String gameTime = match.getGameTime();
+
+            try {
+                score1 = update.getInt("team_one_score");
+                score2 = update.getInt("team_two_score");
+                gameTime = update.getString("gameTime");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            match.setTeam_one_score(score1);
+            match.setTeam_two_score(score2);
+            match.setGameTime(gameTime);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    setDetails();
+
+                }
+            });
+
+        }
+    };
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match_activity);
         ButterKnife.bind(this);
+
+
+        try {
+            socket = IO.socket(url); //TODO: change to ours
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        socket.connect();
+        socket.on("updateMatch", matchUpdate);
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -90,6 +136,9 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
                 }
             }
         });
+
+//        new getSocketInfo().execute();
+
     }
 
     public void setDetails() {
@@ -112,6 +161,7 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         team_two_name.setText(match.getTeam_two_name());
         team_two_score = (TextView) findViewById(R.id.team_two_score);
         team_two_score.setText(String.valueOf(match.getTeam_two_score()));
+
     }
 
     public void onCreateClock() {
@@ -177,13 +227,7 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         obj.put("team_two_score", match.getTeam_two_score());
         obj.put("gameTime", match.getGameTime());
 
-        try {
-            socket = IO.socket(url); //TODO: change to ours
-            socket.connect();
-            socket.emit("matchUpdate", obj);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        socket.emit("matchUpdate", obj);
 
 
         return obj;
@@ -197,5 +241,34 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         setDetails();
         matchDetails();
     }
+
+
+//    class getSocketInfo extends AsyncTask<Void, Void, Void> {
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//
+//                socket.on("matchUpdate", matchUpdate);
+//                try {
+//                    Thread.sleep(200);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        setDetails();
+//
+//                    }
+//                });
+//
+//            return null;
+//        }
+//
+//
+//
+//    }
 }
 
