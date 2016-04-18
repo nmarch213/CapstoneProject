@@ -26,12 +26,12 @@
 		<div class="container fluid">
 			<?php
 				include 'database_info.php';
-				$collection = $dbname->selectCollection('test_teams');
+				$collection = $dbname->selectCollection('teams');
 				$team = $collection->findOne(array('name' => $_GET['name']));
 			?>
 			<center>
 			<h2><?php echo $team['name'];?></h2>
-			<h3><i><?php echo $team['league'];?></i></h3>
+			<h3><i><?php echo $team['league'] . " " . $team['sport'];?></i></h3>
 			<h3>Wins<span style="padding-left:20px;">Losses</h3>
 			<div class="row">
 				<div class="col-sm-2" style="padding-left:45%;">

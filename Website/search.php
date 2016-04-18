@@ -26,48 +26,32 @@
 			<div class="container">
 			<?php
 				include 'database_info.php';
-				$collection = $dbname->selectCollection('test_leagues');
+				$collection = $dbname->selectCollection('leagues');
 				$leagues = $collection->find(array());
-				$collection = $dbname->selectCollection('test_teams');
+				$collection = $dbname->selectCollection('teams');
 				$teams = $collection->find(array());
-				$collection = $dbname->selectCollection('test_matches');
+				$collection = $dbname->selectCollection('matchdetails');
 				$matches = $collection->find(array());
 				
 				$searchTerm = $_GET['search'];
 				$searchTerm = trim($searchTerm);
 				if($searchTerm==''){echo '<h1>You have to search for something, silly!</h1>';}
-				else{
-					echo '<h1><a href="search.php?search=leagues">Leagues</a></h1><hr><h3>';
-					$none=true;
-					if($searchTerm=="leagues"){
-						foreach($leagues as $league){echo '<a href="leagueresult.php?name=' . $league['name'] . '">' . $league['name'] . '</a><br>';}}
-					else{
-						foreach ($leagues as $league){
-							$found = strpos(strtolower($league['name']), strtolower($searchTerm));
-							if($found===false){}else{
-								$none=false;
-								echo '<a href="leagueresult.php?name=' . $league['name'] . '">' . $league['name'] . '</a><br>';
-							}
-						}
-						if($none===true){
-							echo 'No leagues found';
-						}
-					}
+				else{					
 					$none = true;
 					echo '</h3><h1><a href="search.php?search=teams">Teams</a></h1><hr><h3>';
 					if($searchTerm=='teams'){
-						foreach ($teams as $team){echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . ']' . '</a><br>';}}
+						foreach ($teams as $team){echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . " " . $match['sport'] .  ']' . '</a><br>';}}
 					else{
 						foreach ($teams as $team){
 							$found = strpos(strtolower($team['league']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . ']' . '</a><br>';
+								echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . " " . $match['sport'] .  ']' . '</a><br>';
 							}
 							$found = strpos(strtolower($team['name']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . ']' . '</a><br>';
+								echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . " " . $match['sport'] .  ']' . '</a><br>';
 							}		
 						}
 						if($none===true){
@@ -83,22 +67,22 @@
 							$found = strpos(strtolower($match['date']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
+								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . " " . $match['sport'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
 							}	
 							$found = strpos(strtolower($match['league']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
+								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . " " . $match['sport'] .  '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
 							}
 							$found = strpos(strtolower($match['team_one_name']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
+								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . " " . $match['sport'] .  '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
 							}		
 							$found = strpos(strtolower($match['team_two_name']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
+								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . " " . $match['sport'] .  '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
 							}	
 						}
 						if($none===true){

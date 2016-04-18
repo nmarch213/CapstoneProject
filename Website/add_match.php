@@ -5,28 +5,14 @@
 </head>
 <?php
 include 'database_info.php';
-$lcollection = $dbname->selectCollection('test_leagues');
-$tcollection = $dbname->selectCollection('test_teams');
+$lcollection = $dbname->selectCollection('leagues');
+$tcollection = $dbname->selectCollection('teams');
 $leagues = $lcollection->find(array());
 $teams = $tcollection->find(array());
 ?>
 <body>
 <h2>Add Match</h2>
 <div class="form-group">
-	<div class="form-group">
-		<div class="col-sm-3">
-		</div>
-		<div class="col-sm-6">
-			<select class="form-control" id="match_league" name="match_league">
-				<!--
-				Basically this goes through all the values in the array of leagues we created earlier and for each one adds a value for our drop down.
-				-->
-				<?php foreach ($leagues as $league) { ?>
-				<option value="<?php echo $league['name'];?>"><?php echo $league['name'];?></option>
-				<?php } ?>
-			</select>
-		</div>
-	</div>
 	<div class="form-group">
 		<div class="col-sm-3">
 		</div>

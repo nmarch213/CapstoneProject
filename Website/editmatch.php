@@ -22,12 +22,12 @@
 			include 'header.php';
 			
 			include 'database_info.php';
-			$collection = $dbname->selectCollection('test_matches');
+			$collection = $dbname->selectCollection('matchdetails');
 			$match = $collection->findOne(array('date' => $_GET['date']));
 			$_SESSION['match2change'] = $match['_id'];
-			$collection = $dbname->selectCollection('test_teams');
+			$collection = $dbname->selectCollection('teams');
 			$teams = $collection->find(array()); 
-			$collection = $dbname->selectCollection('test_leagues');
+			$collection = $dbname->selectCollection('leagues');
 			$leagues = $collection->find(array());
 		?>
    </header>
@@ -41,19 +41,7 @@
 						<label>Date</label>
 						<input type="text" class="form-control" name="match_date" value="<?php echo $match['date'];?>" required>					
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-					</div>
-					<div class="col-sm-6" style="text-align: center;">
-						<label>League</label>
-						<select class="form-control" id="match_league" name="match_league">
-						<?php foreach ($leagues as $league) { ?>
-						<option value="<?php echo $league['name'];?>" <?php if($league['name'] == $match['league']){?>selected<?php }?>><?php echo $league['name'];?></option>
-						<?php } ?>
-						</select required>	
-					</div>
-				</div>
+				</div>				
 				<div class="row">
 					<div class="col-sm-3">
 					</div>

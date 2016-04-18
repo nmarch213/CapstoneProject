@@ -26,19 +26,15 @@
 		<div class="container">
 		<?php
 			include 'database_info.php';
-			$collection = $dbname->selectCollection('test_leagues');
-			$leagues = $collection->find(array());
-			$collection = $dbname->selectCollection('test_teams');
+			$collection = $dbname->selectCollection('teams');
 			$teams = $collection->find(array());
-			$collection = $dbname->selectCollection('test_matches');
+			$collection = $dbname->selectCollection('matchdetails');
 			$matches = $collection->find(array());
 			
-			echo '</h3><h1><a href="search.php?search=leagues">Leagues</a></h1><hr><h3>';
-			foreach($leagues as $league){echo '<a href="leagueresult.php?name=' . $league['name'] . '">' . $league['name'] . '</a><br>';}
 			echo '</h3><h1><a href="search.php?search=teams">Teams</a></h1><hr><h3>';
-			foreach ($teams as $team){echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . ']' . '</a><br>';}
+			foreach ($teams as $team){echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . ' ' . $team['sport'] . ']' . '</a><br>';}
 			echo '</h3><h1><a href="search.php?search=matches">Matches</a></h1><hr><h3>';
-			foreach ($matches as $match){echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';}
+			foreach ($matches as $match){echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . ' ' . $team['sport'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';}
 		?>
 	</body>
 </html>
