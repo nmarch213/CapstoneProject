@@ -44,7 +44,8 @@
                     android:layout_height="wrap_content"
                     android:nextFocusUp="@id/etEmail2"
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:enabled="false" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Username Label -->

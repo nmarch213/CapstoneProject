@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstoneimsports.capstoneimsports.R;
+import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
 
@@ -44,7 +45,7 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
     JSONObject obj = new JSONObject();
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/userProfile";
-    EditText username, email, firstName, lastName;
+    EditText username, email, firstName, lastName, dob, classLevel, favSport;
     ImageView profilePic;
     Button bUpdateProfile;
     Uri imageUri = null;
@@ -66,6 +67,9 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
         firstName = (EditText) findViewById(R.id.etFirstName);
         lastName = (EditText) findViewById(R.id.etLastName);
         bUpdateProfile = (Button) findViewById(R.id.updateProfileButton);
+        dob = (EditText) findViewById(R.id.etDOB);
+        classLevel = (EditText) findViewById(R.id.etClassLevel);
+        favSport = (EditText) findViewById(R.id.etFavSport);
 
         if (bUpdateProfile != null) {
             bUpdateProfile.setOnClickListener(this);
@@ -102,6 +106,9 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
         email.setText(User_model.getEmail());
         firstName.setText(User_model.getFirstName());
         lastName.setText(User_model.getLastName());
+        dob.setText(User_model.getDateOfBirth());
+        classLevel.setText((User_model.getClassLevel()));
+        favSport.setText((User_model.getFavSport()));
         profilePic.setImageURI(User_model.getImageURI());
     }
 
@@ -113,8 +120,10 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
         String str_email = email.getText().toString();
         String str_firstName = firstName.getText().toString();
         String str_lastName = lastName.getText().toString();
+        String str_dob = dob.getText().toString();
+        String str_classLevel = classLevel.getText().toString();
+        String str_favSport = favSport.getText().toString();
         Uri img = imageUri;
-
 
         if (str_username.isEmpty() || str_username.length() < 3) {
             username.setError("at least 3 characters");
@@ -138,6 +147,9 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
                 obj.put("username", str_username);
                 obj.put("firstName", str_firstName);
                 obj.put("lastName", str_lastName);
+                obj.put("dateOfBirth", str_dob);
+                obj.put("classLevel", str_classLevel);
+                obj.put("favSport", str_favSport);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -149,6 +161,9 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
             User_model.setFirstName(str_firstName);
             User_model.setLastName(str_lastName);
             User_model.setImageURI(img);
+            User_model.setDateOfBirth(str_dob);
+            User_model.setClassLevel(str_classLevel);
+            User_model.setFavSport(str_favSport);
             Toast.makeText(Profile_Activity.this, response, Toast.LENGTH_SHORT).show();
         }
     }
@@ -161,7 +176,11 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "You Hit the settings!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bye, " + User_model.getFirstName(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, Login_Activity.class);
+            startActivity(intent);
+            new User_model();
+            new Match_model();
             return true;
         }
 
@@ -175,6 +194,7 @@ public class Profile_Activity extends AppCompatActivity implements View.OnClickL
             case R.id.updateProfileButton:
                 try {
                     setUserDetails();
+                    finish();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

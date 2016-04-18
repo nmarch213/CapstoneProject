@@ -16,7 +16,6 @@ public class User_model {
 
     public static boolean connected = false;
 
-    private static String userId;
     private static String username;
     private static String email;
     private static String firstName;
@@ -27,9 +26,8 @@ public class User_model {
     private static Uri _imageURI;
     private static boolean isOfficial;
 
-    public User_model(String userId, String email, String username, String firstName, String lastName, String dateOfBirth, String classLevel, String favSport, Uri _imageURI, boolean isOfficial) {
+    public User_model(String email, String username, String firstName, String lastName, String dateOfBirth, String classLevel, String favSport, Uri _imageURI, boolean isOfficial) {
 
-        User_model.userId = userId;
         User_model.email = email;
         User_model.username = username;
         User_model.firstName = firstName;
@@ -97,10 +95,6 @@ public class User_model {
     public static String getDateOfBirth() { return dateOfBirth; }
 
     public static void setDateOfBirth(String dateOfBirth) {User_model.dateOfBirth = dateOfBirth; }
-
-    public static String getUserId() { return userId; }
-
-    public static void setUserId(String userId) { User_model.userId = userId; }
 
     public static boolean isConnected() {
         return connected;

@@ -101,19 +101,18 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         //Creates a JSON object to store the string into a JSON
         JSONObject resObj = new JSONObject(response);
 
-        //TODO Fix image and isOfficial
+        //TODO image still needs to be worked
         Uri img = null;
         user = new User_model(
-                "",
                 resObj.getString("email"),
                 resObj.getString("username"),
                 resObj.getString("firstName"),
                 resObj.getString("lastName"),
-                "",
-                "",
-                "",
+                resObj.getString("dateOfBirth"),
+                resObj.getString("classLevel"),
+                resObj.getString("favSport"),
                 img,
-                true
+                resObj.getBoolean("isOfficial")
         );
         return auth;
     }

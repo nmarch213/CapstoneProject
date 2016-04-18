@@ -134,6 +134,10 @@ public class Register_Activity extends AppCompatActivity implements View.OnClick
                 User_model.setName(username);
                 User_model.setFirstName("");
                 User_model.setLastName("");
+                User_model.setDateOfBirth("");
+                User_model.setClassLevel("");
+                User_model.setFavSport("");
+                User_model.setIsOfficial(false);
                 Intent intent = new Intent(this, Home_Activity.class);
                 startActivity(intent);
                 Toast.makeText(Register_Activity.this, response + username, Toast.LENGTH_SHORT).show();
