@@ -2,6 +2,7 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +13,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +37,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MatchAdapter.ClickListener {
 
@@ -75,6 +78,35 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
+        //Handles functionality
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("homepage");
+        tabSpec.setContent(R.id.homeTab);
+        tabSpec.setIndicator("", this.getDrawable(R.drawable.home_icon) );
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("football");
+        tabSpec.setContent(R.id.footballTab);
+        tabSpec.setIndicator("", this.getDrawable(R.drawable.football));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("volleyball");
+        tabSpec.setContent(R.id.volleyTab);
+        tabSpec.setIndicator("", this.getDrawable(R.drawable.volley_ball));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("basketball");
+        tabSpec.setContent(R.id.basketBallTab);
+        tabSpec.setIndicator("", this.getDrawable(R.drawable.basketball));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("soccer");
+        tabSpec.setContent(R.id.soccerTab);
+        tabSpec.setIndicator("", this.getDrawable(R.drawable.soccer_ball));
+        tabHost.addTab(tabSpec);
 
         //RecyclerView of the matches on the home_activity
         // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);

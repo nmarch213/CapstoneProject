@@ -13,7 +13,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_registration">New Registration</string>
-    <string name="title_activity_home_page">HomePage</string>
+    <string name="title_activity_home_page">Homepage</string>
     <string name="action_Forgot_Password">Forgot Password?"</string>
     <string name="prompt_Member_Login">Member Login</string>
     <string name="password_holder">**************</string>
