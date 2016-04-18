@@ -26,29 +26,19 @@
 		<div class="container fluid">
 			<?php
 				include 'database_info.php';
-				$collection = $dbname->selectCollection('test_teams');
-				$team = $collection->findOne(array('name' => $_GET['name']));
+				$collection = $dbname->selectCollection('test_leagues');
+				$league = $collection->findOne(array('name' => $_GET['name']));
 			?>
 			<center>
-			<h2><?php echo $team['name'];?></h2>
-			<h3><i><?php echo $team['league'];?></i></h3>
-			<h3>Wins<span style="padding-left:20px;">Losses</h3>
-			<div class="row">
-				<div class="col-sm-2" style="padding-left:45%;">
-					<h3><?php echo $team['wins'];?></h3>
-				</div>
-				<div class="col-sm-2">
-					<h3><?php echo $team['losses'];?></h3>
-				</div>
-			</div>
+			<h2><?php echo $league['name'];?></h2>		
 			<div class="row">				
 				<div class="col-sm-4">					
-					<?php if($_SESSION['official']==1){?><a href="editteam.php?name=<?php echo $team['name'];?>"><h3>Edit Team</h3></a><?php }?>
+					<?php if($_SESSION['official']==1){?><a href="editleague.php?name=<?php echo $league['name'];?>"><h3>Edit League</h3></a><?php }?>
 				</div>
 				<div class="col-sm-4">
 					<h3><a href="searchall.php">Return</a></h3>
 				</div>
-					<?php if($_SESSION['official']==1){?><a href="delete.php?type=team&name=<?php echo $team['name'];?>" onclick="alert('Team Deleted')"><h3>Delete Team</h3></a><?php }?>
+					<?php if($_SESSION['official']==1){?><a href="delete.php?type=league&name=<?php echo $league['name'];?>" onclick="alert('League Deleted')"><h3>Delete League</h3></a><?php }?>
 				<div class="col-sm-4">
 				</div>
 			</div>

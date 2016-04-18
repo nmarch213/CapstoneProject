@@ -34,7 +34,7 @@
 			$matches = $collection->find(array());
 			
 			echo '</h3><h1><a href="search.php?search=leagues">Leagues</a></h1><hr><h3>';
-			foreach($leagues as $league){echo $league['name'] . '<br>';}
+			foreach($leagues as $league){echo '<a href="leagueresult.php?name=' . $league['name'] . '">' . $league['name'] . '</a><br>';}
 			echo '</h3><h1><a href="search.php?search=teams">Teams</a></h1><hr><h3>';
 			foreach ($teams as $team){echo '<a href="teamresult.php?name=' . $team['name'] . '">' . $team['name'] . ' [' . $team['league'] . ']' . '</a><br>';}
 			echo '</h3><h1><a href="search.php?search=matches">Matches</a></h1><hr><h3>';

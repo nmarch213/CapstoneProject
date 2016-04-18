@@ -104,3 +104,13 @@ img {
 	max-width: 100%;
 	height: auto;
 }
+
+/*
+Fixes help page's scrollspy on small screens
+*/
+@media (min-width: 768px) {
+	ul.nav-pills {
+		top: 45%;
+		position: fixed;
+	}
+}

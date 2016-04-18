@@ -5,7 +5,9 @@
 	<link href="style.css" rel="stylesheet">
 </head>
 <?php
-	session_start();
+	if(!isset($_SESSION)){
+		session_start();
+	}
 	$_SESSION['logged_in'] = false;
 ?>
 <html>

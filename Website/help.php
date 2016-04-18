@@ -10,7 +10,9 @@
        </head>
 	<header>
 		<?php
-			session_start();
+			if(!isset($_SESSION)){
+				session_start();
+			}
 			$page = "help";
 			$show = 0;
 				if(isset($_SESSION['logged_in'])){
@@ -27,11 +29,11 @@
 			<hr/>
 			<div class="row">				
 				<nav class="col-sm-3" id="myScrollspy">
-					<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="25">
+					<ul class="nav nav-pills nav-stacked">
 						<li class="active"><a href="#section1">Making an account</a></li>
 						<li><a href="#section2">Logging in</a></li>
-						<li><a href="#section3">Searching for Matches</a></li>
-						<li><a href="#section4">Favoriting a Match</a></li>
+						<li><a href="#section3">Checking a Match</a></li>
+						<li><a href="#section4">Leaving a Comment</a></li>
 						<li><a href="#section5">Changing User Settings</a></li>
 					</ul>
 				</nav>
@@ -39,35 +41,41 @@
 					<div id="section1">
 						<h2>Making an account</h2>
 						<hr/>
-						<img src="images/help/Website_Register.png"/ width="75%">
+						<img src="images/help/Website_Register.png" width="75%" alt="Website Register Page">
 						<p>Register online to be an official user. This allows you to edit match and team information and add official comments.</p>
-						<img src="images/help/register.png" width="30%">
+						<a href="images/help/register.png" target="_blank"><img src="images/help/register.png" width="30%" alt="Application Register Screen"></a>
 						<p>Registering in the application is simple and easy. But be warned, you can only register as an un-official user.</p>						
 					</div>
 					<br/>
 					<div id="section2">
 						<h2>Logging in</h2>
 						<hr/>
-						<img src="images/help/Website_Login.png" width="75%"/>
+						<img src="images/help/Website_login.png" width="75%" alt="Website Login Page"/>
 						<p>Log in to add matches, teams, and leagues.</p>
-						<img src="images/help/login.png" width="30%">					
+						<a href="images/help/login.png" target="_blank"><img src="images/help/login.png" width="30%" alt="Application Login Screen"></a>
 						<p>Log in to your account using the same information you registered with on this website or in the application.</p>
 					</div>
 					<br/>
 					<div id="section3">
-						<h2>Searching for Matches</h2>
+						<h2>Checking a Match</h2>
 						<hr/>
-						<img src="images/img_3.jpg" width="75%"/>
+						<a href="images/help/homepage.png" target="_blank"><img src="images/help/homepage.png" width="30%" alt="Application Homepage"></a>
+						<p>From the homepage, simply tap the match you want more information on to be taken to its result screen.</p>
+						<img src="images/img_1.jpg" width="75%"/>
 					</div>
 					<br/>
 					<div id="section4">
-						<h2>Favoriting a Match</h2>
-						<hr/>
-						<img src="images/img_4.jpg" width="75%"/>
+						<h2>Leaving a Comment</h2>
+						<hr/>						
+						<a href="" target="_blank"><img src="images/help/comment.png" width="30%" alt="Application Match Result"/></a>
+						<p>On the match's result screen you can leave a comment by inputting your message in the available field and tapping the submit arrow.</p>
 					</div>
 					<div id="section5">
 						<h2>Changing User Settings</h2>
-						<h4/>
+						<hr/>
+						<a href="images/help/side menu.png" target="_blank"><img src="images/help/side menu.png" width="30%" alt="Application Side Menu"></a>
+						<p>Tap the icon at the upper left of the screen to view the side menu. From here, choose 'Edit Profile'</p>
+						<a href="images/help/update profile.png" target="_blank"><img src="images/help/update profile.png" width="30%" alt="Application Edit Profile Screen"></a>
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,9 @@
 	$result = $collection->findOne(array('email' => $email));
 	$passCheck = ($result['password']);
 	$isPassCorrect = password_verify($password, $passCheck);
-	session_start();
+	if(!isset($_SESSION)){
+		session_start();
+	}
 	if($result!=null && $isPassCorrect)	{
 		$_SESSION["logged_in"] = true;
 		$_SESSION["official"] = $result['official_user'];

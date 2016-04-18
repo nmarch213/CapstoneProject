@@ -40,13 +40,13 @@
 					echo '<h1><a href="search.php?search=leagues">Leagues</a></h1><hr><h3>';
 					$none=true;
 					if($searchTerm=="leagues"){
-						foreach($leagues as $league){echo $league['name'] . '<br>';}}
+						foreach($leagues as $league){echo '<a href="leagueresult.php?name=' . $league['name'] . '">' . $league['name'] . '</a><br>';}}
 					else{
 						foreach ($leagues as $league){
 							$found = strpos(strtolower($league['name']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo $league['name'] . '<br>';
+								echo '<a href="leagueresult.php?name=' . $league['name'] . '">' . $league['name'] . '</a><br>';
 							}
 						}
 						if($none===true){
@@ -88,7 +88,7 @@
 							$found = strpos(strtolower($match['league']), strtolower($searchTerm));
 							if($found===false){}else{
 								$none=false;
-								echo $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i><br>';
+								echo '<a href="matchresult.php?date=' . $match['date'] . '&league=' . $match['league'] . '">' . $match['date'] . ' [' . $match['league'] . '] <i>' . $match['team_one_name'] . '</i> vs <i>' . $match['team_two_name'] . '</i></a><br>';
 							}
 							$found = strpos(strtolower($match['team_one_name']), strtolower($searchTerm));
 							if($found===false){}else{
