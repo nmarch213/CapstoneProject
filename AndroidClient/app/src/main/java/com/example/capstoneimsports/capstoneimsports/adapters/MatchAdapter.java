@@ -5,8 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TabHost;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -20,8 +19,8 @@ import java.util.List;
  */
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder> {
 
-    List<Match_model> matches = Collections.emptyList();
     public ClickListener clickListener;
+    List<Match_model> matches = Collections.emptyList();
     private Match_model match;
     private LayoutInflater inflater;
 
@@ -34,7 +33,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.fragment_match_details_, parent, false);
+        View view = inflater.inflate(R.layout.adapter_matches, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
 
         return holder;
@@ -71,7 +70,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView team_one_name, team_one_score, team_two_name, team_two_score, league, gameTime;
-        FrameLayout layout;
+        RelativeLayout layout;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -87,7 +86,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
             team_two_name = (TextView) itemView.findViewById(R.id.team_two_name);
             team_two_score = (TextView) itemView.findViewById(R.id.team_two_score);
 
-            layout = (FrameLayout) itemView.findViewById(R.id.match_fragment);
+            layout = (RelativeLayout) itemView.findViewById(R.id.match_adapter);
             layout.setOnClickListener(this);
 
 
