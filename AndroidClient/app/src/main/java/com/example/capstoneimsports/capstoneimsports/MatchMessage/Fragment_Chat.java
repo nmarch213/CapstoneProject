@@ -1,20 +1,28 @@
 package com.example.capstoneimsports.capstoneimsports.MatchMessage;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.github.nkzawa.emitter.Emitter;
@@ -140,20 +148,53 @@ public class Fragment_Chat extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
 
+        final LinearLayout msg_frame = (LinearLayout) view.findViewById(R.id.message_input_frame);
+
         ImageButton sendButton = (ImageButton) view.findViewById(R.id.send_button);
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
+
+        mInputMessageView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == 0) {
+                    sendMessage();
+                    handled = false;
+                }
+                return handled;
+            }
+        });
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendMessage();
+                msg_frame.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        final FloatingActionButton FAB = (FloatingActionButton) view.findViewById(R.id.start_message);
+
+        FAB.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                msg_frame.setVisibility(View.VISIBLE);
+                mInputMessageView.performClick();
+                mInputMessageView.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(mInputMessageView, InputMethodManager.SHOW_IMPLICIT);
+
+
             }
         });
 

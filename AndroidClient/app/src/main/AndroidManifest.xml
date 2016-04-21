@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name=".activities.Register_Activity"
-            android:label="@string/title_activity_registration" />
+            android:label="" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -36,11 +36,11 @@
 
         <activity
             android:name=".activities.Home_Activity"
-            android:label="@string/title_activity_home_page"
+            android:label=""
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.Profile_Activity"
-            android:label="@string/title_activity_profile"
+            android:label=""
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -48,7 +48,7 @@
         </activity>
         <activity
             android:name=".activities.Match_Activity"
-            android:label="@string/title_activity_match"
+            android:label=""
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

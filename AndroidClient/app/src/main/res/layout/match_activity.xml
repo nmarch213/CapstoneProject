@@ -35,7 +35,7 @@
             android:id="@+id/score_input"
             android:name="com.example.capstoneimsports.capstoneimsports.fragments.Flag_Football_Score_Input_Fragment"
             layout="@layout/fragment_flag_football_score_"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/match_fragment"
             tools:layout="@layout/fragment_flag_football_score_"
@@ -53,13 +53,6 @@
         android:nextFocusUp="@id/chat"
         tools:layout="@layout/fragment_match_chat" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:elevation="4dp" />
 
 
 </RelativeLayout>
