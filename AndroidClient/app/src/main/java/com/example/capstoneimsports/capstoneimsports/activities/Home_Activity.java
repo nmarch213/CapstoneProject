@@ -2,8 +2,10 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +27,9 @@ import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,14 +48,16 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     TabHost.TabSpec tabSpec;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/match_details";
-    MatchAdapter adapter;
-    List<Match_model> matchArray;
+    MatchAdapter adapterHome, adapterFootball;
+    List<Match_model> matchArray, footballMatchArray;
     int rangeOfMatches = 10;
     Layout layout;
 
     //Butter knife the views for this
     @Bind(R.id.matches_home)
     RecyclerView matchesHome;
+    @Bind(R.id.matches_football)
+    RecyclerView matchesFootball;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.nav_view)
@@ -78,19 +86,27 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
             e.printStackTrace();
         }
 
-        //The adapter used to populate the recycler view
-        adapter = new MatchAdapter(Home_Activity.this, matchArray);
-        matchesHome.setAdapter(adapter);
+        //Gets foothball matches from match arrayList
+        getFootballMatches();
+
+        //The adapter used to populate the recycler view in Home
+        adapterHome = new MatchAdapter(Home_Activity.this, matchArray);
+        matchesHome.setAdapter(adapterHome);
         matchesHome.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
-        adapter.setClickListener(this);
+        adapterHome.setClickListener(this);
 
-
+        //Seperate adapter used to populate another recycler view in Football tab
+        adapterFootball = new MatchAdapter(Home_Activity.this, footballMatchArray);
+        matchesFootball.setAdapter(adapterFootball);
+        matchesFootball.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapterFootball.setClickListener(this);
 
         //RecyclerView of the matches on the home_activity
         // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);
 
-        //Handles functionality
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        //Handles functionality for tabs
+        final TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        assert tabHost != null;
         tabHost.setup();
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("homepage");
@@ -118,8 +134,29 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         tabSpec.setIndicator("", this.getDrawable(R.drawable.soccer_ball));
         tabHost.addTab(tabSpec);
 
+        //When a tab is pressed do this
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 
+            public void onTabChanged(String tabId) {
+                switch (tabHost.getCurrentTab()) {
+                    case 0:
+                        Toast.makeText(Home_Activity.this, "Tab 1", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
 
+                        break;
+                    case 2:
+                        Toast.makeText(Home_Activity.this, "Tab 3", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(Home_Activity.this, "Tab 4", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(Home_Activity.this, "Tab 5", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
 
         //Add Toolbar
         setSupportActionBar(toolbar);
@@ -143,9 +180,23 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
         dialog.hide();
         dialog.dismiss();
+    }
+
+    public void getFootballMatches() {
+        for (int i = 0; i < matchArray.size(); i++) {
+            footballMatchArray = new ArrayList<>();
+            int index = 0;
+            String league = matchArray.get(i).getMatch_league();
+
+            if (league.compareTo("Men's Football") == 0) {
+
+                //Adds the match to the ArrayList, matchArray
+                footballMatchArray.add(index, matchArray.get(i));
+                index++;
+            }
+        }
     }
 
 
@@ -251,13 +302,11 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         if (id == R.id.nav_profile) {
             Intent intent = new Intent(this, Profile_Activity.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_home) {
+        } else if (id == R.id.nav_home) {
             Intent intent = new Intent(this, Home_Activity.class);
             startActivity(intent);
             finish();
-        }
-        else if (id == R.id.nav_myTeams) {
+        } else if (id == R.id.nav_myTeams) {
 
         }
 
@@ -277,5 +326,4 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         intent.putExtra("matchId", matchId);
         startActivity(intent);
     }
-
 }

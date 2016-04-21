@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -20,7 +21,7 @@ import java.util.List;
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder> {
 
     List<Match_model> matches = Collections.emptyList();
-    private ClickListener clickListener;
+    public ClickListener clickListener;
     private Match_model match;
     private LayoutInflater inflater;
 
@@ -78,7 +79,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
             //Left Block
             team_one_name = (TextView) itemView.findViewById(R.id.team_one_name);
             team_one_score = (TextView) itemView.findViewById(R.id.team_one_score);
-
             //Middle Block
             league = (TextView) itemView.findViewById(R.id.league);
             gameTime = (TextView) itemView.findViewById(R.id.gametime);
