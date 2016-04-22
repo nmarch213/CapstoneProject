@@ -45,7 +45,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     String url = "http://104.197.124.0:8081/api/match_details";
     MatchAdapter adapterHome, adapterFootball, adapterSoccer, adapterVolleyball, adapterBasketball;
     List<Match_model> matchArray, footballMatchArray, soccerMatchArray, volleyballMatchArray, basketballMatchArray;
-    int rangeOfMatches = 10;
+    int rangeOfMatches = 20;
     Layout layout;
 
     //Butter knife the views for this
