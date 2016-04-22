@@ -7,7 +7,6 @@
        </head>
 		<header>
 			<?php
-				session_start();
 				$page = "about";
 				$show = 0;
 				if(isset($_SESSION['logged_in'])){

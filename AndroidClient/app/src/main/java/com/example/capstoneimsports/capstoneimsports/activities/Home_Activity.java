@@ -2,10 +2,8 @@ package com.example.capstoneimsports.capstoneimsports.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +19,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.capstoneimsports.capstoneimsports.MatchMessage.Fragment_Chat;
 import com.example.capstoneimsports.capstoneimsports.R;
 import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
@@ -374,6 +372,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 //        }
         int matchId = match.getMatch_id();
         Match_Activity.match = match;
+        Fragment_Chat.match = match;
         Intent intent = new Intent(this, Match_Activity.class);
         intent.putExtra("matchId", matchId);
         startActivity(intent);

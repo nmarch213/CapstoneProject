@@ -1,11 +1,9 @@
 package com.example.capstoneimsports.capstoneimsports.MatchMessage;
 
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.capstoneimsports.capstoneimsports.R;
@@ -16,27 +14,17 @@ import java.util.List;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
     private List<Message> mMessages;
+    private String mUsername;
     private int[] mUsernameColors;
 
     public MessageAdapter(List<Message> messages) {
         mMessages = messages;
+
         //  mUsernameColors = context.getResources().getIntArray(R.array.username_colors);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int layout = -1;
-        /*switch (viewType) {
-            case Message.TYPE_MESSAGE:
-                layout = R.layout.item_message;
-                break;
-            case Message.TYPE_LOG:
-                layout = R.layout.item_log;
-                break;
-            case Message.TYPE_ACTION:
-                layout = R.layout.item_action;
-                break;
-        }*/
         View v = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.fragment_message, parent, false);
@@ -47,7 +35,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Message message = mMessages.get(position);
         viewHolder.setMessage(message.getMessage());
-        viewHolder.setImage(message.getImage());
+        viewHolder.setUsername(message.getmUsername());
     }
 
     @Override
@@ -60,26 +48,27 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return mMessages.get(position).getType();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mImageView;
-        private TextView mMessageView;
+        private TextView mUsername;
+        private TextView mMessage;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mImageView = (ImageView) itemView.findViewById(R.id.image);
-            mMessageView = (TextView) itemView.findViewById(R.id.message);
+            mUsername = (TextView) itemView.findViewById(R.id.username);
+            mMessage = (TextView) itemView.findViewById(R.id.message);
         }
 
         public void setMessage(String message) {
-            if (null == mMessageView) return;
+            if (null == mMessage) return;
             if (null == message) return;
-            mMessageView.setText(message);
+            mMessage.setText(message);
         }
 
-        public void setImage(Bitmap bmp) {
-            if (null == mImageView) return;
-            if (null == bmp) return;
-            mImageView.setImageBitmap(bmp);
+        public void setUsername(String username) {
+            if (null == mUsername) return;
+            if (null == username) return;
+            mUsername.setText(username);
         }
 
         private int getUsernameColor(String username) {
@@ -90,5 +79,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             int index = Math.abs(hash % mUsernameColors.length);
             return mUsernameColors[index];
         }
+
     }
+
 }

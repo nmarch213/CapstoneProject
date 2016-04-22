@@ -4,11 +4,7 @@
 	<link href="style.css" rel="stylesheet">
 </head>
 <?php
-include 'database_info.php';
-$lcollection = $dbname->selectCollection('leagues');
-$tcollection = $dbname->selectCollection('teams');
-$leagues = $lcollection->find(array());
-$teams = $tcollection->find(array());
+
 ?>
 <body>
 <h2>Add Match</h2>
@@ -21,29 +17,13 @@ $teams = $tcollection->find(array());
 		</div>
 	</div>	
 	<div class="form-group">
-		<div class="col-sm-3">
+<div class="col-sm-3">
 		</div>
-		<div class="col-sm-3">
-			<select class="form-control" name="match_teamA">
-				<?php				
-				foreach ($teams as $team) {					
-				?>
-				<option value="<?php echo $team['name'];?>"><?php echo $team['name'];?></option>
-				<?php
-				}
-				?>
-			</select>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" name="match_id" placeholder="Score2" style="text-align: center;">
 		</div>
-		<div class="col-sm-3">
-			<select class="form-control" name="match_teamB">
-				<?php
-				foreach ($teams as $team) {
-				?>
-				<option value="<?php echo $team['name'];?>"><?php echo $team['name'];?></option>
-				<?php
-				}
-				?>
-			</select>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" name="team_one_name" placeholder="Score2" style="text-align: center;">
 		</div>
 	</div>
 	<div class="form-group">

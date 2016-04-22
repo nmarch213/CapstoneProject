@@ -1,7 +1,5 @@
 package com.example.capstoneimsports.capstoneimsports.MatchMessage;
 
-import android.graphics.Bitmap;
-
 public class Message {
 
     public static final int TYPE_MESSAGE = 0;
@@ -10,9 +8,13 @@ public class Message {
 
     private int mType;
     private String mMessage;
-    private Bitmap mImage;
+    private String mUsername;
 
     private Message() {
+    }
+
+    public String getmUsername() {
+        return mUsername;
     }
 
     public int getType() {
@@ -23,22 +25,19 @@ public class Message {
         return mMessage;
     }
 
-    public Bitmap getImage() {
-        return mImage;
-    }
 
 
     public static class Builder {
         private final int mType;
-        private Bitmap mImage;
+        private String mUsername;
         private String mMessage;
 
         public Builder(int type) {
             mType = type;
         }
 
-        public Builder image(Bitmap image) {
-            mImage = image;
+        public Builder username(String username) {
+            mUsername = username;
             return this;
         }
 
@@ -50,7 +49,7 @@ public class Message {
         public Message build() {
             Message message = new Message();
             message.mType = mType;
-            message.mImage = mImage;
+            message.mUsername = mUsername;
             message.mMessage = mMessage;
             return message;
         }

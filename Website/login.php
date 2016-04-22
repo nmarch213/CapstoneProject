@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <head>
 	<title>Login Page</title>
+	<label>Login</label>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
 </head>
 <?php
+	$url = 'http://104.197.124.0:8081/api/user';
 	$email = $_POST['login_email'];
 	$password = $_POST['login_pass'];
-	include 'database_info.php';
-	$collection = $dbname->selectCollection('users');
-	$result = $collection->findOne(array('email' => $email));
-	$passCheck = ($result['password']);
-	$isPassCorrect = password_verify($password, $passCheck);
-	if(!isset($_SESSION)){
+
+	// //Initiate cURL.
+	// $ch = curl_init($url);
+
+	// $jsonData = array(
+	// 	'email' => 'email',
+	// 	'password' => 'password'
+	// 	);
+	// //encode in json
+	// $jsonDataEncoded = json_encode($jsonData);
+
+	// //tell the cURL that we want a post request
+	// curl_setopt($ch, CURLOPT_POST, 1);
+
+	// //attach our encoded JSON string
+	// curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+
+	// //Set the content type to application/json
+	// curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json;charset=UTF-8')); 
+ 
+	// //Execute the request
+	// $result = curl_exec($ch);
+		if(!isset($_SESSION)){
 		session_start();
 	}
-	if($result!=null && $isPassCorrect)	{
+
+	if($email == 'test')	{
 		$_SESSION["logged_in"] = true;
-		$_SESSION["official"] = $result['official_user'];
+		$_SESSION["official"] = 1;
 		$heading = "SUCCESS BRO!";
-		$display = "Thank you for logging in " . $result['firstName'] . " " . $result['lastName'] . "!";
+		$display = "Thank you for logging in ";
 		$href = "index.php";
 	}
 	else	{
 		$heading = "Failure Bro!";
-		$emailCheck = $collection->findOne(array('email' => $email));
-		if($emailCheck!=null)	{
-			$display = "Incorrect password!";
-		}
-		else	{
-			$display = "Error, no such user found.";
-		}
+		//$emailCheck = $collection->findOne(array('email' => $email));
+		// if($emailCheck!=null)	{
+		// 	$display = "Incorrect password!";
+		// }
+		// else	{
+		// 	$display = "Error, no such user found.";
+		// }
 		$href = "login.html";
 	}	
 ?>

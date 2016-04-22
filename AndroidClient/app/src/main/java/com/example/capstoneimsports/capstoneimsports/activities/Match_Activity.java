@@ -79,13 +79,12 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
 
 
         try {
-            socket = IO.socket(url); //TODO: change to ours
+            socket = IO.socket(url);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        socket.connect();
-        socket.on("updateMatch", matchUpdate);
 
+        socket.on("updateMatch", matchUpdate);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -94,7 +93,6 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         setDetails();
 
         final LinearLayout scoreFrag = (LinearLayout) findViewById(R.id.scoreLayout);
-
         final FrameLayout team1 = (FrameLayout) findViewById(R.id.match_fragment);
 
         assert team1 != null;
@@ -241,34 +239,5 @@ public class Match_Activity extends AppCompatActivity implements Communicator {
         setDetails();
         matchDetails();
     }
-
-
-//    class getSocketInfo extends AsyncTask<Void, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//
-//                socket.on("matchUpdate", matchUpdate);
-//                try {
-//                    Thread.sleep(200);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        setDetails();
-//
-//                    }
-//                });
-//
-//            return null;
-//        }
-//
-//
-//
-//    }
 }
 

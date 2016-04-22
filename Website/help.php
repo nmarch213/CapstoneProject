@@ -24,7 +24,7 @@
 	<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 		<div class="container">	
 			<center>
-				<h1><a href=""><span class="glyphicon glyphicon-book"></span> Download the User Manual</a></h1>
+				<h1><a href="https://www.dropbox.com/s/i2o6z0hulu412r8/User-Guide.pdf?dl=1"><span class="glyphicon glyphicon-book"></span> Download the User Manual</a></h1>
 			</center>
 			<hr/>
 			<div class="row">				
@@ -61,7 +61,6 @@
 						<hr/>
 						<a href="images/help/homepage.png" target="_blank"><img src="images/help/homepage.png" width="30%" alt="Application Homepage"></a>
 						<p>From the homepage, simply tap the match you want more information on to be taken to its result screen.</p>
-						<img src="images/img_1.jpg" width="75%"/>
 					</div>
 					<br/>
 					<div id="section4">

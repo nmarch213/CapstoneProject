@@ -78,7 +78,6 @@ public class SocketActivity extends ActionBarActivity {
             cursor.close();
             //Log.d("onActivityResult",imgDecodableString);
             Fragment_Chat fragment = (Fragment_Chat) getFragmentManager().findFragmentById(R.id.chat);
-            fragment.sendImage(imgDecodableString);
         }
     }
 

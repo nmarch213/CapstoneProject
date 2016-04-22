@@ -4,9 +4,7 @@
 	<link href="style.css" rel="stylesheet">
 </head>
 <?php
-include 'database_info.php';
-$collection = $dbname->selectCollection('leagues');
-$leagues = $collection->find(array());
+
 ?>
 <body>
 <h2>Add Team</h2>

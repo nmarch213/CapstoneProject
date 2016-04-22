@@ -13,14 +13,9 @@
        </head>	
 	   <header>
 			<?php
-				if(!isset($_SESSION)){
-					session_start();
-				}
 				$page = "index";
 				$show = 0;
-				if(isset($_SESSION['logged_in'])){
-					$show = $_SESSION['logged_in'];
-				}
+				
 				include 'header.php';
 			?>
 	   </header>
@@ -84,15 +79,15 @@
 			-->			
        </body>	   	   	   
 	   <script>
-			var val = "<?php echo $_SESSION['logged_in'] ?>";
+			var val = "1";
 			if (val == "1")	{
-				document.getElementById('log-in').style.display = "none";
-				document.getElementById('logout').style.display = "inline";
+				document.getElementById('log-in').style.display = "inline";
+				document.getElementById('logout').style.display = "none";
 				document.getElementById('add').style.display = "inline";
 			}
 			else	{
 				document.getElementById('log-in').style.display = "inline";
-				document.getElementById('logout').style.display = "none";
+				document.getElementById('logout').style.display = "inline";
 				document.getElementById('add').style.display = "none";
 			}				
 		</script>

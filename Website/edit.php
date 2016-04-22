@@ -1,7 +1,4 @@
 <?php
-	if(!isset($_SESSION)){
-		session_start();
-	}
 	
 	include 'database_info.php';
 	if($_GET['type'] === "team"){
