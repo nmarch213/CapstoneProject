@@ -27,9 +27,6 @@ import com.example.capstoneimsports.capstoneimsports.adapters.MatchAdapter;
 import com.example.capstoneimsports.capstoneimsports.models.Match_model;
 import com.example.capstoneimsports.capstoneimsports.models.User_model;
 import com.example.capstoneimsports.capstoneimsports.server.ServerHandler;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +41,7 @@ import butterknife.ButterKnife;
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MatchAdapter.ClickListener {
 
     private static Home_Activity homeActivity;
-    TabHost tabHost;
+    TabHost locTabHost;
     TabHost.TabSpec tabSpec;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/match_details";
@@ -87,27 +84,17 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         }
 
         //Gets foothball matches from match arrayList
-        getFootballMatches();
+        getOtherMatches();
 
-        //The adapter used to populate the recycler view in Home
-        adapterHome = new MatchAdapter(Home_Activity.this, matchArray);
-        matchesHome.setAdapter(adapterHome);
-        matchesHome.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
-        adapterHome.setClickListener(this);
-
-        //Seperate adapter used to populate another recycler view in Football tab
-        adapterFootball = new MatchAdapter(Home_Activity.this, footballMatchArray);
-        matchesFootball.setAdapter(adapterFootball);
-        matchesFootball.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
-        adapterFootball.setClickListener(this);
 
         //RecyclerView of the matches on the home_activity
         // RecyclerView matchesHome = (RecyclerView) findViewById(R.id.matches_home);
 
         //Handles functionality for tabs
-        final TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
-        assert tabHost != null;
-        tabHost.setup();
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        if (tabHost != null) {
+            tabHost.setup();
+        }
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("homepage");
         tabSpec.setContent(R.id.homeTab);
@@ -134,29 +121,44 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         tabSpec.setIndicator("", this.getDrawable(R.drawable.soccer_ball));
         tabHost.addTab(tabSpec);
 
-        //When a tab is pressed do this
-        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+        //The adapter used to populate the recycler view in Home
+        adapterHome = new MatchAdapter(Home_Activity.this, matchArray);
+        matchesHome.setAdapter(adapterHome);
+        matchesHome.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapterHome.setClickListener(this);
 
-            public void onTabChanged(String tabId) {
-                switch (tabHost.getCurrentTab()) {
-                    case 0:
-                        Toast.makeText(Home_Activity.this, "Tab 1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
+        //Seperate adapter used to populate another recycler view in Football tab
+        adapterFootball = new MatchAdapter(Home_Activity.this, footballMatchArray);
+        matchesFootball.setAdapter(adapterFootball);
+        matchesFootball.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapterFootball.setClickListener(adapterFootball.clickListener);
 
-                        break;
-                    case 2:
-                        Toast.makeText(Home_Activity.this, "Tab 3", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(Home_Activity.this, "Tab 4", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-                        Toast.makeText(Home_Activity.this, "Tab 5", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        });
+        locTabHost = tabHost;
+
+
+//        //When a tab is pressed do this
+//        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+//
+//            public void onTabChanged(String tabId) {
+//                switch (tabHost.getCurrentTab()) {
+//                    case 0:
+//                        Toast.makeText(Home_Activity.this, "Tab 1", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 1:
+//
+//                        break;
+//                    case 2:
+//                        Toast.makeText(Home_Activity.this, "Tab 3", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 3:
+//                        Toast.makeText(Home_Activity.this, "Tab 4", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 4:
+//                        Toast.makeText(Home_Activity.this, "Tab 5", Toast.LENGTH_SHORT).show();
+//                        break;
+//                }
+//            }
+//        });
 
         //Add Toolbar
         setSupportActionBar(toolbar);
@@ -184,10 +186,10 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         dialog.dismiss();
     }
 
-    public void getFootballMatches() {
+    public void getOtherMatches() {
+        footballMatchArray = new ArrayList<>();
+        int index = 0;
         for (int i = 0; i < matchArray.size(); i++) {
-            footballMatchArray = new ArrayList<>();
-            int index = 0;
             String league = matchArray.get(i).getMatch_league();
 
             if (league.compareTo("Men's Football") == 0) {
@@ -319,7 +321,14 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     @Override
     public void matchClicked(View view, int position) {
 
-        Match_model match = matchArray.get(position);
+        Match_model match = footballMatchArray.get(position);
+
+//        if (locTabHost.getCurrentTab() == 1) {
+//            match = footballMatchArray.get(position);
+//        }
+//        else {
+//            match = matchArray.get(position);
+//        }
         int matchId = match.getMatch_id();
         Match_Activity.match = match;
         Intent intent = new Intent(this, Match_Activity.class);
