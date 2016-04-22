@@ -60,7 +60,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <!--<include layout="@layout/recycler_view" />-->
+                        <include layout="@layout/volleyball_recycler_view" />
 
                     </LinearLayout>
 
@@ -70,7 +70,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <!--<include layout="@layout/recycler_view" />-->
+                        <include layout="@layout/basketball_recycler_view" />
 
                     </LinearLayout>
 
@@ -80,7 +80,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <!--<include layout="@layout/recycler_view" />-->
+                        <include layout="@layout/soccer_recycler_view" />
 
                     </LinearLayout>
                 </FrameLayout>

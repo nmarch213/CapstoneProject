@@ -45,16 +45,28 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     TabHost.TabSpec tabSpec;
     ServerHandler server = new ServerHandler();
     String url = "http://104.197.124.0:8081/api/match_details";
-    MatchAdapter adapterHome, adapterFootball;
-    List<Match_model> matchArray, footballMatchArray;
+    MatchAdapter adapterHome, adapterFootball, adapterSoccer, adapterVolleyball, adapterBasketball;
+    List<Match_model> matchArray, footballMatchArray, soccerMatchArray, volleyballMatchArray, basketballMatchArray;
     int rangeOfMatches = 10;
     Layout layout;
 
     //Butter knife the views for this
     @Bind(R.id.matches_home)
     RecyclerView matchesHome;
+
     @Bind(R.id.matches_football)
     RecyclerView matchesFootball;
+
+    @Bind(R.id.matches_basketball)
+    RecyclerView matchesBasketball;
+
+    @Bind(R.id.matches_soccer)
+    RecyclerView matchesSoccer;
+
+    @Bind(R.id.matches_volleyball)
+    RecyclerView matchesVolleyball;
+
+
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.nav_view)
@@ -131,10 +143,25 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         adapterFootball = new MatchAdapter(Home_Activity.this, footballMatchArray);
         matchesFootball.setAdapter(adapterFootball);
         matchesFootball.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
-        adapterFootball.setClickListener(adapterFootball.clickListener);
+        adapterFootball.setClickListener(this);
 
-        locTabHost = tabHost;
+        //Seperate adapter used to populate another recycler view in soccer tab
+        adapterSoccer = new MatchAdapter(Home_Activity.this, soccerMatchArray);
+        matchesSoccer.setAdapter(adapterSoccer);
+        matchesSoccer.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapterSoccer.setClickListener(this);
 
+        //Seperate adapter used to populate another recycler view in basketball tab
+        adapterBasketball = new MatchAdapter(Home_Activity.this, basketballMatchArray);
+        matchesBasketball.setAdapter(adapterBasketball);
+        matchesBasketball.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapterBasketball.setClickListener(this);
+
+        //Seperate adapter used to populate another recycler view in volleyball tab
+        adapterVolleyball = new MatchAdapter(Home_Activity.this, volleyballMatchArray);
+        matchesVolleyball.setAdapter(adapterVolleyball);
+        matchesVolleyball.setLayoutManager(new LinearLayoutManager(Home_Activity.this));
+        adapterVolleyball.setClickListener(this);
 
 //        //When a tab is pressed do this
 //        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -188,15 +215,31 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
     public void getOtherMatches() {
         footballMatchArray = new ArrayList<>();
-        int index = 0;
+        soccerMatchArray = new ArrayList<>();
+        basketballMatchArray = new ArrayList<>();
+        volleyballMatchArray = new ArrayList<>();
+
+        int footballIndex = 0, soccerIndex = 0, basketballIndex = 0, volleyballIndex = 0;
         for (int i = 0; i < matchArray.size(); i++) {
             String league = matchArray.get(i).getMatch_league();
 
             if (league.compareTo("Men's Football") == 0) {
 
                 //Adds the match to the ArrayList, matchArray
-                footballMatchArray.add(index, matchArray.get(i));
-                index++;
+                footballMatchArray.add(footballIndex, matchArray.get(i));
+                footballIndex++;
+            }
+            else if (league.compareTo("Men's Soccer") == 0 || league.compareTo("Women's Soccer") == 0) {
+                soccerMatchArray.add(soccerIndex, matchArray.get(i));
+                soccerIndex++;
+            }
+            else if (league.compareTo("Men's Basketball") == 0 || league.compareTo("Women's Basketball") == 0) {
+                basketballMatchArray.add(basketballIndex, matchArray.get(i));
+                basketballIndex++;
+            }
+            else if (league.compareTo("Men's Volleyball") == 0 || league.compareTo("Women's Volleyball") == 0) {
+                volleyballMatchArray.add(volleyballIndex, matchArray.get(i));
+                volleyballIndex++;
             }
         }
     }
@@ -321,7 +364,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
     @Override
     public void matchClicked(View view, int position) {
 
-        Match_model match = footballMatchArray.get(position);
+        Match_model match = matchArray.get(position);
 
 //        if (locTabHost.getCurrentTab() == 1) {
 //            match = footballMatchArray.get(position);
