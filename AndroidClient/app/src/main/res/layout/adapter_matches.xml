@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@color/primary">
+    android:background="@color/primary"
+    android:elevation="4dp">
 
     <LinearLayout
         android:id="@+id/team_name_frame"
@@ -37,7 +38,6 @@
 
 
     <LinearLayout
-        android:fitsSystemWindows="true"
         android:id="@+id/score_frame"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -45,6 +45,7 @@
         android:layout_toRightOf="@+id/team_name_frame"
         android:background="@color/primary_light"
         android:elevation="4dp"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <TextView
@@ -67,20 +68,20 @@
     </LinearLayout>
 
     <LinearLayout
-        android:fitsSystemWindows="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"
         android:background="@color/primary_light"
         android:elevation="4dp"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:textSize="20sp"
             android:text="Time "
+            android:textSize="20sp"
             />
 
 
