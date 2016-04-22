@@ -15,6 +15,7 @@
         android:elevation="4dp"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/team_one_name"
             android:layout_width="wrap_content"
@@ -36,6 +37,7 @@
 
 
     <LinearLayout
+        android:fitsSystemWindows="true"
         android:id="@+id/score_frame"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -64,14 +66,23 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="100dp"
-        android:layout_height="85dp"
+    <LinearLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:layout_toRightOf="@+id/score_frame"
+        android:layout_alignParentEnd="true"
         android:background="@color/primary_light"
         android:elevation="4dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:text="Time "
+            />
+
 
         <TextView
             android:id="@+id/gametime"
@@ -84,7 +95,9 @@
             android:textSize="20sp" />
 
 
-    </RelativeLayout>
+
+
+    </LinearLayout>
 
 
     <LinearLayout
